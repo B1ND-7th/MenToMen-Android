@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="0dp">
+        app:cardElevation="0dp"
+        android:layout_marginTop="20dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,7 +26,7 @@
                 android:layout_width="26dp"
                 android:layout_height="33dp"
                 tools:src="@drawable/ic_android"
-                android:src="@{item.logo}"
+                image="@{item.logo}"
                 android:layout_marginStart="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -4,10 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/corner_radious.xml" value="0.2885" />
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.258" />
         <entry key="app/src/main/res/drawable/ic_android.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/ic_ios.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.2885" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.4546875" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.28321533203125004" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4263046264648438" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.4546875" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.4546875" />

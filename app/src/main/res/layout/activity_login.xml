@@ -29,6 +29,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="멘토와 멘티를 이어주다"
@@ -39,6 +40,29 @@
             app:layout_constraintTop_toBottomOf="@id/imageView" />
 
 
+        <EditText
+            android:id="@+id/et_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textSize="14sp"
+            android:hint="도담도담ID를 입력하세요"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/et_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:textSize="14sp"
+            android:hint="도담도담 비밀번호 를 입력하세요"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_id" />
 
         <Button
             android:id="@+id/btn_login"
@@ -46,11 +70,28 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:background="@drawable/corner_radious"
+            android:backgroundTint="@color/blue"
+            android:layout_marginBottom="10dp"
+            android:text="@string/text_login"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_dauth_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <Button
+            android:id="@+id/btn_dauth_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/corner_radious"
+            android:backgroundTint="#2B65B6"
+            android:onClick="@{() -> vm.onClickLogin()}"
             android:text="@string/text_dauth_login"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:onClick="@{() -> vm.onClickLogin()}"
-            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         performViewModel()
 
-        val register = settingForDodam("39bc523458c14eb987b7b16175426a31a9f105b7f5814f1f9eca7d454bd23c73", "e90b070b437f420eb788fad746e97a507984328ddf9142f481397ca6e7afda0e", "http://localhost:3000/callback")
+        val register = settingForDodam(applicationContext.getString(R.string.clientId), applicationContext.getString(R.string.clientSecret), applicationContext.getString(R.string.redirectUrl))
         loginViewModel.onClickLoginEvent.observe(this) {
              loginForDodam(register, { tokenResponse ->
                  refreshToken = tokenResponse.refreshToken

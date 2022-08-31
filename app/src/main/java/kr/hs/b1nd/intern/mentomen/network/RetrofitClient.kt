@@ -21,18 +21,19 @@ object RetrofitClient {
         .writeTimeout(100, TimeUnit.SECONDS)
         .build()
 
-    val retrofitLogin: Retrofit = Retrofit.Builder()
-        .baseUrl(LOGIN_URL)
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .client(logger)
-        .build()
-
     val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .client(logger)
         .build()
 
+    val retrofitLogin: Retrofit = Retrofit.Builder()
+        .baseUrl(LOGIN_URL)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .client(logger)
+        .build()
+
     val loginService: LoginService = retrofitLogin.create(LoginService::class.java)
+    val mtmService: LoginService = retrofit.create(LoginService::class.java)
 
 }

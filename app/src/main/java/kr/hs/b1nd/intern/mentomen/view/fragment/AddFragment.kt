@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentAddBinding
 import kr.hs.b1nd.intern.mentomen.network.model.CategoryItem
@@ -34,6 +35,9 @@ class AddFragment : Fragment() {
         )
         performViewModel()
         initRecyclerView()
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
 
         return binding.root

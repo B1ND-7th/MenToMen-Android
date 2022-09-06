@@ -7,6 +7,7 @@ import kr.hs.b1nd.intern.mentomen.network.response.LoginResponse
 import kr.hs.b1nd.intern.mentomen.network.response.MTMLoginResponse
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface LoginService {

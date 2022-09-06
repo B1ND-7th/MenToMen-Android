@@ -21,45 +21,34 @@
             android:layout_width="250dp"
             android:layout_height="150dp"
             android:src="@drawable/logo"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="150dp"
             android:layout_marginHorizontal="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="멘토와 멘티를 이어주다"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@id/imageView"
-            app:layout_constraintStart_toStartOf="@id/imageView"
-            app:layout_constraintTop_toBottomOf="@id/imageView" />
-
 
         <EditText
             android:id="@+id/et_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:textSize="14sp"
-            android:text="@={vm.id}"
+            android:layout_marginHorizontal="20dp"
             android:hint="도담도담ID를 입력하세요"
             android:inputType="text"
-            android:layout_marginHorizontal="20dp"
+            android:text="@={vm.id}"
+            android:textSize="16sp"
+            android:layout_marginTop="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <EditText
             android:id="@+id/et_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:text="@={vm.pw}"
             android:hint="도담도담 비밀번호 를 입력하세요"
             android:inputType="textPassword"

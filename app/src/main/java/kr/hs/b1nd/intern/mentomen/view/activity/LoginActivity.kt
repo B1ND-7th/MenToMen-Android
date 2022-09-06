@@ -1,10 +1,13 @@
 package kr.hs.b1nd.intern.mentomen.view.activity
 
+import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.ActivityLoginBinding
 import kr.hs.b1nd.intern.mentomen.viewmodel.LoginViewModel
@@ -15,24 +18,18 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var loginViewModel: LoginViewModel
 
-    private var refreshToken: String? = null
-    private var token: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         performViewModel()
 
-        val register = settingForDodam(
-            applicationContext.getString(R.string.clientId),
-            applicationContext.getString(R.string.clientSecret),
-            applicationContext.getString(R.string.redirectUrl)
-        )
-
         loginViewModel.onClickDauthLogin.observe(this) {
-            loginForDodam(register, { tokenResponse ->
-                refreshToken = tokenResponse.refreshToken
-                token = tokenResponse.token
+            loginForDodam(settingForDodam(
+                applicationContext.getString(R.string.clientId),
+                applicationContext.getString(R.string.clientSecret),
+                applicationContext.getString(R.string.redirectUrl)
+            ), { tokenResponse ->
+                App.prefs.setString("accessToken", tokenResponse.token)
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }, { error ->
@@ -45,7 +42,6 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
     }
-
 
     private fun performViewModel() {
         loginViewModel = LoginViewModel(application)

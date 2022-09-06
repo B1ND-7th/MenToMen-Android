@@ -3,6 +3,7 @@ package kr.hs.b1nd.intern.mentomen.viewmodel
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
@@ -51,6 +52,7 @@ class LoginViewModel(val application: Application): ViewModel() {
                             response: Response<BaseResponse<MTMLoginResponse>>
                         ) {
                             if (response.isSuccessful) {
+                                App.prefs.setString("accessToken", response.body()?.data!!.accessToken)
                                 onClickLoginEvent.call()
                             }
                         }
@@ -63,7 +65,6 @@ class LoginViewModel(val application: Application): ViewModel() {
                         }
 
                     })
-
                 }
             }
             override fun onFailure(call: Call<BaseResponse<LoginResponse>>, t: Throwable) {

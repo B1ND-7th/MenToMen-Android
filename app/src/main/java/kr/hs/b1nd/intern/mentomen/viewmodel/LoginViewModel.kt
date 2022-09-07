@@ -43,7 +43,7 @@ class LoginViewModel(val application: Application): ViewModel() {
                 if (response.isSuccessful) {
                     val call2 = RetrofitClient.mtmService.mtmLogin(
                         MTMLoginRequest(
-                            response.body()?.data?.location!!.split("=", "&")[1]
+                            response.body()?.data!!.location.split("=", "&")[1]
                         )
                     )
                     call2.enqueue(object : retrofit2.Callback<BaseResponse<MTMLoginResponse>> {

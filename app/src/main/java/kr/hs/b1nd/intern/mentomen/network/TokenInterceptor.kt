@@ -1,13 +1,9 @@
 package kr.hs.b1nd.intern.mentomen.network
 
 import kr.hs.b1nd.intern.mentomen.App
-import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
-import kr.hs.b1nd.intern.mentomen.network.request.TokenRequest
-import kr.hs.b1nd.intern.mentomen.network.response.TokenResponse
 import okhttp3.Interceptor
 import okhttp3.Response
 import org.json.JSONException
-import retrofit2.Call
 
 class TokenInterceptor : Interceptor {
 

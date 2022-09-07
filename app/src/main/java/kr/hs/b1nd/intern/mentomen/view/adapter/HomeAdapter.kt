@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kr.hs.b1nd.intern.mentomen.databinding.ItemHomeBinding
-import kr.hs.b1nd.intern.mentomen.network.model.ImageItem
+import kr.hs.b1nd.intern.mentomen.network.model.Post
 
-public class HomeAdapter(private val item: ArrayList<ImageItem>) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class HomeAdapter(private val item: List<Post>) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     inner class HomeViewHolder(private val binding: ItemHomeBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ImageItem) {
+        fun bind(item: Post) {
             binding.item = item
         }
     }

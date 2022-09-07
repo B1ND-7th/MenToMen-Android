@@ -1,7 +1,7 @@
 package kr.hs.b1nd.intern.mentomen.network
 
 import kr.hs.b1nd.intern.mentomen.network.service.LoginService
-import kr.hs.b1nd.intern.mentomen.network.service.TokenService
+import kr.hs.b1nd.intern.mentomen.network.service.PostService
 import kr.hs.b1nd.intern.mentomen.util.Constants.BASE_URL
 import kr.hs.b1nd.intern.mentomen.util.Constants.LOGIN_URL
 import okhttp3.OkHttpClient
@@ -16,13 +16,13 @@ object RetrofitClient {
         .addInterceptor(TokenInterceptor())
         .build()
 
-    val retrofit: Retrofit = Retrofit.Builder()
+    private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()
 
-    val dAuthRetrofit: Retrofit = Retrofit.Builder()
+    private val dAuthRetrofit: Retrofit = Retrofit.Builder()
         .baseUrl(LOGIN_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
@@ -30,6 +30,6 @@ object RetrofitClient {
 
     val loginService: LoginService = dAuthRetrofit.create(LoginService::class.java)
     val mtmService: LoginService = retrofit.create(LoginService::class.java)
-    val tokenService: TokenService = retrofit.create(TokenService::class.java)
+    val postService: PostService = retrofit.create(PostService::class.java)
 
 }

@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
-import kr.hs.b1nd.intern.mentomen.network.model.ImageItem
+import kr.hs.b1nd.intern.mentomen.network.model.Post
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
 
@@ -34,6 +33,7 @@ class HomeFragment : Fragment() {
         performViewModel()
         observeViewModel()
 
+
         return binding.root
     }
 
@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initHomeAdapter(items: ArrayList<ImageItem>) {
+    private fun initHomeAdapter(items: List<Post>) {
         homeAdapter = HomeAdapter(items)
         binding.rvHome.adapter = homeAdapter
         homeAdapter.notifyDataSetChanged()

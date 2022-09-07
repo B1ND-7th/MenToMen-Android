@@ -48,10 +48,11 @@
         <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/menu/post_upload_ui_toolbar.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/corner_radious.xml" value="0.2885" />
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.258" />
         <entry key="app/src/main/res/drawable/ic_android.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/ic_ios.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.2885" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.4546875" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.4765974004217919" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4263046264648438" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.4546875" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.4546875" />

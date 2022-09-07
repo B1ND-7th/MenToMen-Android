@@ -11,11 +11,11 @@
     </data>
 
     <LinearLayout
-        android:weightSum="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#1E1E1E"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
 
         <androidx.appcompat.widget.Toolbar
@@ -45,8 +45,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
+            android:layout_weight="1">
 
             <EditText
                 android:id="@+id/Edit_Text"
@@ -67,24 +66,25 @@
                 android:layout_height="20dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="10dp"
-                app:layout_constraintStart_toStartOf="@id/Edit_Text"
+                android:background="@drawable/ic_image"
                 app:layout_constraintBottom_toBottomOf="@id/Edit_Text"
-                android:background="@drawable/ic_image" />
+                app:layout_constraintStart_toStartOf="@id/Edit_Text" />
 
-            z<androidx.recyclerview.widget.RecyclerView
+
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_kategorie"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:orientation="horizontal"
                 android:layout_marginStart="10dp"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="@id/image_button"
                 app:layout_constraintEnd_toEndOf="@id/Edit_Text"
                 app:layout_constraintStart_toEndOf="@id/image_button"
-                app:layout_constraintBottom_toBottomOf="@id/image_button"
                 app:layout_constraintTop_toTopOf="@id/image_button"
                 tools:listitem="@layout/item_category" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -93,25 +93,24 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="0.1"
-            android:textColor="@color/white"
-
             android:background="@drawable/corner_blue"
+
             android:drawableStart="@drawable/ic_edit"
             android:gravity="center"
-            >
+            android:textColor="@color/white">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit"/>
+                android:src="@drawable/ic_edit" />
+
             <TextView
-                android:layout_marginStart="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:text="멘토에게 요청하기"
-                android:textColor="@color/white"
-                />
+                android:textColor="@color/white" />
         </LinearLayout>
-
 
 
     </LinearLayout>

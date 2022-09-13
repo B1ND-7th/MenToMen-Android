@@ -16,16 +16,16 @@ import retrofit2.Call
 import retrofit2.Response
 import java.security.MessageDigest
 
-class LoginViewModel(val application: Application): ViewModel() {
+class LoginViewModel(private val application: Application): ViewModel() {
 
-    val onClickDauthLogin = SingleLiveEvent<Any>()
+    val onClickDAuthLogin = SingleLiveEvent<Any>()
     val onClickLoginEvent = SingleLiveEvent<Any>()
 
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
     fun onClickDauthLogin() {
-        onClickDauthLogin.call()
+        onClickDAuthLogin.call()
     }
 
     fun onClickMTMLogin() {

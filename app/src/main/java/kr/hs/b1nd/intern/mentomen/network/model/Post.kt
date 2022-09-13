@@ -11,5 +11,4 @@ data class Post(
     val userName: String
 ) {
 
-    val dateTime: String = localDateTime
 }

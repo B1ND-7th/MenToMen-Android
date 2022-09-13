@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp">
 
@@ -23,13 +23,13 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageFilterView"
+                android:id="@+id/iv_tag"
                 android:layout_width="26dp"
                 android:layout_height="33dp"
                 android:layout_marginStart="10dp"
-                android:src="@drawable/ic_android"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_android" />
 
             <TextView
                 android:id="@+id/tv_name"
@@ -39,6 +39,7 @@
                 android:layout_marginEnd="5dp"
                 android:text="@{item.userName}"
                 android:textSize="10sp"
+                android:fontFamily="@font/regular"
                 app:layout_constraintEnd_toStartOf="@+id/textView2"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="조상영" />
@@ -49,7 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="@{item.dateTime}"
+                android:fontFamily="@font/regular"
+                android:text="@{item.localDateTime}"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -63,12 +65,13 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="@{item.content}"
+                android:fontFamily="@font/regular"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/cardView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageFilterView"
+                app:layout_constraintTop_toBottomOf="@+id/iv_tag"
                 tools:text="안드로이드 코틀린 리사이클러뷰에 조상영얼굴을 넣었는데 너무 멋진거 같아요" />
 
             <androidx.cardview.widget.CardView
@@ -77,9 +80,9 @@
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:elevation="0dp"
                 android:layout_marginBottom="10dp"
                 app:cardCornerRadius="5dp"
+                app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_name">

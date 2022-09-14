@@ -57,6 +57,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/corner_white_radious"
                 android:gravity="top"
+                android:text="@{vm.content}"
                 android:hint="내용을 입력하세요."
                 android:padding="20dp" />
 
@@ -68,7 +69,9 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/ic_image"
                 app:layout_constraintBottom_toBottomOf="@id/Edit_Text"
-                app:layout_constraintStart_toStartOf="@id/Edit_Text" />
+                app:layout_constraintStart_toStartOf="@id/Edit_Text"
+                android:onClick="@{()->vm.onClickImage()}"
+                />
 
 
 
@@ -94,7 +97,7 @@
             android:layout_height="50dp"
             android:layout_weight="0.1"
             android:background="@drawable/corner_blue"
-
+            android:onClick="@{()->vm.onClickPost()}"
             android:drawableStart="@drawable/ic_edit"
             android:gravity="center"
             android:textColor="@color/white">

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="view.fragment.HomeFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_design"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/corner_radious"
+                android:backgroundTint="@color/design"
+                android:fontFamily="@font/regular"
+                android:onClick="@{() -> vm.onClickDesignBtn()}"
+                android:text="Design"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/rv_home"
+                app:layout_constraintEnd_toStartOf="@id/btn_web"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_web"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:background="@drawable/corner_radious"
+                android:backgroundTint="@color/web"
+                android:fontFamily="@font/regular"
+                android:onClick="@{() -> vm.onClickWebBtn()}"
+                android:text="Web"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/rv_home"
+                app:layout_constraintEnd_toStartOf="@id/btn_android"
+                app:layout_constraintStart_toEndOf="@id/btn_design"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_android"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:background="@drawable/corner_radious"
+                android:backgroundTint="@color/android"
+                android:fontFamily="@font/regular"
+                android:onClick="@{() -> vm.onClickAndroidBtn()}"
+                android:text="Android"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/rv_home"
+                app:layout_constraintEnd_toStartOf="@id/btn_server"
+                app:layout_constraintStart_toEndOf="@id/btn_web"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_server"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:background="@drawable/corner_radious"
+                android:backgroundTint="@color/server"
+                android:fontFamily="@font/regular"
+                android:onClick="@{() -> vm.onClickServerBtn()}"
+                android:text="Server"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/rv_home"
+                app:layout_constraintEnd_toStartOf="@id/btn_ios"
+                app:layout_constraintStart_toEndOf="@id/btn_android"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_ios"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/corner_radious"
+                android:backgroundTint="@color/iOS"
+                android:fontFamily="@font/regular"
+                android:onClick="@{() -> vm.onClickIosBtn()}"
+
+                android:text="iOS"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/rv_home"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_server"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/btn_design"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

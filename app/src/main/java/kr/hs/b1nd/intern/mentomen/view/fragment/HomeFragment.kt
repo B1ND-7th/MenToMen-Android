@@ -12,14 +12,16 @@ import androidx.lifecycle.ViewModelProvider
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
 import kr.hs.b1nd.intern.mentomen.network.model.Post
+import kr.hs.b1nd.intern.mentomen.network.model.TagInfo
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
+import kr.hs.b1nd.intern.mentomen.view.adapter.TagAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
-
+    private lateinit var tagAdapter: TagAdapter
     private lateinit var homeAdapter: HomeAdapter
 
     override fun onCreateView(
@@ -34,68 +36,10 @@ class HomeFragment : Fragment() {
         )
         performViewModel()
         observeViewModel()
-
-        with(homeViewModel) {
-            onCLickDesignEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnDesign, R.drawable.corner_radious, R.color.white)
-                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
-                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
-                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
-                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
-                }
-            }
-
-            onCLickWebEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnWeb, R.drawable.corner_radious, R.color.white)
-                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
-                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
-                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
-                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
-                }
-            }
-
-            onCLickServerEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnServer, R.drawable.corner_radious, R.color.white)
-                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
-                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
-                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
-                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
-                }
-            }
-
-            onCLickAndroidEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnAndroid, R.drawable.corner_radious, R.color.white)
-                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
-                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
-                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
-                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
-                }
-            }
-
-            onCLickIosEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnIos, R.drawable.corner_radious, R.color.white)
-                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
-                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
-                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
-                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
-                }
-            }
-        }
+        initTagAdapter()
 
 
         return binding.root
-    }
-
-    private fun btnState(btn: Button, drawable: Int, color: Int) {
-        btn.apply {
-            setBackgroundResource(drawable)
-            setTextColor(ContextCompat.getColor(context, color))
-        }
     }
 
     private fun observeViewModel() {
@@ -110,6 +54,11 @@ class HomeFragment : Fragment() {
         homeAdapter = HomeAdapter(items)
         binding.rvHome.adapter = homeAdapter
         homeAdapter.notifyDataSetChanged()
+    }
+
+    private fun initTagAdapter() {
+        tagAdapter = TagAdapter()
+        binding.rvTag.adapter = tagAdapter
     }
 
     private fun performViewModel() {

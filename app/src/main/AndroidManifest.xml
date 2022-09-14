@@ -27,12 +27,7 @@
         </activity>
         <activity
             android:name=".view.activity.MainActivity"
-<<<<<<< HEAD
             android:exported="false" >
-=======
-            android:exported="true"
-            android:screenOrientation="portrait">
->>>>>>> develop
 
         </activity>
     </application>

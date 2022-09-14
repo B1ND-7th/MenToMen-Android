@@ -67,6 +67,8 @@
             android:layout_height="0dp"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:navGraph="@navigation/nav_graph" />
 
@@ -79,10 +81,6 @@
             app:itemIconSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
-=======
-            app:layout_constraintHorizontal_bias="0.0"
->>>>>>> develop
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/menu_bottom" />
 

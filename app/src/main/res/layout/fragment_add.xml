@@ -1,119 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragment.AddFragment">
 
-    <data>
-
-        <variable
-            name="vm"
-            type="kr.hs.b1nd.intern.mentomen.viewmodel.AddViewModel" />
-    </data>
-
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#1E1E1E"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:text="추가" />
 
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/post_upload_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/back_button"
-                android:layout_width="50dp"
-                android:layout_height="25dp"
-                android:background="@drawable/ic_back"
-                android:gravity="center_vertical" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="글쓰기"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <EditText
-                android:id="@+id/Edit_Text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/corner_white_radious"
-                android:gravity="top"
-                android:hint="내용을 입력하세요."
-                android:padding="20dp" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/image_button"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/ic_image"
-                app:layout_constraintBottom_toBottomOf="@id/Edit_Text"
-                app:layout_constraintStart_toStartOf="@id/Edit_Text" />
-
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_kategorie"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="@id/image_button"
-                app:layout_constraintEnd_toEndOf="@id/Edit_Text"
-                app:layout_constraintStart_toEndOf="@id/image_button"
-                app:layout_constraintTop_toTopOf="@id/image_button"
-                tools:listitem="@layout/item_category" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="0.1"
-            android:background="@drawable/corner_blue"
-
-            android:drawableStart="@drawable/ic_edit"
-            android:gravity="center"
-            android:textColor="@color/white">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="멘토에게 요청하기"
-                android:textColor="@color/white" />
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
-</layout>
+</FrameLayout>

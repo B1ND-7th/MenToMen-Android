@@ -1,21 +1,17 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
+import android.widget.Button
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
 import kr.hs.b1nd.intern.mentomen.network.model.Post
+import kr.hs.b1nd.intern.mentomen.network.model.TagInfo
 import kr.hs.b1nd.intern.mentomen.util.SingleLiveEvent
 import retrofit2.Call
 import retrofit2.Response
 
 class HomeViewModel: ViewModel() {
-    val onCLickDesignEvent = SingleLiveEvent<Any>()
-    val onCLickWebEvent = SingleLiveEvent<Any>()
-    val onCLickServerEvent = SingleLiveEvent<Any>()
-    val onCLickAndroidEvent = SingleLiveEvent<Any>()
-    val onCLickIosEvent = SingleLiveEvent<Any>()
-
     val itemList = MutableLiveData<List<Post>>()
 
     init {
@@ -33,25 +29,6 @@ class HomeViewModel: ViewModel() {
             }
 
         })
-    }
-    fun onClickDesignBtn() {
-        callTagService("DESIGN", onCLickDesignEvent)
-    }
-
-    fun onClickWebBtn() {
-        callTagService("WEB", onCLickWebEvent)
-    }
-
-    fun onClickServerBtn() {
-        callTagService("SERVER", onCLickServerEvent)
-    }
-
-    fun onClickAndroidBtn() {
-        callTagService("ANDROID", onCLickAndroidEvent)
-    }
-
-    fun onClickIosBtn() {
-        callTagService("IOS", onCLickIosEvent)
     }
 
     private fun callTagService(tag: String, singleLiveEvent: SingleLiveEvent<Any>) {

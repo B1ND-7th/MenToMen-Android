@@ -7,12 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blue">#2749DC</color>
     <color name="background">#F2F2F2</color>
     <color name="gray">#858585</color>
+<<<<<<< HEAD
     <color name="iOS">#4C4C4C</color>
     <color name="web">#D38D42</color>
     <color name="android">#35C174</color>
     <color name="server">#3E89DB</color>
     <color name="design">#D83F67</color>
+=======
+    <color name="green">#3DDC84</color>
+    <color name="brown">#9F5E5E</color>
+    <color name="blue">#3E89DB</color>
+    <color name="yellow">#D38D42</color>
+    <color name="pink">#D83F67</color>
+>>>>>>> develop
 </resources>

@@ -3,6 +3,50 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/background_category_item.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/background_kategorie_item.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/category_item.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/category_item_black.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/category_item_blue.xml" value="0.2035" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/category_item_gray.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/category_item_green.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/category_item_pink.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/category_item_yellow.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/corner_blue.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/corner_nonradious_blue.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/corner_radious.xml" value="0.2015" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/corner_white_radious.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_add.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_android.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_back.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_design.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_edit_2.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_edit_image.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_home.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_image.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_ios.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_kategorie.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_notification.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_server.xml" value="0.2365" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_user.xml" value="0.2015" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/ic_web.xml" value="0.2015" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/layout/activity_login.xml" value="0.3796875" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/layout/activity_main.xml" value="0.3796875" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/layout/activity_post_upload.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/layout/fragment_add.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/layout/fragment_home.xml" value="0.3796875" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/layout/fragment_user.xml" value="0.3796875" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/layout/item_category.xml" value="0.196875" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/layout/item_home.xml" value="0.3796875" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/layout/item_kategorie.xml" value="0.6666666666666666" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/layout/post_registration_ui.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/layout/post_upload_ui.xml" value="0.21944444444444444" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/menu/menu_bottom.xml" value="0.3796875" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/menu/menu_top.xml" value="0.3796875" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/menu/post_upload_ui_toolbar.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/corner_radious.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.258" />
         <entry key="app/src/main/res/drawable/ic_android.xml" value="0.2885" />

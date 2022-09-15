@@ -29,27 +29,27 @@ class CategoryAdapter(val context: Context, val action: (name: String) -> Unit) 
                     "Android" -> {
                         binding.tvCategoryName.background =
                             ContextCompat.getDrawable(context, R.drawable.category_item_green)
-                        binding.tvCategoryName.setTextColor(ContextCompat.getColor(context,R.color.green))
+                        binding.tvCategoryName.setTextColor(ContextCompat.getColor(context,R.color.android))
                     }
                     "iOS" -> {
                         binding.tvCategoryName.background =
                             ContextCompat.getDrawable(context, R.drawable.category_item_gray)
-                        binding.tvCategoryName.setTextColor(ContextCompat.getColor(context,R.color.brown))
+                        binding.tvCategoryName.setTextColor(ContextCompat.getColor(context,R.color.iOS))
                     }
                     "Web" -> {
                         binding.tvCategoryName.background =
                             ContextCompat.getDrawable(context, R.drawable.category_item_yellow)
-                        binding.tvCategoryName.setTextColor(ContextCompat.getColor(context,R.color.yellow))
+                        binding.tvCategoryName.setTextColor(ContextCompat.getColor(context,R.color.web))
                     }
                     "Server" -> {
                         binding.tvCategoryName.background =
                             ContextCompat.getDrawable(context, R.drawable.category_item_blue)
-                        binding.tvCategoryName.setTextColor(ContextCompat.getColor(context,R.color.blue))
+                        binding.tvCategoryName.setTextColor(ContextCompat.getColor(context,R.color.server))
                     }
                     "Design" -> {
                         binding.tvCategoryName.background =
                             ContextCompat.getDrawable(context, R.drawable.category_item_pink)
-                        binding.tvCategoryName.setTextColor(ContextCompat.getColor(context,R.color.pink))
+                        binding.tvCategoryName.setTextColor(ContextCompat.getColor(context,R.color.design))
                     }
                 }
             else{

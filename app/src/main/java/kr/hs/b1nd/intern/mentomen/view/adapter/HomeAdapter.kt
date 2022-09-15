@@ -12,7 +12,7 @@ class HomeAdapter(private val item: List<Post>) : RecyclerView.Adapter<HomeAdapt
     inner class HomeViewHolder(private val binding: ItemHomeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Post) {
             binding.item = item
-            when (item.tags) {
+            when (item.tag) {
                 "ANDROID" -> binding.ivTag.setImageResource(R.drawable.ic_android)
                 "IOS" -> binding.ivTag.setImageResource(R.drawable.ic_ios)
                 "WEB" -> binding.ivTag.setImageResource(R.drawable.ic_web)

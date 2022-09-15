@@ -1,13 +1,13 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +18,7 @@ import kr.hs.b1nd.intern.mentomen.network.model.CategoryItem
 import kr.hs.b1nd.intern.mentomen.view.adapter.CategoryAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.AddViewModel
 
-class AddFragment : Fragment(),AddViewModel.AddCallBack {
+class AddFragment : Fragment(), AddViewModel.AddCallBack {
 
     private lateinit var binding: FragmentAddBinding
     private lateinit var addViewModel: AddViewModel
@@ -79,11 +79,30 @@ class AddFragment : Fragment(),AddViewModel.AddCallBack {
         binding.lifecycleOwner = this
         binding.executePendingBindings()
     }
+
     private fun startDefaultGalleryApp() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(intent, 2000)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        }
+
+        when (requestCode) {
+            2000 -> {
+                data ?: return
+                val uri = data.data as Uri
+            }
+
+            else -> {
+                Toast.makeText(requireContext(), "사진 불러오기 실패", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onClickImage() {

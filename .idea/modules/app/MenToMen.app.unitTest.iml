@@ -165,5 +165,4 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.constraintlayout:constraintlayout:2.1.4@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.mdev-dgsw:dauth_android_v1:1.2.2@aar" level="project" />
   </component>
-  <component name="TestModuleProperties" production-module="MenToMen.app.main" />
 </module>

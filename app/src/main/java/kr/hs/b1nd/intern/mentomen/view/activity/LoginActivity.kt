@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         performViewModel()
 
-        loginViewModel.onClickDauthLogin.observe(this) {
+        loginViewModel.onClickDAuthLogin.observe(this) {
             loginForDodam(settingForDodam(
                 applicationContext.getString(R.string.clientId),
                 applicationContext.getString(R.string.clientSecret),

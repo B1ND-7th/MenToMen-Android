@@ -7,9 +7,8 @@ data class Post(
     val postId: Int,
     val profileUrl: String,
     val stdInfo: StdInfo,
-    val tags: String,
+    val tag: String,
     val userName: String
 ) {
 
-    val dateTime: String = localDateTime
 }

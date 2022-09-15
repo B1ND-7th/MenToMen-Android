@@ -12,6 +12,11 @@ interface PostService {
     @GET("post/read-all")
     fun readAll(): Call<BaseResponse<List<Post>>>
 
+    @GET("post/read-all/{tag}")
+    fun readTag(
+        @Path("tag") tag: String
+    ): Call<BaseResponse<List<Post>>>
+
     @GET("post/read-one/{postId}")
     fun readOne(
         @Path("postId") postId: Int

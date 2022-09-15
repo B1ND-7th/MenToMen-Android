@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import kr.hs.b1nd.intern.mentomen.R
@@ -33,8 +35,67 @@ class HomeFragment : Fragment() {
         performViewModel()
         observeViewModel()
 
+        with(homeViewModel) {
+            onCLickDesignEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnDesign, R.drawable.corner_radious, R.color.white)
+                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
+                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
+                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
+                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
+                }
+            }
+
+            onCLickWebEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnWeb, R.drawable.corner_radious, R.color.white)
+                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
+                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
+                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
+                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
+                }
+            }
+
+            onCLickServerEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnServer, R.drawable.corner_radious, R.color.white)
+                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
+                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
+                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
+                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
+                }
+            }
+
+            onCLickAndroidEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnAndroid, R.drawable.corner_radious, R.color.white)
+                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
+                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
+                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
+                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
+                }
+            }
+
+            onCLickIosEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnIos, R.drawable.corner_radious, R.color.white)
+                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
+                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
+                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
+                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
+                }
+            }
+        }
+
 
         return binding.root
+    }
+
+    private fun btnState(btn: Button, drawable: Int, color: Int) {
+        btn.apply {
+            setBackgroundResource(drawable)
+            setTextColor(ContextCompat.getColor(context, color))
+        }
     }
 
     private fun observeViewModel() {

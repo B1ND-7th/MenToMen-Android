@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
 import kr.hs.b1nd.intern.mentomen.network.model.Post
+import kr.hs.b1nd.intern.mentomen.util.SingleLiveEvent
 import kr.hs.b1nd.intern.mentomen.network.model.PostSubmitDto
 import retrofit2.Call
 import retrofit2.Response

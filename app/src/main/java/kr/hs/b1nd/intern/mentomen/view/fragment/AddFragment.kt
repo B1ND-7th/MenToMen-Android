@@ -1,61 +1,114 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
+import kr.hs.b1nd.intern.mentomen.databinding.FragmentAddBinding
+import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
+import kr.hs.b1nd.intern.mentomen.viewmodel.AddViewModel
 
-class AddFragment : Fragment(),AddViewModel.AddCallBack {
+class AddFragment : Fragment(){
 
     private lateinit var binding: FragmentAddBinding
     private lateinit var addViewModel: AddViewModel
 
-    private lateinit var categoryAdapter: CategoryAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_add,
+            container,
+            false
+        )
+        performViewModel()
 
-        return inflater.inflate(R.layout.fragment_add, container, false)
-    }
-
-    private fun initRecyclerView() {
-        categoryAdapter = CategoryAdapter(requireContext()) {
-            setList(it)
+        (activity as MainActivity).hasTopBar(false)
+        (activity as MainActivity).hasBottomBar(false)
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
         }
-        binding.rvKategorie.adapter = categoryAdapter
-        categoryAdapter.submitList(
-            listOf(
-                CategoryItem("Android", false),
-                CategoryItem("iOS", false),
-                CategoryItem("Web", false),
-                CategoryItem("Server", false),
-                CategoryItem("Design", false)
-            )
-        )
+
+        addViewModel.content.observe(viewLifecycleOwner) {
+            if (it != "") binding.btnConfirm.setBackgroundResource(R.color.blue)
+        }
+
+        with(addViewModel) {
+            onCLickDesignEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnDesign, kr.hs.b1nd.intern.mentomen.R.drawable.corner_radious, kr.hs.b1nd.intern.mentomen.R.color.white)
+                    btnState(btnWeb, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_web, kr.hs.b1nd.intern.mentomen.R.color.web)
+                    btnState(btnAndroid, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_android, kr.hs.b1nd.intern.mentomen.R.color.android)
+                    btnState(btnIos, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_ios, kr.hs.b1nd.intern.mentomen.R.color.iOS)
+                    btnState(btnServer, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_server, kr.hs.b1nd.intern.mentomen.R.color.server)
+                }
+            }
+
+            onCLickWebEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnWeb, kr.hs.b1nd.intern.mentomen.R.drawable.corner_radious, kr.hs.b1nd.intern.mentomen.R.color.white)
+                    btnState(btnDesign, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_design, kr.hs.b1nd.intern.mentomen.R.color.design)
+                    btnState(btnAndroid, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_android, kr.hs.b1nd.intern.mentomen.R.color.android)
+                    btnState(btnIos, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_ios, kr.hs.b1nd.intern.mentomen.R.color.iOS)
+                    btnState(btnServer, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_server, kr.hs.b1nd.intern.mentomen.R.color.server)
+                }
+            }
+
+            onCLickServerEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnServer, kr.hs.b1nd.intern.mentomen.R.drawable.corner_radious, kr.hs.b1nd.intern.mentomen.R.color.white)
+                    btnState(btnWeb, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_web, kr.hs.b1nd.intern.mentomen.R.color.web)
+                    btnState(btnAndroid, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_android, kr.hs.b1nd.intern.mentomen.R.color.android)
+                    btnState(btnIos, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_ios, kr.hs.b1nd.intern.mentomen.R.color.iOS)
+                    btnState(btnDesign, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_design, kr.hs.b1nd.intern.mentomen.R.color.design)
+                }
+            }
+
+            onCLickAndroidEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnAndroid, kr.hs.b1nd.intern.mentomen.R.drawable.corner_radious, kr.hs.b1nd.intern.mentomen.R.color.white)
+                    btnState(btnWeb, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_web, kr.hs.b1nd.intern.mentomen.R.color.web)
+                    btnState(btnDesign, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_design, kr.hs.b1nd.intern.mentomen.R.color.design)
+                    btnState(btnIos, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_ios, kr.hs.b1nd.intern.mentomen.R.color.iOS)
+                    btnState(btnServer, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_server, kr.hs.b1nd.intern.mentomen.R.color.server)
+                }
+            }
+
+            onCLickIosEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnIos, kr.hs.b1nd.intern.mentomen.R.drawable.corner_radious, kr.hs.b1nd.intern.mentomen.R.color.white)
+                    btnState(btnWeb, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_web, kr.hs.b1nd.intern.mentomen.R.color.web)
+                    btnState(btnAndroid, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_android, kr.hs.b1nd.intern.mentomen.R.color.android)
+                    btnState(btnDesign, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_design, kr.hs.b1nd.intern.mentomen.R.color.design)
+                    btnState(btnServer, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_server, kr.hs.b1nd.intern.mentomen.R.color.server)
+                }
+            }
+        }
+
+        addViewModel.onClickConfirmEvent.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "글 등록을 성공했습니다.", Toast.LENGTH_SHORT).show()
+        }
+
+
+        return binding.root
     }
 
-    private fun setList(name: String) {
-        categoryAdapter.submitList(
-            listOf(
-                CategoryItem("Android", name.equals("Android")),
-                CategoryItem("iOS", name.equals("iOS")),
-                CategoryItem("Web", name.equals("Web")),
-                CategoryItem("Server", name.equals("Server")),
-                CategoryItem("Design", name.equals("Design"))
-            )
-        )
+    private fun btnState(btn: Button, drawable: Int, color: Int) {
+        btn.apply {
+            setBackgroundResource(drawable)
+            setTextColor(ContextCompat.getColor(context, color))
+        }
     }
 
     private fun performViewModel() {
@@ -64,15 +117,4 @@ class AddFragment : Fragment(),AddViewModel.AddCallBack {
         binding.lifecycleOwner = this
         binding.executePendingBindings()
     }
-    private fun startDefaultGalleryApp() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(intent, 2000)
-    }
-
-    override fun onClickImage() {
-        startDefaultGalleryApp()
-    }
-
 }

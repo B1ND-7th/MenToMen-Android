@@ -13,6 +13,7 @@ import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
 import kr.hs.b1nd.intern.mentomen.network.model.Post
 import kr.hs.b1nd.intern.mentomen.network.model.TagInfo
+import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.view.adapter.TagAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
@@ -36,7 +37,61 @@ class HomeFragment : Fragment() {
         )
         performViewModel()
         observeViewModel()
-        initTagAdapter()
+
+        (activity as MainActivity).hasTopBar()
+        (activity as MainActivity).hasBottomBar()
+
+        with(homeViewModel) {
+            onCLickDesignEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnDesign, R.drawable.corner_radious, R.color.white)
+                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
+                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
+                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
+                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
+                }
+            }
+
+            onCLickWebEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnWeb, R.drawable.corner_radious, R.color.white)
+                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
+                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
+                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
+                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
+                }
+            }
+
+            onCLickServerEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnServer, R.drawable.corner_radious, R.color.white)
+                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
+                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
+                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
+                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
+                }
+            }
+
+            onCLickAndroidEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnAndroid, R.drawable.corner_radious, R.color.white)
+                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
+                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
+                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
+                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
+                }
+            }
+
+            onCLickIosEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    btnState(btnIos, R.drawable.corner_radious, R.color.white)
+                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
+                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
+                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
+                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
+                }
+            }
+        }
 
 
         return binding.root

@@ -21,12 +21,14 @@ class TokenInterceptor : Interceptor {
             200 -> return response
             401 -> {
                 try {
+                    response.close()
                     return makeTokenRefreshCall(chain)
                 } catch (e:JSONException) {
                     e.printStackTrace()
                 }
             }
         }
+
         return response
     }
 
@@ -35,6 +37,7 @@ class TokenInterceptor : Interceptor {
         val request = chain.request().newBuilder()
             .addHeader("Authorization", "Bearer $refreshToken")
             .build()
+
 
         return chain.proceed(request)
     }

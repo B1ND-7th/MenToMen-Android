@@ -22,12 +22,6 @@ interface PostService {
         @Path("postId") postId: Int
     ): Call<BaseResponse<Post>>
 
-    @POST
-    fun submitPost(
-        @Body postSubmitDto : PostSubmitDto
-    ):Call<BaseResponse<Any>>
-
-
-
-
+    @POST("post/submit")
+    fun submitPost(@Body postSubmitDto : PostSubmitDto): Call<BaseResponse<Any>>
 }

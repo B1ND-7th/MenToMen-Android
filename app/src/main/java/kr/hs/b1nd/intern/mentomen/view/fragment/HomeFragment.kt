@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
 import kr.hs.b1nd.intern.mentomen.network.model.Post
+import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
 
@@ -34,6 +35,9 @@ class HomeFragment : Fragment() {
         )
         performViewModel()
         observeViewModel()
+
+        (activity as MainActivity).hasTopBar()
+        (activity as MainActivity).hasBottomBar()
 
         with(homeViewModel) {
             onCLickDesignEvent.observe(viewLifecycleOwner) {
@@ -86,6 +90,7 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
 
 
         return binding.root

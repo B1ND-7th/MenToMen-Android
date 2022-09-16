@@ -4,25 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="vm"
             type="kr.hs.b1nd.intern.mentomen.viewmodel.AddViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#1E1E1E"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:layout_height="match_parent">
 
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/post_upload_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/back_button"
@@ -35,88 +34,150 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/semibold"
                 android:text="글쓰기"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textColor="@color/black"
+                android:textSize="18dp" />
 
 
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <EditText
+            android:id="@+id/et_contents"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:gravity="top"
+            android:hint="멘토에게 부탁할 내용을 입력하세요."
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:text="@={vm.content}"
+            app:layout_constraintBottom_toTopOf="@id/tags"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_upload_toolbar" />
 
-            <EditText
-                android:id="@+id/Edit_Text"
+        <ScrollView
+            android:id="@+id/tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_contents">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/corner_white_radious"
-                android:gravity="top"
-                android:text="@{vm.content}"
-                android:hint="내용을 입력하세요."
-                android:padding="20dp" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/image_button"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="10dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/ic_image"
-                app:layout_constraintBottom_toBottomOf="@id/Edit_Text"
-                app:layout_constraintStart_toStartOf="@id/Edit_Text"
-                android:onClick="@{()->vm.onClickImage()}"
-                />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_design"
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/corner_radious"
+                    android:backgroundTint="@color/design"
+                    android:fontFamily="@font/regular"
+                    android:text="Design"
+                    android:onClick="@{() -> vm.onClickDesignBtn()}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/btn_web"
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/corner_radious"
+                    android:backgroundTint="@color/web"
+                    android:fontFamily="@font/regular"
+                    android:text="Web"
+                    android:onClick="@{() -> vm.onClickWebBtn()}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/btn_android"
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/corner_radious"
+                    android:backgroundTint="@color/android"
+                    android:fontFamily="@font/regular"
+                    android:text="Android"
+                    android:onClick="@{() -> vm.onClickAndroidBtn()}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/btn_server"
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/corner_radious"
+                    android:backgroundTint="@color/server"
+                    android:fontFamily="@font/regular"
+                    android:text="Server"
+                    android:onClick="@{() -> vm.onClickServerBtn()}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/btn_ios"
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/corner_radious"
+                    android:backgroundTint="@color/iOS"
+                    android:fontFamily="@font/regular"
+                    android:text="iOS"
+                    android:onClick="@{() -> vm.onClickIosBtn()}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </ScrollView>
 
 
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:fontFamily="@font/regular"
+            android:onClick="@{() -> vm.onCLickConfirm()}"
+            android:text="멘토 요청하기"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tags"
+            app:layout_constraintVertical_bias="0.666" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_kategorie"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="@id/image_button"
-                app:layout_constraintEnd_toEndOf="@id/Edit_Text"
-                app:layout_constraintStart_toEndOf="@id/image_button"
-                app:layout_constraintTop_toTopOf="@id/image_button"
-                tools:listitem="@layout/item_category" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/btn_image"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_weight="0.1"
-            android:background="@drawable/corner_blue"
-            android:onClick="@{()->vm.onClickPost()}"
-            android:drawableStart="@drawable/ic_edit"
-            android:gravity="center"
-            android:textColor="@color/white">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:text="멘토에게 요청하기"
-                android:textColor="@color/white" />
-        </LinearLayout>
+            android:layout_marginTop="1dp"
+            android:background="#000"
+            android:src="@drawable/ic_image"
+            android:onClick="@{() -> vm.onClickImage()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_confirm"
+            app:layout_constraintTop_toBottomOf="@+id/tags" />
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

@@ -1,42 +1,75 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
-import android.content.Intent
-import android.util.Log
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
 import kr.hs.b1nd.intern.mentomen.network.model.Post
 import kr.hs.b1nd.intern.mentomen.network.model.PostSubmitDto
+import kr.hs.b1nd.intern.mentomen.util.SingleLiveEvent
 import retrofit2.Call
 import retrofit2.Response
 
+class AddViewModel : ViewModel() {
+    val onClickConfirmEvent = SingleLiveEvent<Any>()
+    val onClickImageEvent = SingleLiveEvent<Any>()
+    val onCLickDesignEvent = SingleLiveEvent<Any>()
+    val onCLickWebEvent = SingleLiveEvent<Any>()
+    val onCLickServerEvent = SingleLiveEvent<Any>()
+    val onCLickAndroidEvent = SingleLiveEvent<Any>()
+    val onCLickIosEvent = SingleLiveEvent<Any>()
 
-class AddViewModel(callBack: AddCallBack) : ViewModel() {
-    val callBack = callBack
     val content = MutableLiveData<String>()
-    interface AddCallBack{
-        fun onClickImage()
-    }
-    fun onClickPost() {
-        /*val call = RetrofitClient.postService.submitPost( PostSubmitDto(content.value ?: ""))
+    val imgUrl = MutableLiveData<String>()
 
-        call.enqueue(object : retrofit2.Callback<BaseResponse<List<Post>>> {
-            override fun onResponse(call: Call<BaseResponse<List<Post>>>, response: Response<BaseResponse<List<Post>>>) {
+    private var tag: String = ""
+
+    fun onClickImage() {
+        onClickImageEvent.call()
+    }
+
+    fun onCLickConfirm() {
+        val call = RetrofitClient.postService.submitPost(
+            PostSubmitDto(content.value ?: "", imgUrl.value ?: "", tag)
+        )
+
+        call.enqueue(object : retrofit2.Callback<BaseResponse<Any>> {
+            override fun onResponse(call: Call<BaseResponse<Any>>, response: Response<BaseResponse<Any>>) {
                 if (response.isSuccessful) {
-                    itemList.value = response.body()?.data ?: emptyList()
+
+                    onClickConfirmEvent.call()
                 }
             }
 
-            override fun onFailure(call: Call<BaseResponse<List<Post>>>, t: Throwable) {
+            override fun onFailure(call: Call<BaseResponse<Any>>, t: Throwable) {
 
             }
 
-        })*/
+        })
     }
-    fun onClickImage(){
-        callBack.onClickImage()
 
+    fun onClickDesignBtn() {
+        tag = "DESIGN"
+        onCLickDesignEvent.call()
+    }
+
+    fun onClickWebBtn() {
+        tag = "WEB"
+        onCLickWebEvent.call()
+    }
+
+    fun onClickServerBtn() {
+        tag = "SERVER"
+        onCLickServerEvent.call()
+    }
+
+    fun onClickAndroidBtn() {
+        tag = "ANDROID"
+        onCLickAndroidEvent.call()
+    }
+
+    fun onClickIosBtn() {
+        tag = "IOS"
+        onCLickIosEvent.call()
     }
 }

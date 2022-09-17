@@ -1,7 +1,6 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -98,6 +97,7 @@ class AddFragment : Fragment(){
 
         addViewModel.onClickConfirmEvent.observe(viewLifecycleOwner) {
             Toast.makeText(context, "글 등록을 성공했습니다.", Toast.LENGTH_SHORT).show()
+            findNavController().popBackStack()
         }
 
 

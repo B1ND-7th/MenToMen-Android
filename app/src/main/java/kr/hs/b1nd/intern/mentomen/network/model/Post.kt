@@ -1,6 +1,7 @@
 package kr.hs.b1nd.intern.mentomen.network.model
 
 data class Post(
+    val author: Int,
     val content: String,
     val imgUrl: String,
     val localDateTime: String,

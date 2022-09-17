@@ -19,7 +19,7 @@ class AddViewModel : ViewModel() {
     val onCLickAndroidEvent = SingleLiveEvent<Any>()
     val onCLickIosEvent = SingleLiveEvent<Any>()
 
-    val content = MutableLiveData<String>()
+    val content = MutableLiveData("")
     val imgUrl = MutableLiveData<String>()
 
     private var tag: String = ""
@@ -29,23 +29,25 @@ class AddViewModel : ViewModel() {
     }
 
     fun onCLickConfirm() {
-        val call = RetrofitClient.postService.submitPost(
-            PostSubmitDto(content.value ?: "", imgUrl.value ?: "", tag)
-        )
+        if (content.value != "") {
+            val call = RetrofitClient.postService.submitPost(
+                PostSubmitDto(content.value ?: "", imgUrl.value, tag)
+            )
 
-        call.enqueue(object : retrofit2.Callback<BaseResponse<Any>> {
-            override fun onResponse(call: Call<BaseResponse<Any>>, response: Response<BaseResponse<Any>>) {
-                if (response.isSuccessful) {
+            call.enqueue(object : retrofit2.Callback<BaseResponse<Any>> {
+                override fun onResponse(call: Call<BaseResponse<Any>>, response: Response<BaseResponse<Any>>) {
+                    if (response.isSuccessful) {
 
-                    onClickConfirmEvent.call()
+                        onClickConfirmEvent.call()
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<BaseResponse<Any>>, t: Throwable) {
+                override fun onFailure(call: Call<BaseResponse<Any>>, t: Throwable) {
 
-            }
+                }
 
-        })
+            })
+        }
     }
 
     fun onClickDesignBtn() {

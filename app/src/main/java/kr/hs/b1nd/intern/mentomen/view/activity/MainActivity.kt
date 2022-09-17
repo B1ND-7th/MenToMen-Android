@@ -15,15 +15,12 @@ import androidx.navigation.ui.setupWithNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.ActivityMainBinding
 import kr.hs.b1nd.intern.mentomen.viewmodel.LoginViewModel
-import kr.hs.b1nd.intern.mentomen.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var mainViewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        performViewModel()
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -37,12 +34,5 @@ class MainActivity : AppCompatActivity() {
 
     fun hasBottomBar(hasBottomBar: Boolean = true) {
         binding.bottomNavigation.visibility = if (hasBottomBar) View.VISIBLE else View.GONE
-    }
-
-    private fun performViewModel() {
-        mainViewModel = MainViewModel()
-        binding.vm = mainViewModel
-        binding.lifecycleOwner = this
-        binding.executePendingBindings()
     }
 }

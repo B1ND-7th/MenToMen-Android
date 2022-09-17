@@ -6,18 +6,17 @@ import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
 import kr.hs.b1nd.intern.mentomen.network.model.Post
 import kr.hs.b1nd.intern.mentomen.util.SingleLiveEvent
-import kr.hs.b1nd.intern.mentomen.network.model.PostSubmitDto
 import retrofit2.Call
 import retrofit2.Response
 
 class HomeViewModel: ViewModel() {
+    val itemList = MutableLiveData<List<Post>>()
+
     val onCLickDesignEvent = SingleLiveEvent<Any>()
     val onCLickWebEvent = SingleLiveEvent<Any>()
     val onCLickServerEvent = SingleLiveEvent<Any>()
     val onCLickAndroidEvent = SingleLiveEvent<Any>()
     val onCLickIosEvent = SingleLiveEvent<Any>()
-
-    val itemList = MutableLiveData<List<Post>>()
 
     init {
         val call = RetrofitClient.postService.readAll()
@@ -35,27 +34,28 @@ class HomeViewModel: ViewModel() {
 
         })
     }
+
     fun onClickDesignBtn() {
-        callTagService("DESIGN", onCLickDesignEvent)
+        callTagPost("DESIGN", onCLickDesignEvent)
     }
 
     fun onClickWebBtn() {
-        callTagService("WEB", onCLickWebEvent)
+        callTagPost("WEB", onCLickWebEvent)
     }
 
     fun onClickServerBtn() {
-        callTagService("SERVER", onCLickServerEvent)
+        callTagPost("SERVER", onCLickServerEvent)
     }
 
     fun onClickAndroidBtn() {
-        callTagService("ANDROID", onCLickAndroidEvent)
+        callTagPost("ANDROID", onCLickAndroidEvent)
     }
 
     fun onClickIosBtn() {
-        callTagService("IOS", onCLickIosEvent)
+        callTagPost("IOS", onCLickIosEvent)
     }
 
-    private fun callTagService(tag: String, singleLiveEvent: SingleLiveEvent<Any>) {
+    private fun callTagPost(tag: String, singleLiveEvent: SingleLiveEvent<Any>) {
         val call = RetrofitClient.postService.readTag(tag)
 
         call.enqueue(object : retrofit2.Callback<BaseResponse<List<Post>>> {

@@ -8,11 +8,7 @@
         android:id="@+id/home_fragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_home_fragment_to_add_fragment"
-            app:destination="@id/add_fragment" />
-    </fragment>
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/add_fragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.AddFragment"

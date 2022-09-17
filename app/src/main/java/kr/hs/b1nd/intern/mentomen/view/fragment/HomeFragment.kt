@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
 import kr.hs.b1nd.intern.mentomen.network.model.Post
+import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
 
@@ -19,7 +20,6 @@ import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
-
     private lateinit var homeAdapter: HomeAdapter
 
     override fun onCreateView(
@@ -34,6 +34,9 @@ class HomeFragment : Fragment() {
         )
         performViewModel()
         observeViewModel()
+
+        (activity as MainActivity).hasTopBar()
+        (activity as MainActivity).hasBottomBar()
 
         with(homeViewModel) {
             onCLickDesignEvent.observe(viewLifecycleOwner) {
@@ -91,13 +94,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun btnState(btn: Button, drawable: Int, color: Int) {
-        btn.apply {
-            setBackgroundResource(drawable)
-            setTextColor(ContextCompat.getColor(context, color))
-        }
-    }
-
     private fun observeViewModel() {
         with(homeViewModel) {
             itemList.observe(viewLifecycleOwner) {
@@ -106,11 +102,20 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun btnState(button: Button, drawable: Int, color: Int) {
+        context?.let {
+            button.setBackgroundResource(drawable)
+            button.setTextColor(ContextCompat.getColor(it, color))
+        } ?: return
+
+    }
+
     private fun initHomeAdapter(items: List<Post>) {
         homeAdapter = HomeAdapter(items)
         binding.rvHome.adapter = homeAdapter
         homeAdapter.notifyDataSetChanged()
     }
+
 
     private fun performViewModel() {
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]

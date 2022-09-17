@@ -16,4 +16,5 @@
     <color name="android">#35C174</color>
     <color name="server">#3E89DB</color>
     <color name="design">#D83F67</color>
+    <color name="whitegray">#DADADA</color>
 </resources>

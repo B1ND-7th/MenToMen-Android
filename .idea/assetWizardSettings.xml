@@ -14,8 +14,13 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
+<<<<<<< Updated upstream
                             <entry key="outputName" value="ic_arrow_left" />
                             <entry key="sourceFile" value="$USER_HOME$/Downloads/vuesax/outline/arrow-left.svg" />
+=======
+                            <entry key="outputName" value="ic_mentomen_logo" />
+                            <entry key="sourceFile" value="C:\Users\user\Desktop\s-removebg-preview 3.svg" />
+>>>>>>> Stashed changes
                           </map>
                         </option>
                       </PersistentState>

@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.UserFragment">
-
-
-    <TextView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragment.UserFragment"
+    android:background="@color/whitegray">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="유저" />
+        android:layout_height="120dp">
+        <View
+            android:id="@+id/my_profile_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/corner_white_radious"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="@id/my_profile_view"
+            app:layout_constraintTop_toTopOf="@id/my_profile_view"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:background=""
+            />
 
-</FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</LinearLayout>

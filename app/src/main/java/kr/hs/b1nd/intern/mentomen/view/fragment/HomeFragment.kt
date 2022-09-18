@@ -32,62 +32,19 @@ class HomeFragment : Fragment() {
             container,
             false
         )
+
+
         performViewModel()
         observeViewModel()
 
         (activity as MainActivity).hasTopBar()
         (activity as MainActivity).hasBottomBar()
 
-        with(homeViewModel) {
-            onCLickDesignEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnDesign, R.drawable.corner_radious, R.color.white)
-                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
-                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
-                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
-                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
-                }
-            }
-
-            onCLickWebEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnWeb, R.drawable.corner_radious, R.color.white)
-                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
-                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
-                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
-                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
-                }
-            }
-
-            onCLickServerEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnServer, R.drawable.corner_radious, R.color.white)
-                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
-                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
-                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
-                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
-                }
-            }
-
-            onCLickAndroidEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnAndroid, R.drawable.corner_radious, R.color.white)
-                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
-                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
-                    btnState(btnIos, R.drawable.unselected_ios, R.color.iOS)
-                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
-                }
-            }
-
-            onCLickIosEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnIos, R.drawable.corner_radious, R.color.white)
-                    btnState(btnWeb, R.drawable.unselected_web, R.color.web)
-                    btnState(btnAndroid, R.drawable.unselected_android, R.color.android)
-                    btnState(btnDesign, R.drawable.unselected_design, R.color.design)
-                    btnState(btnServer, R.drawable.unselected_server, R.color.server)
-                }
-            }
+        binding.refreshLayout.setOnRefreshListener {
+            homeViewModel.tagState.value!!.setAllTrue()
+            homeViewModel.callPost()
+            observeViewModel()
+            binding.refreshLayout.isRefreshing = false
         }
 
 
@@ -122,5 +79,15 @@ class HomeFragment : Fragment() {
         binding.vm = homeViewModel
         binding.lifecycleOwner = this
         binding.executePendingBindings()
+    }
+
+    private fun allTagsSelected() {
+        with(binding) {
+            btnState(btnDesign, R.drawable.corner_radious, R.color.white)
+            btnState(btnWeb, R.drawable.corner_radious, R.color.white)
+            btnState(btnAndroid, R.drawable.corner_radious, R.color.white)
+            btnState(btnIos, R.drawable.corner_radious, R.color.white)
+            btnState(btnServer, R.drawable.corner_radious, R.color.white)
+        }
     }
 }

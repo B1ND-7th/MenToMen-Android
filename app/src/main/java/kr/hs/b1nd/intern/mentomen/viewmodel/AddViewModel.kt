@@ -29,7 +29,7 @@ class AddViewModel : ViewModel() {
     }
 
     fun onCLickConfirm() {
-        if (content.value != "") {
+        if (content.value != "" && tag != "") {
             val call = RetrofitClient.postService.submitPost(
                 PostSubmitDto(content.value ?: "", imgUrl.value, tag)
             )

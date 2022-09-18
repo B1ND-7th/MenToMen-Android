@@ -100,7 +100,6 @@ class AddFragment : Fragment(){
             findNavController().popBackStack()
         }
 
-
         return binding.root
     }
 

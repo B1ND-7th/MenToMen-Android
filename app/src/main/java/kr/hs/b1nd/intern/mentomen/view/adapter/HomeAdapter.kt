@@ -10,6 +10,8 @@ import kr.hs.b1nd.intern.mentomen.network.model.Post
 class HomeAdapter(private val item: List<Post>) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     inner class HomeViewHolder(private val binding: ItemHomeBinding) : RecyclerView.ViewHolder(binding.root) {
+
+
         fun bind(item: Post) {
             binding.item = item
             when (item.tag) {

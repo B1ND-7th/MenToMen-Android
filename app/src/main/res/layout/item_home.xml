@@ -41,18 +41,18 @@
                 android:text="@{item.userName}"
                 android:textSize="10sp"
                 android:fontFamily="@font/regular"
-                app:layout_constraintEnd_toStartOf="@+id/textView2"
+                app:layout_constraintEnd_toStartOf="@+id/date"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="조상영" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/regular"
-                android:text="@{item.localDateTime}"
+                date="@{item.localDateTime}"
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -60,7 +60,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
@@ -68,12 +68,14 @@
                 android:text="@{item.content}"
                 android:fontFamily="@font/regular"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="14sp"
+                android:maxLines="8"
+                android:ellipsize="end"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/cardView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_tag"
-                tools:text="안드로이드 코틀린 리사이클러뷰에 조상영얼굴을 넣었는데 너무 멋진거 같아요" />
+                tools:text="안드로이드 코틀린 리사이클러뷰에 조상영얼굴을 넣었는데 너무 멋진거 같아요\asdfad\nasdfas\dfnasdf\nasdfa\n\nasdfas\nasdf\nasdfaasdfasdfasdfasdf\nasdf" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"

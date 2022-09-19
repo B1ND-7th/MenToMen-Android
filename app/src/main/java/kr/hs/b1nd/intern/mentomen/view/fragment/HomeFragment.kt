@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
 import kr.hs.b1nd.intern.mentomen.network.model.Post
+import kr.hs.b1nd.intern.mentomen.util.TagState
 import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
@@ -32,21 +33,19 @@ class HomeFragment : Fragment() {
             container,
             false
         )
-
-
         performViewModel()
+        homeViewModel.callPost()
         observeViewModel()
 
         (activity as MainActivity).hasTopBar()
         (activity as MainActivity).hasBottomBar()
 
         binding.refreshLayout.setOnRefreshListener {
-            homeViewModel.tagState.value!!.setAllTrue()
+            homeViewModel.tagState.value = TagState(isDesignChecked = true, isWebChecked = true, isAndroidChecked = true, isServerChecked = true, isiOSChecked = true)
             homeViewModel.callPost()
             observeViewModel()
             binding.refreshLayout.isRefreshing = false
         }
-
 
         return binding.root
     }
@@ -59,13 +58,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun btnState(button: Button, drawable: Int, color: Int) {
-        context?.let {
-            button.setBackgroundResource(drawable)
-            button.setTextColor(ContextCompat.getColor(it, color))
-        } ?: return
-
-    }
 
     private fun initHomeAdapter(items: List<Post>) {
         homeAdapter = HomeAdapter(items)
@@ -79,15 +71,5 @@ class HomeFragment : Fragment() {
         binding.vm = homeViewModel
         binding.lifecycleOwner = this
         binding.executePendingBindings()
-    }
-
-    private fun allTagsSelected() {
-        with(binding) {
-            btnState(btnDesign, R.drawable.corner_radious, R.color.white)
-            btnState(btnWeb, R.drawable.corner_radious, R.color.white)
-            btnState(btnAndroid, R.drawable.corner_radious, R.color.white)
-            btnState(btnIos, R.drawable.corner_radious, R.color.white)
-            btnState(btnServer, R.drawable.corner_radious, R.color.white)
-        }
     }
 }

@@ -47,7 +47,6 @@
                             android:orientation="horizontal">
 
                             <Button
-                                designButtonState="@{vm.tagState}"
                                 android:id="@+id/btn_design"
                                 android:layout_width="70dp"
                                 android:layout_height="25dp"
@@ -56,13 +55,13 @@
                                 android:backgroundTint="@color/design"
                                 android:fontFamily="@font/regular"
                                 android:onClick="@{() -> vm.onClickDesignBtn()}"
+                                designButtonState="@{vm.tagState}"
                                 android:text="Design"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
                                 android:textSize="10sp" />
 
                             <Button
-                                webButtonState="@{vm.tagState}"
                                 android:id="@+id/btn_web"
                                 android:layout_width="70dp"
                                 android:layout_height="25dp"
@@ -71,13 +70,13 @@
                                 android:backgroundTint="@color/web"
                                 android:fontFamily="@font/regular"
                                 android:onClick="@{() -> vm.onClickWebBtn()}"
+                                webButtonState="@{vm.tagState}"
                                 android:text="Web"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
                                 android:textSize="10sp" />
 
                             <Button
-                                androidButtonState="@{vm.tagState}"
                                 android:id="@+id/btn_android"
                                 android:layout_width="70dp"
                                 android:layout_height="25dp"
@@ -86,13 +85,13 @@
                                 android:backgroundTint="@color/android"
                                 android:fontFamily="@font/regular"
                                 android:onClick="@{() -> vm.onClickAndroidBtn()}"
+                                androidButtonState="@{vm.tagState}"
                                 android:text="Android"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
                                 android:textSize="10sp" />
 
                             <Button
-                                serverButtonState="@{vm.tagState}"
                                 android:id="@+id/btn_server"
                                 android:layout_width="70dp"
                                 android:layout_height="25dp"
@@ -101,13 +100,13 @@
                                 android:backgroundTint="@color/server"
                                 android:fontFamily="@font/regular"
                                 android:onClick="@{() -> vm.onClickServerBtn()}"
+                                serverButtonState="@{vm.tagState}"
                                 android:text="Server"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
                                 android:textSize="10sp" />
 
                             <Button
-                                iosButtonState="@{vm.tagState}"
                                 android:id="@+id/btn_ios"
                                 android:layout_width="70dp"
                                 android:layout_height="25dp"
@@ -117,6 +116,7 @@
                                 android:backgroundTint="@color/iOS"
                                 android:fontFamily="@font/regular"
                                 android:onClick="@{() -> vm.onClickIosBtn()}"
+                                iosButtonState="@{vm.tagState}"
                                 android:text="iOS"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"

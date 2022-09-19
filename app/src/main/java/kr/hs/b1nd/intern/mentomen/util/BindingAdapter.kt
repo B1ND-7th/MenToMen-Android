@@ -1,5 +1,7 @@
 package kr.hs.b1nd.intern.mentomen.util
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView

@@ -7,6 +7,7 @@ import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
 import kr.hs.b1nd.intern.mentomen.network.model.Post
 import kr.hs.b1nd.intern.mentomen.network.model.PostSubmitDto
 import kr.hs.b1nd.intern.mentomen.util.SingleLiveEvent
+import kr.hs.b1nd.intern.mentomen.util.TagState
 import retrofit2.Call
 import retrofit2.Response
 
@@ -18,6 +19,8 @@ class AddViewModel : ViewModel() {
     val onCLickServerEvent = SingleLiveEvent<Any>()
     val onCLickAndroidEvent = SingleLiveEvent<Any>()
     val onCLickIosEvent = SingleLiveEvent<Any>()
+
+    val tagState = MutableLiveData(TagState())
 
     val content = MutableLiveData("")
     val imgUrl = MutableLiveData<String>()
@@ -50,28 +53,65 @@ class AddViewModel : ViewModel() {
         }
     }
 
+
+
     fun onClickDesignBtn() {
         tag = "DESIGN"
+        tagState.value = TagState(
+            isDesignChecked = true,
+            isWebChecked = false,
+            isAndroidChecked = false,
+            isServerChecked = false,
+            isiOSChecked = false
+        )
         onCLickDesignEvent.call()
     }
 
     fun onClickWebBtn() {
         tag = "WEB"
+        tagState.value  = TagState(
+            isDesignChecked = false,
+            isWebChecked = true,
+            isAndroidChecked = false,
+            isServerChecked = false,
+            isiOSChecked = false
+        )
         onCLickWebEvent.call()
     }
 
     fun onClickServerBtn() {
         tag = "SERVER"
+        tagState.value = TagState(
+            isDesignChecked = false,
+            isWebChecked = false,
+            isAndroidChecked = false,
+            isServerChecked = true,
+            isiOSChecked = false
+        )
         onCLickServerEvent.call()
     }
 
     fun onClickAndroidBtn() {
         tag = "ANDROID"
+        tagState.value = TagState(
+            isDesignChecked = false,
+            isWebChecked = false,
+            isAndroidChecked = true,
+            isServerChecked = false,
+            isiOSChecked = false
+        )
         onCLickAndroidEvent.call()
     }
 
     fun onClickIosBtn() {
         tag = "IOS"
+        tagState.value = TagState(
+            isDesignChecked = false,
+            isWebChecked = false,
+            isAndroidChecked = false,
+            isServerChecked = false,
+            isiOSChecked = true
+        )
         onCLickIosEvent.call()
     }
 }

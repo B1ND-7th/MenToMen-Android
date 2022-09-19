@@ -1,5 +1,7 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
@@ -19,34 +21,60 @@ class HomeViewModel: ViewModel() {
     val onCLickAndroidEvent = SingleLiveEvent<Any>()
     val onCLickIosEvent = SingleLiveEvent<Any>()
 
-    val tagState = MutableLiveData<TagState>(TagState())
-
-    init {
-        callPost()
-    }
+    val tagState = MutableLiveData(TagState())
 
     fun onClickDesignBtn() {
-        tagState.value!!.setDesignTrue()
+        tagState.value = TagState(
+            isDesignChecked = true,
+            isWebChecked = false,
+            isAndroidChecked = false,
+            isServerChecked = false,
+            isiOSChecked = false
+        )
         callTagPost("DESIGN", onClickDesignEvent)
     }
 
     fun onClickWebBtn() {
-        tagState.value!!.setWebTrue()
+        tagState.value  = TagState(
+            isDesignChecked = false,
+            isWebChecked = true,
+            isAndroidChecked = false,
+            isServerChecked = false,
+            isiOSChecked = false
+        )
         callTagPost("WEB", onCLickWebEvent)
     }
 
     fun onClickServerBtn() {
-        tagState.value!!.setServerTrue()
+        tagState.value = TagState(
+            isDesignChecked = false,
+            isWebChecked = false,
+            isAndroidChecked = false,
+            isServerChecked = true,
+            isiOSChecked = false
+        )
         callTagPost("SERVER", onCLickServerEvent)
     }
 
     fun onClickAndroidBtn() {
-        tagState.value!!.setAndroidTrue()
+        tagState.value = TagState(
+            isDesignChecked = false,
+            isWebChecked = false,
+            isAndroidChecked = true,
+            isServerChecked = false,
+            isiOSChecked = false
+        )
         callTagPost("ANDROID", onCLickAndroidEvent)
     }
 
     fun onClickIosBtn() {
-        tagState.value!!.setIosTrue()
+        tagState.value = TagState(
+            isDesignChecked = false,
+            isWebChecked = false,
+            isAndroidChecked = false,
+            isServerChecked = false,
+            isiOSChecked = true
+        )
         callTagPost("IOS", onCLickIosEvent)
     }
 

@@ -2,6 +2,7 @@ package kr.hs.b1nd.intern.mentomen.network
 
 import kr.hs.b1nd.intern.mentomen.network.service.LoginService
 import kr.hs.b1nd.intern.mentomen.network.service.PostService
+import kr.hs.b1nd.intern.mentomen.network.service.UserService
 import kr.hs.b1nd.intern.mentomen.util.Constants.BASE_URL
 import kr.hs.b1nd.intern.mentomen.util.Constants.LOGIN_URL
 import okhttp3.OkHttpClient
@@ -31,6 +32,7 @@ object RetrofitClient {
     val loginService: LoginService = dAuthRetrofit.create(LoginService::class.java)
     val mtmService: LoginService = retrofit.create(LoginService::class.java)
     val postService: PostService = retrofit.create(PostService::class.java)
+    val userService: UserService = retrofit.create(UserService::class.java)
 
 
 }

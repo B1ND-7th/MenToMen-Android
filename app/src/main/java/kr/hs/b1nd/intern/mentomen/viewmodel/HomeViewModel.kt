@@ -24,58 +24,88 @@ class HomeViewModel: ViewModel() {
     val tagState = MutableLiveData(TagState())
 
     fun onClickDesignBtn() {
-        tagState.value = TagState(
-            isDesignChecked = true,
-            isWebChecked = false,
-            isAndroidChecked = false,
-            isServerChecked = false,
-            isiOSChecked = false
-        )
-        callTagPost("DESIGN", onClickDesignEvent)
+        if (tagState.value!!.isDesignChecked) {
+            tagState.value = TagState(
+                isDesignChecked = true,
+                isWebChecked = false,
+                isAndroidChecked = false,
+                isServerChecked = false,
+                isiOSChecked = false
+            )
+            callTagPost("DESIGN", onClickDesignEvent)
+        }
+        else {
+            allTagsSelected()
+            callPost()
+        }
     }
 
     fun onClickWebBtn() {
-        tagState.value  = TagState(
-            isDesignChecked = false,
-            isWebChecked = true,
-            isAndroidChecked = false,
-            isServerChecked = false,
-            isiOSChecked = false
-        )
-        callTagPost("WEB", onCLickWebEvent)
+        if (tagState.value!!.isWebChecked) {
+            tagState.value = TagState(
+                isDesignChecked = false,
+                isWebChecked = true,
+                isAndroidChecked = false,
+                isServerChecked = false,
+                isiOSChecked = false
+            )
+            callTagPost("WEB", onCLickWebEvent)
+        }
+        else {
+            allTagsSelected()
+            callPost()
+        }
     }
 
     fun onClickServerBtn() {
-        tagState.value = TagState(
-            isDesignChecked = false,
-            isWebChecked = false,
-            isAndroidChecked = false,
-            isServerChecked = true,
-            isiOSChecked = false
-        )
-        callTagPost("SERVER", onCLickServerEvent)
+        if (tagState.value!!.isServerChecked) {
+            tagState.value = TagState(
+                isDesignChecked = false,
+                isWebChecked = false,
+                isAndroidChecked = false,
+                isServerChecked = true,
+                isiOSChecked = false
+            )
+            callTagPost("SERVER", onCLickServerEvent)
+        }
+        else {
+            allTagsSelected()
+            callPost()
+        }
     }
 
     fun onClickAndroidBtn() {
-        tagState.value = TagState(
-            isDesignChecked = false,
-            isWebChecked = false,
-            isAndroidChecked = true,
-            isServerChecked = false,
-            isiOSChecked = false
-        )
-        callTagPost("ANDROID", onCLickAndroidEvent)
+        if (tagState.value!!.isAndroidChecked) {
+            tagState.value = TagState(
+                isDesignChecked = false,
+                isWebChecked = false,
+                isAndroidChecked = true,
+                isServerChecked = false,
+                isiOSChecked = false
+            )
+            callTagPost("ANDROID", onCLickAndroidEvent)
+        }
+        else {
+            allTagsSelected()
+            callPost()
+        }
     }
 
     fun onClickIosBtn() {
-        tagState.value = TagState(
-            isDesignChecked = false,
-            isWebChecked = false,
-            isAndroidChecked = false,
-            isServerChecked = false,
-            isiOSChecked = true
-        )
-        callTagPost("IOS", onCLickIosEvent)
+        if (tagState.value!!.isiOSChecked) {
+            tagState.value = TagState(
+                isDesignChecked = false,
+                isWebChecked = false,
+                isAndroidChecked = false,
+                isServerChecked = false,
+                isiOSChecked = true
+            )
+            callTagPost("IOS", onCLickIosEvent)
+        }
+        else {
+            allTagsSelected()
+            callPost()
+        }
     }
 
     fun callPost() {
@@ -117,5 +147,14 @@ class HomeViewModel: ViewModel() {
             }
 
         })
+    }
+    private fun allTagsSelected() {
+        tagState.value = TagState(
+            isDesignChecked = true,
+            isWebChecked = true,
+            isAndroidChecked = true,
+            isServerChecked = true,
+            isiOSChecked = true
+        )
     }
 }

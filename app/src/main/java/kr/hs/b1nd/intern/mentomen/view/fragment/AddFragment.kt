@@ -43,71 +43,11 @@ class AddFragment : Fragment(){
             if (it != "") binding.btnConfirm.setBackgroundResource(R.color.blue)
         }
 
-        with(addViewModel) {
-            onCLickDesignEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnDesign, kr.hs.b1nd.intern.mentomen.R.drawable.corner_radious, kr.hs.b1nd.intern.mentomen.R.color.white)
-                    btnState(btnWeb, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_web, kr.hs.b1nd.intern.mentomen.R.color.web)
-                    btnState(btnAndroid, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_android, kr.hs.b1nd.intern.mentomen.R.color.android)
-                    btnState(btnIos, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_ios, kr.hs.b1nd.intern.mentomen.R.color.iOS)
-                    btnState(btnServer, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_server, kr.hs.b1nd.intern.mentomen.R.color.server)
-                }
-            }
-
-            onCLickWebEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnWeb, kr.hs.b1nd.intern.mentomen.R.drawable.corner_radious, kr.hs.b1nd.intern.mentomen.R.color.white)
-                    btnState(btnDesign, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_design, kr.hs.b1nd.intern.mentomen.R.color.design)
-                    btnState(btnAndroid, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_android, kr.hs.b1nd.intern.mentomen.R.color.android)
-                    btnState(btnIos, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_ios, kr.hs.b1nd.intern.mentomen.R.color.iOS)
-                    btnState(btnServer, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_server, kr.hs.b1nd.intern.mentomen.R.color.server)
-                }
-            }
-
-            onCLickServerEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnServer, kr.hs.b1nd.intern.mentomen.R.drawable.corner_radious, kr.hs.b1nd.intern.mentomen.R.color.white)
-                    btnState(btnWeb, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_web, kr.hs.b1nd.intern.mentomen.R.color.web)
-                    btnState(btnAndroid, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_android, kr.hs.b1nd.intern.mentomen.R.color.android)
-                    btnState(btnIos, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_ios, kr.hs.b1nd.intern.mentomen.R.color.iOS)
-                    btnState(btnDesign, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_design, kr.hs.b1nd.intern.mentomen.R.color.design)
-                }
-            }
-
-            onCLickAndroidEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnAndroid, kr.hs.b1nd.intern.mentomen.R.drawable.corner_radious, kr.hs.b1nd.intern.mentomen.R.color.white)
-                    btnState(btnWeb, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_web, kr.hs.b1nd.intern.mentomen.R.color.web)
-                    btnState(btnDesign, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_design, kr.hs.b1nd.intern.mentomen.R.color.design)
-                    btnState(btnIos, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_ios, kr.hs.b1nd.intern.mentomen.R.color.iOS)
-                    btnState(btnServer, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_server, kr.hs.b1nd.intern.mentomen.R.color.server)
-                }
-            }
-
-            onCLickIosEvent.observe(viewLifecycleOwner) {
-                with(binding) {
-                    btnState(btnIos, kr.hs.b1nd.intern.mentomen.R.drawable.corner_radious, kr.hs.b1nd.intern.mentomen.R.color.white)
-                    btnState(btnWeb, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_web, kr.hs.b1nd.intern.mentomen.R.color.web)
-                    btnState(btnAndroid, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_android, kr.hs.b1nd.intern.mentomen.R.color.android)
-                    btnState(btnDesign, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_design, kr.hs.b1nd.intern.mentomen.R.color.design)
-                    btnState(btnServer, kr.hs.b1nd.intern.mentomen.R.drawable.unselected_server, kr.hs.b1nd.intern.mentomen.R.color.server)
-                }
-            }
-        }
-
         addViewModel.onClickConfirmEvent.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "글 등록을 성공했습니다.", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }
 
         return binding.root
-    }
-
-    private fun btnState(btn: Button, drawable: Int, color: Int) {
-        btn.apply {
-            setBackgroundResource(drawable)
-            setTextColor(ContextCompat.getColor(context, color))
-        }
     }
 
     private fun performViewModel() {

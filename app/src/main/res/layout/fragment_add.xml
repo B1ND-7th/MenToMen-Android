@@ -79,13 +79,14 @@
                     android:layout_width="70dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/corner_radious"
+                    android:background="@drawable/unselected_design"
                     android:backgroundTint="@color/design"
                     android:fontFamily="@font/regular"
                     android:text="Design"
                     android:onClick="@{() -> vm.onClickDesignBtn()}"
+                    designButtonState="@{vm.tagState}"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/design"
                     android:textSize="10sp" />
 
                 <Button
@@ -93,13 +94,14 @@
                     android:layout_width="70dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/corner_radious"
+                    android:background="@drawable/unselected_web"
                     android:backgroundTint="@color/web"
                     android:fontFamily="@font/regular"
                     android:text="Web"
                     android:onClick="@{() -> vm.onClickWebBtn()}"
+                    webButtonState="@{vm.tagState}"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/web"
                     android:textSize="10sp" />
 
                 <Button
@@ -107,13 +109,14 @@
                     android:layout_width="70dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/corner_radious"
+                    android:background="@drawable/unselected_android"
                     android:backgroundTint="@color/android"
                     android:fontFamily="@font/regular"
                     android:text="Android"
                     android:onClick="@{() -> vm.onClickAndroidBtn()}"
+                    androidButtonState="@{vm.tagState}"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/android"
                     android:textSize="10sp" />
 
                 <Button
@@ -121,13 +124,14 @@
                     android:layout_width="70dp"
                     android:layout_height="25dp"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/corner_radious"
+                    android:background="@drawable/unselected_server"
                     android:backgroundTint="@color/server"
                     android:fontFamily="@font/regular"
                     android:text="Server"
                     android:onClick="@{() -> vm.onClickServerBtn()}"
+                    serverButtonState="@{vm.tagState}"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/server"
                     android:textSize="10sp" />
 
                 <Button
@@ -136,13 +140,14 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:background="@drawable/corner_radious"
+                    android:background="@drawable/unselected_ios"
                     android:backgroundTint="@color/iOS"
                     android:fontFamily="@font/regular"
                     android:text="iOS"
                     android:onClick="@{() -> vm.onClickIosBtn()}"
+                    iosButtonState="@{vm.tagState}"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/iOS"
                     android:textSize="10sp" />
             </LinearLayout>
         </ScrollView>

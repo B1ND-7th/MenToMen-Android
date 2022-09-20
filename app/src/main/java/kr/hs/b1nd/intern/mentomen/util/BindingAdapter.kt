@@ -41,11 +41,11 @@ object BindingAdapter {
         val compareDayTime = ChronoUnit.DAYS.between(convertTime, now)
         val compareMonthTime = ChronoUnit.MONTHS.between(convertTime, now)
         when {
-            compareSecondTime < 60 -> view.text= "${compareSecondTime}초전"
-            compareMinuteTime < 60 -> view.text = "${compareMinuteTime}분전"
-            compareHourTime < 24 -> view.text = "${compareHourTime}시간전"
-            compareDayTime < 31 -> view.text = "${compareDayTime}일전"
-            else -> view.text = "${compareMonthTime}달전"
+            compareSecondTime < 60 -> view.text= "${compareSecondTime}초 전"
+            compareMinuteTime < 60 -> view.text = "${compareMinuteTime}분 전"
+            compareHourTime < 24 -> view.text = "${compareHourTime}시간 전"
+            compareDayTime < 31 -> view.text = "${compareDayTime}일 전"
+            else -> view.text = "${compareMonthTime}달 전"
         }
     }
 

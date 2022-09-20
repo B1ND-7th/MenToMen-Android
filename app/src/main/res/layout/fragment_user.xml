@@ -69,6 +69,7 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/logout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/profile_image"
@@ -77,7 +78,6 @@
                     android:text="로그아웃"
                     android:textColor="#FC3434"
                     android:background="#00ff0000"
-
                     />
 
 

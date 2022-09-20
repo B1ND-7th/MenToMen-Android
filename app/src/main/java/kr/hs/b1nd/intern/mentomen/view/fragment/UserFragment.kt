@@ -1,10 +1,12 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +15,7 @@ import kotlinx.coroutines.flow.collect
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentUserBinding
+import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
 import kr.hs.b1nd.intern.mentomen.viewmodel.UserViewModel
@@ -36,9 +39,15 @@ class UserFragment : Fragment() {
         binding.profileEmail.text="${userViewModel.email.value}"
         binding.profileClass.text="${userViewModel.grade.value}학년 ${userViewModel.room.value}반 ${userViewModel.number.value}번"
 
-
+        binding.logout.setOnClickListener{
+            (activity as MainActivity).moveToLogin()
+        }
         return binding.root
+
     }
+
+
+
 
     private fun performViewModel() {
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]

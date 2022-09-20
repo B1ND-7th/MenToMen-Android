@@ -1,5 +1,6 @@
 package kr.hs.b1nd.intern.mentomen.view.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
@@ -34,5 +35,10 @@ class MainActivity : AppCompatActivity() {
 
     fun hasBottomBar(hasBottomBar: Boolean = true) {
         binding.bottomNavigation.visibility = if (hasBottomBar) View.VISIBLE else View.GONE
+    }
+    fun moveToLogin(){
+        var intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

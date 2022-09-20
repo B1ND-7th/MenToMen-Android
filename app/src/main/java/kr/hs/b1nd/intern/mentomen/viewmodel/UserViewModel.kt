@@ -4,17 +4,10 @@ import android.content.Intent
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.launch
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
 import kr.hs.b1nd.intern.mentomen.network.model.Post
 import kr.hs.b1nd.intern.mentomen.network.model.User
-import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
-import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
-import kr.hs.b1nd.intern.mentomen.viewmodel.state.GetMyPostState
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,9 +19,7 @@ class UserViewModel : ViewModel() {
     val profileImage = MutableLiveData<String>()
     val number =  MutableLiveData<Int>()
     val room =  MutableLiveData<Int>()
-
-    val _getMyPostState = MutableSharedFlow<GetMyPostState>()
-    val getMyPostState : SharedFlow<GetMyPostState> = _getMyPostState
+    val list = MutableLiveData<List<Post>>()
 
 
     init {
@@ -63,7 +54,7 @@ class UserViewModel : ViewModel() {
                 response: Response<BaseResponse<List<Post>>>
             ) {
                 if (response.isSuccessful){
-                    viewModelScope.launch {response.body()?.data ?: emptyList()}
+                    list.value = response.body()?.data ?: emptyList()
 
                 }
             }

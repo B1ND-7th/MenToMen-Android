@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.collect
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentUserBinding
+import kr.hs.b1nd.intern.mentomen.network.model.Post
 import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
@@ -57,12 +59,9 @@ class UserFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            userViewModel.getMyPostState.collect{
-                if(it.list.isNotEmpty()){
-                    binding.rvMypage.adapter = HomeAdapter(it.list)
-                }
-            }
+        val postObserver = Observer<List<Post>> {
+            binding.rvMypage.adapter = HomeAdapter(it)
         }
+       userViewModel.list.observe(viewLifecycleOwner,postObserver)
     }
 }

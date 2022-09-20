@@ -4,10 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
-import kr.hs.b1nd.intern.mentomen.network.model.Post
+import kr.hs.b1nd.intern.mentomen.network.model.ImageFile
 import kr.hs.b1nd.intern.mentomen.network.model.PostSubmitDto
 import kr.hs.b1nd.intern.mentomen.util.SingleLiveEvent
 import kr.hs.b1nd.intern.mentomen.util.TagState
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Response
 
@@ -29,7 +30,8 @@ class AddViewModel : ViewModel() {
     ))
 
     val content = MutableLiveData("")
-    val imgUrl = MutableLiveData<String>()
+    var imgFile = MutableLiveData<MultipartBody.Part>()
+    var imgUrl = MutableLiveData<String>()
 
     private var tag: String = ""
 
@@ -38,24 +40,40 @@ class AddViewModel : ViewModel() {
     }
 
     fun onCLickConfirm() {
-        if (content.value != "" && tag != "") {
-            val call = RetrofitClient.postService.submitPost(
-                PostSubmitDto(content.value ?: "", imgUrl.value, tag)
-            )
 
-            call.enqueue(object : retrofit2.Callback<BaseResponse<Any>> {
-                override fun onResponse(call: Call<BaseResponse<Any>>, response: Response<BaseResponse<Any>>) {
-                    if (response.isSuccessful) {
-                        onClickConfirmEvent.call()
-                    }
+        val call = RetrofitClient.fileService.loadImage(imgFile.value!!)
+
+        call.enqueue(object : retrofit2.Callback<BaseResponse<ImageFile>> {
+            override fun onResponse(
+                call: Call<BaseResponse<ImageFile>>,
+                response: Response<BaseResponse<ImageFile>>
+            ) {
+                imgUrl.value = response.body()?.data!!.imgUrl
+                if (content.value != "" && tag != "") {
+                    val call2 = RetrofitClient.postService.submitPost(
+                        PostSubmitDto(content.value ?: "", imgUrl.value, tag)
+                    )
+
+                    call2.enqueue(object : retrofit2.Callback<BaseResponse<Any>> {
+                        override fun onResponse(call: Call<BaseResponse<Any>>, response: Response<BaseResponse<Any>>) {
+                            if (response.isSuccessful) {
+                                onClickConfirmEvent.call()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<BaseResponse<Any>>, t: Throwable) {
+
+                        }
+
+                    })
                 }
+            }
 
-                override fun onFailure(call: Call<BaseResponse<Any>>, t: Throwable) {
+            override fun onFailure(call: Call<BaseResponse<ImageFile>>, t: Throwable) {
 
-                }
+            }
 
-            })
-        }
+        })
     }
 
     fun onClickDesignBtn() {

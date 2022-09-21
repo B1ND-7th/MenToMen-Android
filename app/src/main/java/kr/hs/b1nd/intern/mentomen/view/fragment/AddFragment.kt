@@ -35,7 +35,7 @@ import java.lang.Exception
 class AddFragment : Fragment() {
     private lateinit var binding: FragmentAddBinding
     private lateinit var addViewModel: AddViewModel
-    private lateinit var image: Uri
+    private var image: Uri? = null
 
     private var launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
@@ -45,7 +45,7 @@ class AddFragment : Fragment() {
             val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
             val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-            image = imagePath!!
+            image = imagePath
             addViewModel.imgFile.value = body
         }
     }
@@ -84,6 +84,7 @@ class AddFragment : Fragment() {
             Glide.with(this)
                 .load(image)
                 .into(binding.btnImage)
+            addViewModel.loadImage()
         }
 
 

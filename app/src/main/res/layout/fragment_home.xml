@@ -8,10 +8,6 @@
         <variable
             name="vm"
             type="kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel" />
-
-        <variable
-            name="tagState"
-            type="kr.hs.b1nd.intern.mentomen.util.TagState" />
     </data>
 
     <FrameLayout
@@ -32,16 +28,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <ScrollView
+                    <HorizontalScrollView
                         android:id="@+id/tags"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         app:layout_constraintBottom_toTopOf="@+id/rv_home"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="10dp"
                             android:orientation="horizontal">
@@ -59,7 +54,7 @@
                                 android:text="Design"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
-                                android:textSize="10sp" />
+                                android:textSize="11sp" />
 
                             <Button
                                 android:id="@+id/btn_web"
@@ -74,7 +69,7 @@
                                 android:text="Web"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
-                                android:textSize="10sp" />
+                                android:textSize="11sp" />
 
                             <Button
                                 android:id="@+id/btn_android"
@@ -89,7 +84,7 @@
                                 android:text="Android"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
-                                android:textSize="10sp" />
+                                android:textSize="11sp" />
 
                             <Button
                                 android:id="@+id/btn_server"
@@ -104,7 +99,7 @@
                                 android:text="Server"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
-                                android:textSize="10sp" />
+                                android:textSize="11sp" />
 
                             <Button
                                 android:id="@+id/btn_ios"
@@ -120,9 +115,9 @@
                                 android:text="iOS"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
-                                android:textSize="10sp" />
+                                android:textSize="11sp" />
                         </LinearLayout>
-                    </ScrollView>
+                    </HorizontalScrollView>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_home"

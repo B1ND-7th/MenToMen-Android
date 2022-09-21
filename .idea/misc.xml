@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.29739583333333336" />
         <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2365" />
         <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/background_category_item.xml" value="0.2365" />
         <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/drawable/background_kategorie_item.xml" value="0.2365" />
@@ -47,6 +48,7 @@
         <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/menu/menu_top.xml" value="0.3796875" />
         <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/menu/post_upload_ui_toolbar.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2045" />
+        <entry key="app/src/main/res/drawable/back_corner_radious.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/category_item_black.xml" value="0.2585" />
         <entry key="app/src/main/res/drawable/corner_radious.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.258" />
@@ -65,7 +67,8 @@
         <entry key="app/src/main/res/drawable/unselected_web.xml" value="0.3245" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4765974004217919" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.41343688964843756" />
-        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.4156127929687501" />
+        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.3965785381026439" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.4762840028021746" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3925233644859813" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.4546875" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.21875" />

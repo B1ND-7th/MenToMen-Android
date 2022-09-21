@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
 import kr.hs.b1nd.intern.mentomen.network.model.Post
@@ -47,8 +46,10 @@ class HomeFragment : Fragment() {
             binding.refreshLayout.isRefreshing = false
         }
 
+
         return binding.root
     }
+
 
     private fun observeViewModel() {
         with(homeViewModel) {
@@ -60,7 +61,10 @@ class HomeFragment : Fragment() {
 
 
     private fun initHomeAdapter(items: List<Post>) {
-        homeAdapter = HomeAdapter(items)
+        homeAdapter = HomeAdapter(items) {
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.postId)
+            findNavController().navigate(action)
+        }
         binding.rvHome.adapter = homeAdapter
         homeAdapter.notifyDataSetChanged()
     }
@@ -72,4 +76,5 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.executePendingBindings()
     }
+
 }

@@ -19,7 +19,7 @@ interface PostService {
 
     @GET("post/read-one/{postId}")
     fun readOne(
-        @Path("postId") postId: Int
+        @Path("postId") postId: Int?
     ): Call<BaseResponse<Post>>
 
     @POST("post/submit")

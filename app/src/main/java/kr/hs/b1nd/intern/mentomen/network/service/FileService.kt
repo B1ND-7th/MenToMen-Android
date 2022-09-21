@@ -13,7 +13,7 @@ interface FileService {
     @Multipart
     @POST("file/upload")
     fun loadImage(
-        @Part imageFile: MultipartBody.Part
+        @Part imageFile: MultipartBody.Part?
     ): Call<BaseResponse<ImageFile>>
 
 }

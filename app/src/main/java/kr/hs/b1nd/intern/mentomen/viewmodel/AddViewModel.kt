@@ -15,23 +15,25 @@ import retrofit2.Response
 class AddViewModel : ViewModel() {
     val onClickConfirmEvent = SingleLiveEvent<Any>()
     val onClickImageEvent = SingleLiveEvent<Any>()
-    val onCLickDesignEvent = SingleLiveEvent<Any>()
-    val onCLickWebEvent = SingleLiveEvent<Any>()
-    val onCLickServerEvent = SingleLiveEvent<Any>()
-    val onCLickAndroidEvent = SingleLiveEvent<Any>()
-    val onCLickIosEvent = SingleLiveEvent<Any>()
+    private val onCLickDesignEvent = SingleLiveEvent<Any>()
+    private val onCLickWebEvent = SingleLiveEvent<Any>()
+    private val onCLickServerEvent = SingleLiveEvent<Any>()
+    private val onCLickAndroidEvent = SingleLiveEvent<Any>()
+    private val onCLickIosEvent = SingleLiveEvent<Any>()
 
-    val tagState = MutableLiveData(TagState(
-        isDesignChecked = false,
-        isWebChecked = false,
-        isAndroidChecked = false,
-        isServerChecked = false,
-        isiOSChecked = false
-    ))
+    val tagState = MutableLiveData(
+        TagState(
+            isDesignChecked = false,
+            isWebChecked = false,
+            isAndroidChecked = false,
+            isServerChecked = false,
+            isiOSChecked = false
+        )
+    )
 
     val content = MutableLiveData("")
-    var imgFile = MutableLiveData<MultipartBody.Part>()
-    var imgUrl = MutableLiveData<String>()
+    val imgFile = MutableLiveData<MultipartBody.Part?>()
+    val imgUrl = MutableLiveData<String?>(null)
 
     private var tag: String = ""
 
@@ -39,34 +41,16 @@ class AddViewModel : ViewModel() {
         onClickImageEvent.call()
     }
 
-    fun onCLickConfirm() {
-
-        val call = RetrofitClient.fileService.loadImage(imgFile.value!!)
+    fun loadImage() {
+        val call = RetrofitClient.fileService.loadImage(imgFile.value)
 
         call.enqueue(object : retrofit2.Callback<BaseResponse<ImageFile>> {
             override fun onResponse(
                 call: Call<BaseResponse<ImageFile>>,
                 response: Response<BaseResponse<ImageFile>>
             ) {
-                imgUrl.value = response.body()?.data!!.imgUrl
-                if (content.value != "" && tag != "") {
-                    val call2 = RetrofitClient.postService.submitPost(
-                        PostSubmitDto(content.value ?: "", imgUrl.value, tag)
-                    )
-
-                    call2.enqueue(object : retrofit2.Callback<BaseResponse<Any>> {
-                        override fun onResponse(call: Call<BaseResponse<Any>>, response: Response<BaseResponse<Any>>) {
-                            if (response.isSuccessful) {
-                                onClickConfirmEvent.call()
-                            }
-                        }
-
-                        override fun onFailure(call: Call<BaseResponse<Any>>, t: Throwable) {
-
-                        }
-
-                    })
-                }
+                if (response.isSuccessful)
+                    imgUrl.value = response.body()?.data!!.imgUrl
             }
 
             override fun onFailure(call: Call<BaseResponse<ImageFile>>, t: Throwable) {
@@ -74,6 +58,30 @@ class AddViewModel : ViewModel() {
             }
 
         })
+
+    }
+
+    fun onCLickConfirm() {
+        val call = RetrofitClient.postService.submitPost(
+            PostSubmitDto(content.value ?: "", imgUrl.value, tag)
+        )
+
+        call.enqueue(object : retrofit2.Callback<BaseResponse<Any>> {
+            override fun onResponse(
+                call: Call<BaseResponse<Any>>,
+                response: Response<BaseResponse<Any>>
+            ) {
+                if (response.isSuccessful) {
+                    onClickConfirmEvent.call()
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<Any>>, t: Throwable) {
+
+            }
+
+        })
+
     }
 
     fun onClickDesignBtn() {
@@ -90,7 +98,7 @@ class AddViewModel : ViewModel() {
 
     fun onClickWebBtn() {
         tag = "WEB"
-        tagState.value  = TagState(
+        tagState.value = TagState(
             isDesignChecked = false,
             isWebChecked = true,
             isAndroidChecked = false,

@@ -21,20 +21,6 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         performViewModel()
 
-        loginViewModel.onClickDAuthLogin.observe(this) {
-            loginForDodam(settingForDodam(
-                applicationContext.getString(R.string.clientId),
-                applicationContext.getString(R.string.clientSecret),
-                applicationContext.getString(R.string.redirectUrl)
-            ), { tokenResponse ->
-                App.prefs.setString("accessToken", tokenResponse.token)
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }, { error ->
-                Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
-            })
-        }
-
         loginViewModel.onClickLoginEvent.observe(this) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()

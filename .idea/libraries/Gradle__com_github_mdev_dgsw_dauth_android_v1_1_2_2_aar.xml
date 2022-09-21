@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.mdev-dgsw:dauth_android_v1:1.2.2@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ee4b309f9810f24546773920089df87c/transformed/dauth_android_v1-1.2.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ee4b309f9810f24546773920089df87c/transformed/dauth_android_v1-1.2.2/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ee4b309f9810f24546773920089df87c/transformed/dauth_android_v1-1.2.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/70987d811650d7bd88bf535a325570fc/transformed/dauth_android_v1-1.2.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/70987d811650d7bd88bf535a325570fc/transformed/dauth_android_v1-1.2.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/70987d811650d7bd88bf535a325570fc/transformed/dauth_android_v1-1.2.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

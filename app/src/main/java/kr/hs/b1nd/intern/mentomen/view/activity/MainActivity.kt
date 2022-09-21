@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.NavHostFragment
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.ActivityMainBinding
+import kr.hs.b1nd.intern.mentomen.view.fragment.DetailFragment
 import kr.hs.b1nd.intern.mentomen.viewmodel.LoginViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -35,4 +37,5 @@ class MainActivity : AppCompatActivity() {
     fun hasBottomBar(hasBottomBar: Boolean = true) {
         binding.bottomNavigation.visibility = if (hasBottomBar) View.VISIBLE else View.GONE
     }
+
 }

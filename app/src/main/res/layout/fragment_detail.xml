@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.hs.b1nd.intern.mentomen.viewmodel.DetailViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.fragment.DetailFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/background">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/post_upload_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/back_button"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/ic_back"
+                            android:gravity="center_vertical" />
+                    </androidx.appcompat.widget.Toolbar>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/main"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@drawable/back_corner_radious"
+                        android:backgroundTint="@color/white"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/post_upload_toolbar">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_profile"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:cardCornerRadius="100dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/iv_profile"
+                                image="@{vm.profileUrl}"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:scaleType="centerCrop"
+                                tools:src="@drawable/josangyung" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/regular"
+                            android:text="@{vm.userName}"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            app:layout_constraintStart_toEndOf="@+id/cv_profile"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="조상영" />
+
+                        <TextView
+                            android:id="@+id/grade"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/gray"
+                            android:textSize="10sp"
+                            grade="@{vm.stdInfo.grade}"
+                            app:layout_constraintEnd_toStartOf="@id/room"
+                            app:layout_constraintStart_toEndOf="@id/cv_profile"
+                            app:layout_constraintTop_toBottomOf="@id/name"
+                            tools:text="1학년" />
+
+                        <TextView
+                            android:id="@+id/room"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/gray"
+                            android:textSize="10sp"
+                            room="@{vm.stdInfo.room}"
+                            app:layout_constraintEnd_toStartOf="@id/number"
+                            app:layout_constraintStart_toEndOf="@+id/grade"
+                            app:layout_constraintTop_toBottomOf="@+id/name"
+                            tools:text="2반" />
+
+                        <TextView
+                            android:id="@+id/number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/gray"
+                            android:textSize="10sp"
+                            number="@{vm.stdInfo.number}"
+                            app:layout_constraintStart_toEndOf="@+id/room"
+                            app:layout_constraintTop_toBottomOf="@+id/name"
+                            tools:text="15번" />
+
+                        <TextView
+                            android:id="@+id/content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="10dp"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:text="@{vm.content}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cv_profile"
+                            tools:text="ㅁㄴ이라ㅓㅁ닝라ㅓㅁ나ㅣㄹㅇ미낭러밍ㄴ러밈나얼미낭러미ㅏㄴㅇ럼니아ㅓㄹ미낭러미ㅏㄴㅇ러미낭러미ㅏㄴ어리만얾ㄴㅇ림ㄴ어ㅏㄹ마ㅣ" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/imgUrl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/content">
+
+                            <ImageView
+                                image="@{vm.imgUrl}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                tools:src="@drawable/josangyung" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/datetime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/gray"
+                            android:textSize="10sp"
+                            currentDate="@{vm.createDateTime}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imgUrl"
+                            tools:text="2022년 10월 26일 오후 2:44" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/main">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
+</layout>

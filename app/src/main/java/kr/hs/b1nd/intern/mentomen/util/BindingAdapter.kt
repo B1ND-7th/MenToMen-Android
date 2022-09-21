@@ -1,18 +1,13 @@
 package kr.hs.b1nd.intern.mentomen.util
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.card.MaterialCardView
 import kr.hs.b1nd.intern.mentomen.R
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -47,6 +42,35 @@ object BindingAdapter {
             compareDayTime < 31 -> view.text = "${compareDayTime}일 전"
             else -> view.text = "${compareMonthTime}달 전"
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("currentDate")
+    fun setDate(view: TextView, dateTime: String?) {
+        dateTime?.let {
+            val time = it.split(".")[0]
+            val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            view.text = "${convertTime.year}년 ${convertTime.monthValue}월 ${convertTime.dayOfMonth}일 ${convertTime.hour}:${convertTime.minute}"
+        }
+
+    }
+
+    @JvmStatic
+    @BindingAdapter("grade")
+    fun setGrade(view: TextView, grade: Int) {
+        view.text = "${grade}학년"
+    }
+
+    @JvmStatic
+    @BindingAdapter("room")
+    fun setRoom(view: TextView, grade: Int) {
+        view.text = "${grade}학년"
+    }
+
+    @JvmStatic
+    @BindingAdapter("number")
+    fun setNumber(view: TextView, number: Int) {
+        view.text = "${number}번"
     }
 
     @JvmStatic

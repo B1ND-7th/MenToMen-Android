@@ -2,15 +2,12 @@ package kr.hs.b1nd.intern.mentomen.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.ActivityLoginBinding
 import kr.hs.b1nd.intern.mentomen.viewmodel.LoginViewModel
-import kr.hs.dgsw.smartschool.dauth.api.network.DAuth.loginForDodam
-import kr.hs.dgsw.smartschool.dauth.api.network.DAuth.settingForDodam
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -21,9 +18,23 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         performViewModel()
 
-        loginViewModel.onClickLoginEvent.observe(this) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+        // TODO : 지워라
+//        App.prefs.logout()
+
+        with(loginViewModel) {
+            binding.autoLogin.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    App.prefs.autoLogin()
+                }
+            }
+
+            if (App.prefs.isLogin()) {
+                onClickLoginEvent.call()
+            }
+            onClickLoginEvent.observe(this@LoginActivity) {
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                finish()
+            }
         }
     }
 

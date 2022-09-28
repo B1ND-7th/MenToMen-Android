@@ -46,7 +46,6 @@ class HomeFragment : Fragment() {
             binding.refreshLayout.isRefreshing = false
         }
 
-
         return binding.root
     }
 
@@ -61,12 +60,12 @@ class HomeFragment : Fragment() {
 
 
     private fun initHomeAdapter(items: List<Post>) {
-        homeAdapter = HomeAdapter(items) {
+        homeAdapter = HomeAdapter {
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.postId)
             findNavController().navigate(action)
         }
+        homeAdapter.submitList(items)
         binding.rvHome.adapter = homeAdapter
-        homeAdapter.notifyDataSetChanged()
     }
 
 

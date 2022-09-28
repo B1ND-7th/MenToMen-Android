@@ -5,5 +5,6 @@ data class TagState(
     var isWebChecked: Boolean = true,
     var isAndroidChecked: Boolean = true,
     var isServerChecked: Boolean = true,
-    var isiOSChecked: Boolean = true
+    var isiOSChecked: Boolean = true,
+    var isChecked: Boolean = false
 )

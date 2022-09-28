@@ -13,13 +13,13 @@ import retrofit2.Call
 import retrofit2.Response
 
 class AddViewModel : ViewModel() {
-    val onClickConfirmEvent = SingleLiveEvent<Any>()
-    val onClickImageEvent = SingleLiveEvent<Any>()
-    private val onCLickDesignEvent = SingleLiveEvent<Any>()
-    private val onCLickWebEvent = SingleLiveEvent<Any>()
-    private val onCLickServerEvent = SingleLiveEvent<Any>()
-    private val onCLickAndroidEvent = SingleLiveEvent<Any>()
-    private val onCLickIosEvent = SingleLiveEvent<Any>()
+    val onClickConfirmEvent = SingleLiveEvent<Unit>()
+    val onClickImageEvent = SingleLiveEvent<Unit>()
+    private val onCLickDesignEvent = SingleLiveEvent<Unit>()
+    private val onCLickWebEvent = SingleLiveEvent<Unit>()
+    private val onCLickServerEvent = SingleLiveEvent<Unit>()
+    private val onCLickAndroidEvent = SingleLiveEvent<Unit>()
+    private val onCLickIosEvent = SingleLiveEvent<Unit>()
 
     val tagState = MutableLiveData(
         TagState(
@@ -41,7 +41,7 @@ class AddViewModel : ViewModel() {
         onClickImageEvent.call()
     }
 
-    fun loadImage() {
+    private fun loadImage() {
         val call = RetrofitClient.fileService.loadImage(imgFile.value)
 
         call.enqueue(object : retrofit2.Callback<BaseResponse<ImageFile>> {
@@ -51,6 +51,7 @@ class AddViewModel : ViewModel() {
             ) {
                 if (response.isSuccessful)
                     imgUrl.value = response.body()?.data!!.imgUrl
+                    post()
             }
 
             override fun onFailure(call: Call<BaseResponse<ImageFile>>, t: Throwable) {
@@ -60,8 +61,7 @@ class AddViewModel : ViewModel() {
         })
 
     }
-
-    fun onCLickConfirm() {
+    private fun post() {
         val call = RetrofitClient.postService.submitPost(
             PostSubmitDto(content.value ?: "", imgUrl.value, tag)
         )
@@ -81,6 +81,17 @@ class AddViewModel : ViewModel() {
             }
 
         })
+    }
+
+    fun onCLickConfirm() {
+        when (imgFile) {
+            null -> {
+               post()
+            }
+            else -> {
+                loadImage()
+            }
+        }
 
     }
 

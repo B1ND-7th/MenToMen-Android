@@ -15,96 +15,102 @@ import retrofit2.Response
 class HomeViewModel: ViewModel() {
     val itemList = MutableLiveData<List<Post>>()
 
-    val onClickDesignEvent = SingleLiveEvent<Any>()
-    val onCLickWebEvent = SingleLiveEvent<Any>()
-    val onCLickServerEvent = SingleLiveEvent<Any>()
-    val onCLickAndroidEvent = SingleLiveEvent<Any>()
-    val onCLickIosEvent = SingleLiveEvent<Any>()
+    private val onClickDesignEvent = SingleLiveEvent<Unit>()
+    private val onCLickWebEvent = SingleLiveEvent<Unit>()
+    private val onCLickServerEvent = SingleLiveEvent<Unit>()
+    private val onCLickAndroidEvent = SingleLiveEvent<Unit>()
+    private val onCLickIosEvent = SingleLiveEvent<Unit>()
 
     val tagState = MutableLiveData(TagState())
 
+
     fun onClickDesignBtn() {
-        if (tagState.value!!.isDesignChecked) {
+        if (tagState.value!!.isDesignChecked && tagState.value!!.isChecked) {
+            allTagsSelected()
+            callPost()
+        }
+        else if (tagState.value!!.isDesignChecked || (!tagState.value!!.isDesignChecked && tagState.value!!.isChecked)) {
             tagState.value = TagState(
                 isDesignChecked = true,
                 isWebChecked = false,
                 isAndroidChecked = false,
                 isServerChecked = false,
-                isiOSChecked = false
+                isiOSChecked = false,
+                isChecked = true
             )
             callTagPost("DESIGN", onClickDesignEvent)
-        }
-        else {
-            allTagsSelected()
-            callPost()
         }
     }
 
     fun onClickWebBtn() {
-        if (tagState.value!!.isWebChecked) {
+        if (tagState.value!!.isWebChecked && tagState.value!!.isChecked) {
+            allTagsSelected()
+            callPost()
+        }
+        else if (tagState.value!!.isWebChecked || (!tagState.value!!.isWebChecked && tagState.value!!.isChecked)) {
             tagState.value = TagState(
                 isDesignChecked = false,
                 isWebChecked = true,
                 isAndroidChecked = false,
                 isServerChecked = false,
-                isiOSChecked = false
+                isiOSChecked = false,
+                isChecked = true
             )
             callTagPost("WEB", onCLickWebEvent)
-        }
-        else {
-            allTagsSelected()
-            callPost()
         }
     }
 
     fun onClickServerBtn() {
-        if (tagState.value!!.isServerChecked) {
+        if (tagState.value!!.isServerChecked && tagState.value!!.isChecked) {
+            allTagsSelected()
+            callPost()
+        }
+        else if (tagState.value!!.isServerChecked || (!tagState.value!!.isServerChecked && tagState.value!!.isChecked)) {
             tagState.value = TagState(
                 isDesignChecked = false,
                 isWebChecked = false,
                 isAndroidChecked = false,
                 isServerChecked = true,
-                isiOSChecked = false
+                isiOSChecked = false,
+                isChecked = true
             )
             callTagPost("SERVER", onCLickServerEvent)
-        }
-        else {
-            allTagsSelected()
-            callPost()
         }
     }
 
     fun onClickAndroidBtn() {
-        if (tagState.value!!.isAndroidChecked) {
+        if (tagState.value!!.isAndroidChecked && tagState.value!!.isChecked) {
+            allTagsSelected()
+            callPost()
+        }
+        else if (tagState.value!!.isAndroidChecked || (!tagState.value!!.isAndroidChecked && tagState.value!!.isChecked)) {
             tagState.value = TagState(
                 isDesignChecked = false,
                 isWebChecked = false,
                 isAndroidChecked = true,
                 isServerChecked = false,
-                isiOSChecked = false
+                isiOSChecked = false,
+                isChecked = true
             )
             callTagPost("ANDROID", onCLickAndroidEvent)
-        }
-        else {
-            allTagsSelected()
-            callPost()
         }
     }
 
     fun onClickIosBtn() {
-        if (tagState.value!!.isiOSChecked) {
+        if (tagState.value!!.isiOSChecked && tagState.value!!.isChecked) {
+            allTagsSelected()
+            callPost()
+        }
+        else if (tagState.value!!.isiOSChecked || (!tagState.value!!.isiOSChecked && tagState.value!!.isChecked)) {
             tagState.value = TagState(
                 isDesignChecked = false,
                 isWebChecked = false,
                 isAndroidChecked = false,
                 isServerChecked = false,
-                isiOSChecked = true
+                isiOSChecked = true,
+                isChecked = true
             )
             callTagPost("IOS", onCLickIosEvent)
-        }
-        else {
-            allTagsSelected()
-            callPost()
         }
     }
 
@@ -128,7 +134,7 @@ class HomeViewModel: ViewModel() {
         })
     }
 
-    private fun callTagPost(tag: String, singleLiveEvent: SingleLiveEvent<Any>) {
+    private fun callTagPost(tag: String, singleLiveEvent: SingleLiveEvent<Unit>) {
         val call = RetrofitClient.postService.readTag(tag)
 
         call.enqueue(object : retrofit2.Callback<BaseResponse<List<Post>>> {
@@ -154,7 +160,8 @@ class HomeViewModel: ViewModel() {
             isWebChecked = true,
             isAndroidChecked = true,
             isServerChecked = true,
-            isiOSChecked = true
+            isiOSChecked = true,
+            isChecked = false
         )
     }
 }

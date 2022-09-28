@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel" />
@@ -20,120 +20,114 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.core.widget.NestedScrollView
+
+            <LinearLayout
+                android:id="@+id/linear_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <HorizontalScrollView
+                    android:id="@+id/tags"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_scrollFlags="scroll|enterAlways">
 
-                    <HorizontalScrollView
-                        android:id="@+id/tags"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toTopOf="@+id/rv_home"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:layout_marginVertical="10dp"
+                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="10dp"
-                            android:orientation="horizontal">
+                        <Button
+                            android:id="@+id/btn_design"
+                            designButtonState="@{vm.tagState}"
+                            android:layout_width="70dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/corner_radious"
+                            android:backgroundTint="@color/design"
+                            android:fontFamily="@font/regular"
+                            android:onClick="@{() -> vm.onClickDesignBtn()}"
+                            android:text="Design"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
 
-                            <Button
-                                android:id="@+id/btn_design"
-                                android:layout_width="70dp"
-                                android:layout_height="25dp"
-                                android:layout_marginStart="10dp"
-                                android:background="@drawable/corner_radious"
-                                android:backgroundTint="@color/design"
-                                android:fontFamily="@font/regular"
-                                android:onClick="@{() -> vm.onClickDesignBtn()}"
-                                designButtonState="@{vm.tagState}"
-                                android:text="Design"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white"
-                                android:textSize="11sp" />
+                        <Button
+                            android:id="@+id/btn_web"
+                            webButtonState="@{vm.tagState}"
+                            android:layout_width="70dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/corner_radious"
+                            android:backgroundTint="@color/web"
+                            android:fontFamily="@font/regular"
+                            android:onClick="@{() -> vm.onClickWebBtn()}"
+                            android:text="Web"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
 
-                            <Button
-                                android:id="@+id/btn_web"
-                                android:layout_width="70dp"
-                                android:layout_height="25dp"
-                                android:layout_marginStart="10dp"
-                                android:background="@drawable/corner_radious"
-                                android:backgroundTint="@color/web"
-                                android:fontFamily="@font/regular"
-                                android:onClick="@{() -> vm.onClickWebBtn()}"
-                                webButtonState="@{vm.tagState}"
-                                android:text="Web"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white"
-                                android:textSize="11sp" />
+                        <Button
+                            android:id="@+id/btn_android"
+                            androidButtonState="@{vm.tagState}"
+                            android:layout_width="70dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/corner_radious"
+                            android:backgroundTint="@color/android"
+                            android:fontFamily="@font/regular"
+                            android:onClick="@{() -> vm.onClickAndroidBtn()}"
+                            android:text="Android"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
 
-                            <Button
-                                android:id="@+id/btn_android"
-                                android:layout_width="70dp"
-                                android:layout_height="25dp"
-                                android:layout_marginStart="10dp"
-                                android:background="@drawable/corner_radious"
-                                android:backgroundTint="@color/android"
-                                android:fontFamily="@font/regular"
-                                android:onClick="@{() -> vm.onClickAndroidBtn()}"
-                                androidButtonState="@{vm.tagState}"
-                                android:text="Android"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white"
-                                android:textSize="11sp" />
+                        <Button
+                            android:id="@+id/btn_server"
+                            serverButtonState="@{vm.tagState}"
+                            android:layout_width="70dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/corner_radious"
+                            android:backgroundTint="@color/server"
+                            android:fontFamily="@font/regular"
+                            android:onClick="@{() -> vm.onClickServerBtn()}"
+                            android:text="Server"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
 
-                            <Button
-                                android:id="@+id/btn_server"
-                                android:layout_width="70dp"
-                                android:layout_height="25dp"
-                                android:layout_marginStart="10dp"
-                                android:background="@drawable/corner_radious"
-                                android:backgroundTint="@color/server"
-                                android:fontFamily="@font/regular"
-                                android:onClick="@{() -> vm.onClickServerBtn()}"
-                                serverButtonState="@{vm.tagState}"
-                                android:text="Server"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white"
-                                android:textSize="11sp" />
+                        <Button
+                            android:id="@+id/btn_ios"
+                            iosButtonState="@{vm.tagState}"
+                            android:layout_width="70dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/corner_radious"
+                            android:backgroundTint="@color/iOS"
+                            android:fontFamily="@font/regular"
+                            android:onClick="@{() -> vm.onClickIosBtn()}"
+                            android:text="iOS"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
 
-                            <Button
-                                android:id="@+id/btn_ios"
-                                android:layout_width="70dp"
-                                android:layout_height="25dp"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="10dp"
-                                android:background="@drawable/corner_radious"
-                                android:backgroundTint="@color/iOS"
-                                android:fontFamily="@font/regular"
-                                android:onClick="@{() -> vm.onClickIosBtn()}"
-                                iosButtonState="@{vm.tagState}"
-                                android:text="iOS"
-                                android:textAllCaps="false"
-                                android:textColor="@color/white"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </HorizontalScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_home"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tags" />
+            </LinearLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            </androidx.core.widget.NestedScrollView>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

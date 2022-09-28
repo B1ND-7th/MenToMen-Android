@@ -18,9 +18,7 @@ class TokenInterceptor : Interceptor {
         val response = chain.proceed(request)
 
         when (response.code) {
-            200 -> {
-                return response
-            }
+            200 -> return response
 
             401 -> {
                 try {
@@ -37,11 +35,9 @@ class TokenInterceptor : Interceptor {
     }
 
     private fun makeTokenRefreshCall(chain: Interceptor.Chain): Response {
-
         val request = chain.request().newBuilder()
             .addHeader("Authorization", "Bearer $refreshToken")
             .build()
-
 
         return chain.proceed(request)
     }

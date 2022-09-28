@@ -172,7 +172,6 @@
             android:id="@+id/btn_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="1dp"
             android:background="#000"
             android:src="@drawable/ic_image"
             android:onClick="@{() -> vm.onClickImage()}"

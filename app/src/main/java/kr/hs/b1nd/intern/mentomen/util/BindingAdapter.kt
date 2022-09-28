@@ -36,11 +36,11 @@ object BindingAdapter {
         val compareDayTime = ChronoUnit.DAYS.between(convertTime, now)
         val compareMonthTime = ChronoUnit.MONTHS.between(convertTime, now)
         when {
-            compareSecondTime < 60 -> view.text= "${compareSecondTime}초 전"
-            compareMinuteTime < 60 -> view.text = "${compareMinuteTime}분 전"
-            compareHourTime < 24 -> view.text = "${compareHourTime}시간 전"
-            compareDayTime < 31 -> view.text = "${compareDayTime}일 전"
-            else -> view.text = "${compareMonthTime}달 전"
+            compareSecondTime < 60 -> view.text= "${compareSecondTime}초전"
+            compareMinuteTime < 60 -> view.text = "${compareMinuteTime}분전"
+            compareHourTime < 24 -> view.text = "${compareHourTime}시간전"
+            compareDayTime < when (now.monthValue) {1, 3, 5, 7, 8, 10, 12 -> 31 2 -> 28 else -> 30}  -> view.text = "${compareDayTime}일전"
+            else -> view.text = "${compareMonthTime}달전"
         }
     }
 
@@ -50,7 +50,7 @@ object BindingAdapter {
         dateTime?.let {
             val time = it.split(".")[0]
             val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-            view.text = "${convertTime.year}년 ${convertTime.monthValue}월 ${convertTime.dayOfMonth}일 ${convertTime.hour}:${convertTime.minute}"
+            view.text = "${convertTime.year}년 ${convertTime.monthValue}월 ${convertTime.dayOfMonth}일 ${convertTime.hour}시 ${convertTime.minute}분"
         }
 
     }
@@ -58,13 +58,13 @@ object BindingAdapter {
     @JvmStatic
     @BindingAdapter("grade")
     fun setGrade(view: TextView, grade: Int) {
-        view.text = "${grade}학년"
+        view.text = "${grade}학년 "
     }
 
     @JvmStatic
     @BindingAdapter("room")
     fun setRoom(view: TextView, grade: Int) {
-        view.text = "${grade}학년"
+        view.text = "${grade}반 "
     }
 
     @JvmStatic

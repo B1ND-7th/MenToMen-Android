@@ -84,7 +84,7 @@ class AddFragment : Fragment() {
             Glide.with(this)
                 .load(image)
                 .into(binding.btnImage)
-            addViewModel.loadImage()
+
         }
 
 

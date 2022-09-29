@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="kr.hs.b1nd.intern.mentomen.network.model.Comment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/login_corner_radious"
+        android:backgroundTint="@color/white">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_profile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                image="@{item.profileUrl}"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/aprofile" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/regular"
+            android:text="@{item.userName}"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/cv_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="조상영" />
+
+        <TextView
+            android:id="@+id/grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/gray"
+            android:textSize="10sp"
+            grade="@{item.stdInfo.grade}"
+            app:layout_constraintEnd_toStartOf="@id/room"
+            app:layout_constraintStart_toEndOf="@id/cv_profile"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            tools:text="1학년" />
+
+        <TextView
+            android:id="@+id/room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/gray"
+            android:textSize="10sp"
+            room="@{item.stdInfo.room}"
+            app:layout_constraintEnd_toStartOf="@id/number"
+            app:layout_constraintStart_toEndOf="@+id/grade"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:text="2반" />
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/gray"
+            android:textSize="10sp"
+            number="@{item.stdInfo.number}"
+            app:layout_constraintStart_toEndOf="@+id/room"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:text="15번" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/regular"
+            android:text="@{item.content}"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:background="@drawable/login_corner_radious"
+            android:backgroundTint="@color/background"
+            android:padding="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cv_profile"
+            app:layout_constraintTop_toBottomOf="@id/cv_profile"
+            tools:text="너무 못생겼어요 나가주세요!\nfas\n" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

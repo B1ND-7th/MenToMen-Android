@@ -1,5 +1,6 @@
 package kr.hs.b1nd.intern.mentomen.network
 
+import kr.hs.b1nd.intern.mentomen.network.service.CommentService
 import kr.hs.b1nd.intern.mentomen.network.service.FileService
 import kr.hs.b1nd.intern.mentomen.network.service.LoginService
 import kr.hs.b1nd.intern.mentomen.network.service.PostService
@@ -33,4 +34,5 @@ object RetrofitClient {
     val mtmService: LoginService = retrofit.create(LoginService::class.java)
     val postService: PostService = retrofit.create(PostService::class.java)
     val fileService: FileService = retrofit.create(FileService::class.java)
+    val commentService: CommentService = retrofit.create(CommentService::class.java)
 }

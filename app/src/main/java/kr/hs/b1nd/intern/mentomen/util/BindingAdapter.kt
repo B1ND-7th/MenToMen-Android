@@ -14,12 +14,14 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
 object BindingAdapter {
+
     @JvmStatic
     @BindingAdapter("image")
     fun loadImage(view: ImageView, imageUrl: String?) {
-        imageUrl?.let {
+        if (imageUrl.isNullOrBlank().not()) {
             Glide.with(view.context)
-                .load(it)
+                .load(imageUrl)
+                .centerCrop()
                 .into(view)
         }
     }

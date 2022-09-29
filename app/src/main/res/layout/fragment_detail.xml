@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="vm"
             type="kr.hs.b1nd.intern.mentomen.viewmodel.DetailViewModel" />
@@ -15,7 +14,7 @@
         android:layout_height="match_parent"
         tools:context=".view.fragment.DetailFragment">
 
-        <androidx.core.widget.NestedScrollView
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -52,10 +51,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="10dp"
+                        android:layout_marginTop="8dp"
                         android:background="@drawable/login_corner_radious"
                         android:backgroundTint="@color/white"
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="10dp"
+
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/post_upload_toolbar">
@@ -93,13 +94,13 @@
 
                         <TextView
                             android:id="@+id/grade"
+                            grade="@{vm.stdInfo.grade}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:fontFamily="@font/regular"
                             android:textColor="@color/gray"
                             android:textSize="10sp"
-                            grade="@{vm.stdInfo.grade}"
                             app:layout_constraintEnd_toStartOf="@id/room"
                             app:layout_constraintStart_toEndOf="@id/cv_profile"
                             app:layout_constraintTop_toBottomOf="@id/name"
@@ -107,12 +108,12 @@
 
                         <TextView
                             android:id="@+id/room"
+                            room="@{vm.stdInfo.room}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/regular"
                             android:textColor="@color/gray"
                             android:textSize="10sp"
-                            room="@{vm.stdInfo.room}"
                             app:layout_constraintEnd_toStartOf="@id/number"
                             app:layout_constraintStart_toEndOf="@+id/grade"
                             app:layout_constraintTop_toBottomOf="@+id/name"
@@ -120,12 +121,12 @@
 
                         <TextView
                             android:id="@+id/number"
+                            number="@{vm.stdInfo.number}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/regular"
                             android:textColor="@color/gray"
                             android:textSize="10sp"
-                            number="@{vm.stdInfo.number}"
                             app:layout_constraintStart_toEndOf="@+id/room"
                             app:layout_constraintTop_toBottomOf="@+id/name"
                             tools:text="15번" />
@@ -136,9 +137,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="10dp"
                             android:fontFamily="@font/regular"
+                            android:text="@{vm.content}"
                             android:textColor="@color/black"
                             android:textSize="14sp"
-                            android:text="@{vm.content}"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/cv_profile"
@@ -166,12 +167,12 @@
 
                         <TextView
                             android:id="@+id/datetime"
+                            currentDate="@{vm.createDateTime}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/regular"
                             android:textColor="@color/gray"
                             android:textSize="10sp"
-                            currentDate="@{vm.createDateTime}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/imgUrl"
@@ -181,8 +182,11 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -190,7 +194,8 @@
 
                     </androidx.recyclerview.widget.RecyclerView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+        </ScrollView>
     </FrameLayout>
 </layout>

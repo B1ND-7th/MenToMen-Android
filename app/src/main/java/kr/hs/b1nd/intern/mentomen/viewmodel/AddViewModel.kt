@@ -64,17 +64,17 @@ class AddViewModel : ViewModel() {
                 PostSubmitDto(content.value!!, imgUrl.value, tag.value!!)
             )
 
-            call.enqueue(object : retrofit2.Callback<BaseResponse<Any>> {
+            call.enqueue(object : retrofit2.Callback<BaseResponse<Unit>> {
                 override fun onResponse(
-                    call: Call<BaseResponse<Any>>,
-                    response: Response<BaseResponse<Any>>
+                    call: Call<BaseResponse<Unit>>,
+                    response: Response<BaseResponse<Unit>>
                 ) {
                     if (response.isSuccessful) {
                         successConfirmEvent.call()
                     }
                 }
 
-                override fun onFailure(call: Call<BaseResponse<Any>>, t: Throwable) {
+                override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
 
                 }
             })

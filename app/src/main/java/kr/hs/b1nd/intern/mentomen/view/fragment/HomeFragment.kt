@@ -33,6 +33,8 @@ class HomeFragment : Fragment() {
             false
         )
         performViewModel()
+        initHomeAdapter()
+
         with(homeViewModel.tagState.value!!) {
             with(homeViewModel) {
                 when {
@@ -59,18 +61,17 @@ class HomeFragment : Fragment() {
     private fun observeViewModel() {
         with(homeViewModel) {
             itemList.observe(viewLifecycleOwner) {
-                initHomeAdapter(it)
+                homeAdapter.submitList(it)
             }
         }
     }
 
 
-    private fun initHomeAdapter(items: List<Post>) {
+    private fun initHomeAdapter() {
         homeAdapter = HomeAdapter {
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.postId)
             findNavController().navigate(action)
         }
-        homeAdapter.submitList(items)
         binding.rvHome.adapter = homeAdapter
     }
 

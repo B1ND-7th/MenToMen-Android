@@ -9,7 +9,7 @@ class PreferenceUtil(context: Context) {
     }
 
     private val prefs: SharedPreferences =
-        context.getSharedPreferences("prefs_name", Context.MODE_PRIVATE)
+        context.getSharedPreferences("token", Context.MODE_PRIVATE)
 
     fun getString(key: String, defValue: String): String {
         return prefs.getString(key, defValue).toString()
@@ -29,5 +29,9 @@ class PreferenceUtil(context: Context) {
 
     fun logout() {
         prefs.edit().putBoolean(IS_LOGIN, false).apply()
+    }
+
+    fun delete(key: String) {
+        prefs.edit().remove(key).apply()
     }
 }

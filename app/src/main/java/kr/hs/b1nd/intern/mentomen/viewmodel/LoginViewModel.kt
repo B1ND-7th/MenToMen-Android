@@ -27,9 +27,12 @@ class LoginViewModel(private val application: Application): ViewModel() {
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
-    fun onClickLogin() {
+    private fun dAuthLogin() {
 
-        val call = RetrofitClient.loginService.login(
+    }
+
+    fun onClickLogin() {
+        val dAuthCall = RetrofitClient.loginService.login(
             DAuthLoginRequest(
                 id.value.toString(),
                 encryptSHA512(pw.value.toString()),
@@ -38,7 +41,7 @@ class LoginViewModel(private val application: Application): ViewModel() {
             )
         )
 
-        call.enqueue(object : retrofit2.Callback<BaseResponse<DAuthLoginResponse>> {
+        dAuthCall.enqueue(object : retrofit2.Callback<BaseResponse<DAuthLoginResponse>> {
             override fun onResponse(call: Call<BaseResponse<DAuthLoginResponse>>, responseDAuth: Response<BaseResponse<DAuthLoginResponse>>) {
                 if (responseDAuth.isSuccessful) {
                     val call2 = RetrofitClient.mtmService.mtmLogin(
@@ -55,10 +58,6 @@ class LoginViewModel(private val application: Application): ViewModel() {
                                 App.prefs.setString("accessToken", response.body()?.data!!.accessToken)
                                 App.prefs.setString("refreshToken", response.body()?.data!!.refreshToken)
                                 onClickLoginEvent.call()
-                            }  else {
-                                val errorBody = RetrofitClient.retrofit.responseBodyConverter<ErrorResponse>(
-                                    ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(response.errorBody())
-                                Toast.makeText(application, errorBody?.message, Toast.LENGTH_SHORT).show()
                             }
                         }
 
@@ -68,7 +67,6 @@ class LoginViewModel(private val application: Application): ViewModel() {
                         ) {
 
                         }
-
                     })
                 } else {
                     val errorBody = RetrofitClient.retrofit.responseBodyConverter<ErrorResponse>(

@@ -2,6 +2,7 @@ package kr.hs.b1nd.intern.mentomen.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import kr.hs.b1nd.intern.mentomen.App
@@ -17,9 +18,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         performViewModel()
-
-        // TODO : 지워라
-//        App.prefs.logout()
 
         with(loginViewModel) {
             binding.autoLogin.setOnCheckedChangeListener { buttonView, isChecked ->

@@ -73,7 +73,7 @@
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_design"
                     android:layout_width="70dp"
                     android:layout_height="25dp"
@@ -88,7 +88,7 @@
                     android:textColor="@color/design"
                     android:textSize="10sp" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_web"
                     android:layout_width="70dp"
                     android:layout_height="25dp"
@@ -103,7 +103,7 @@
                     android:textColor="@color/web"
                     android:textSize="10sp" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_android"
                     android:layout_width="70dp"
                     android:layout_height="25dp"
@@ -118,7 +118,7 @@
                     android:textColor="@color/android"
                     android:textSize="10sp" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_server"
                     android:layout_width="70dp"
                     android:layout_height="25dp"
@@ -133,7 +133,7 @@
                     android:textColor="@color/server"
                     android:textSize="10sp" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_ios"
                     android:layout_width="70dp"
                     android:layout_height="25dp"

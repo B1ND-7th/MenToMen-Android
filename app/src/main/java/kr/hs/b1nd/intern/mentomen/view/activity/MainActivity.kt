@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
@@ -13,6 +14,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.ActivityMainBinding
 import kr.hs.b1nd.intern.mentomen.view.fragment.DetailFragment
@@ -37,5 +39,4 @@ class MainActivity : AppCompatActivity() {
     fun hasBottomBar(hasBottomBar: Boolean = true) {
         binding.bottomNavigation.visibility = if (hasBottomBar) View.VISIBLE else View.GONE
     }
-
 }

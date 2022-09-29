@@ -14,15 +14,7 @@ import retrofit2.Response
 
 class HomeViewModel: ViewModel() {
     val itemList = MutableLiveData<List<Post>>()
-
-    private val onClickDesignEvent = SingleLiveEvent<Unit>()
-    private val onCLickWebEvent = SingleLiveEvent<Unit>()
-    private val onCLickServerEvent = SingleLiveEvent<Unit>()
-    private val onCLickAndroidEvent = SingleLiveEvent<Unit>()
-    private val onCLickIosEvent = SingleLiveEvent<Unit>()
-
     val tagState = MutableLiveData(TagState())
-
 
     fun onClickDesignBtn() {
         if (tagState.value!!.isDesignChecked && tagState.value!!.isChecked) {
@@ -38,7 +30,7 @@ class HomeViewModel: ViewModel() {
                 isiOSChecked = false,
                 isChecked = true
             )
-            callTagPost("DESIGN", onClickDesignEvent)
+            callTagPost("DESIGN")
         }
     }
 
@@ -56,7 +48,7 @@ class HomeViewModel: ViewModel() {
                 isiOSChecked = false,
                 isChecked = true
             )
-            callTagPost("WEB", onCLickWebEvent)
+            callTagPost("WEB")
         }
     }
 
@@ -74,7 +66,7 @@ class HomeViewModel: ViewModel() {
                 isiOSChecked = false,
                 isChecked = true
             )
-            callTagPost("SERVER", onCLickServerEvent)
+            callTagPost("SERVER")
         }
     }
 
@@ -92,7 +84,7 @@ class HomeViewModel: ViewModel() {
                 isiOSChecked = false,
                 isChecked = true
             )
-            callTagPost("ANDROID", onCLickAndroidEvent)
+            callTagPost("ANDROID")
         }
     }
 
@@ -110,7 +102,7 @@ class HomeViewModel: ViewModel() {
                 isiOSChecked = true,
                 isChecked = true
             )
-            callTagPost("IOS", onCLickIosEvent)
+            callTagPost("IOS")
         }
     }
 
@@ -134,7 +126,7 @@ class HomeViewModel: ViewModel() {
         })
     }
 
-    private fun callTagPost(tag: String, singleLiveEvent: SingleLiveEvent<Unit>) {
+    fun callTagPost(tag: String) {
         val call = RetrofitClient.postService.readTag(tag)
 
         call.enqueue(object : retrofit2.Callback<BaseResponse<List<Post>>> {
@@ -144,7 +136,6 @@ class HomeViewModel: ViewModel() {
             ) {
                 if (response.isSuccessful) {
                     itemList.value = response.body()?.data ?: emptyList()
-                    singleLiveEvent.call()
                 }
             }
 

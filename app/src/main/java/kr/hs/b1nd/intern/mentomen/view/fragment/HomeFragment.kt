@@ -33,18 +33,24 @@ class HomeFragment : Fragment() {
             false
         )
         performViewModel()
-        homeViewModel.callPost()
+        with(homeViewModel.tagState.value!!) {
+            with(homeViewModel) {
+                when {
+                    isDesignChecked && isChecked -> callTagPost("DESIGN")
+                    isServerChecked && isChecked -> callTagPost("SERVER")
+                    isWebChecked && isChecked -> callTagPost("WEB")
+                    isAndroidChecked && isChecked -> callTagPost("ANDROID")
+                    isiOSChecked && isChecked -> callTagPost("IOS")
+                    else -> callPost()
+                }
+            }
+
+        }
         observeViewModel()
 
         (activity as MainActivity).hasTopBar()
         (activity as MainActivity).hasBottomBar()
 
-        binding.refreshLayout.setOnRefreshListener {
-            homeViewModel.tagState.value = TagState(isDesignChecked = true, isWebChecked = true, isAndroidChecked = true, isServerChecked = true, isiOSChecked = true)
-            homeViewModel.callPost()
-            observeViewModel()
-            binding.refreshLayout.isRefreshing = false
-        }
 
         return binding.root
     }

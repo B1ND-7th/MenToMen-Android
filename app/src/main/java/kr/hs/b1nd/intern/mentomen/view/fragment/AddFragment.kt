@@ -37,18 +37,19 @@ class AddFragment : Fragment() {
     private lateinit var addViewModel: AddViewModel
     private var image: Uri? = null
 
-    private var launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val imagePath = result.data!!.data
+    private var launcher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val imagePath = result.data!!.data
 
-            val file = File(absolutelyPath(imagePath, requireContext()))
-            val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-            val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+                val file = File(absolutelyPath(imagePath, requireContext()))
+                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-            image = imagePath
-            addViewModel.imgFile.value = body
+                image = imagePath
+                addViewModel.imgFile.value = body
+            }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,39 +69,57 @@ class AddFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        addViewModel.content.observe(viewLifecycleOwner) {
-            if (it != "") binding.btnConfirm.setBackgroundResource(R.color.blue)
+        with(addViewModel) {
+            content.observe(viewLifecycleOwner) { content ->
+                if (content != "")  {
+                    tag.observe(viewLifecycleOwner) {tag ->
+                        if (tag != "") binding.btnConfirm.setBackgroundResource(R.color.blue)
+                    }
+                }
+                else binding.btnConfirm.setBackgroundResource(R.color.gray)
+            }
+            onClickConfirmEvent.observe(viewLifecycleOwner) {
+                context?.let { context ->
+                    if (tag.value == "" && content.value == "") {
+                        Toast.makeText(context, "태그와 내용을 입력해주세요!", Toast.LENGTH_SHORT).show()
+                    }
+                    else if (tag.value == "") {
+                        Toast.makeText(context, "태그를 선택해주세요!", Toast.LENGTH_SHORT).show()
+                    }
+                    else if (content.value == "") {
+                        Toast.makeText(context, "내용을 입력해주세요!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            successConfirmEvent.observe(viewLifecycleOwner) {
+                findNavController().popBackStack()
+            }
+
+            onClickImageEvent.observe(viewLifecycleOwner) {
+                getProFileImage()
+            }
+
+            imgFile.observe(viewLifecycleOwner) {
+                Glide.with(this@AddFragment)
+                    .load(image)
+                    .into(binding.btnImage)
+                loadImage()
+            }
         }
-
-        addViewModel.onClickConfirmEvent.observe(viewLifecycleOwner) {
-            findNavController().popBackStack()
-        }
-
-        addViewModel.onClickImageEvent.observe(viewLifecycleOwner) {
-            getProFileImage()
-        }
-
-        addViewModel.imgFile.observe(viewLifecycleOwner) {
-            Glide.with(this)
-                .load(image)
-                .into(binding.btnImage)
-
-        }
-
-
         return binding.root
     }
 
-    private fun getProFileImage(){
+    private fun getProFileImage() {
         val chooserIntent = Intent(Intent.ACTION_CHOOSER)
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         chooserIntent.putExtra(Intent.EXTRA_INTENT, intent)
-        chooserIntent.putExtra(Intent.EXTRA_TITLE,"사용할 앱을 선택해주세요.")
+        chooserIntent.putExtra(Intent.EXTRA_TITLE, "사용할 앱을 선택해주세요.")
         launcher.launch(chooserIntent)
     }
 
-    private fun absolutelyPath(path: Uri?, context : Context): String {
+    private fun absolutelyPath(path: Uri?, context: Context): String {
         val proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
         val c: Cursor? = context.contentResolver.query(path!!, proj, null, null, null)
         val index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)

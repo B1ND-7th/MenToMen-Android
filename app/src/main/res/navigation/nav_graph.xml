@@ -33,4 +33,5 @@
             android:defaultValue="0"
             android:name="postId"/>
     </fragment>
+
 </navigation>

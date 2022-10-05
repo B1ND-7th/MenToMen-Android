@@ -1,6 +1,7 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,6 +33,8 @@ class HomeFragment : Fragment() {
             container,
             false
         )
+
+        (activity as MainActivity).hasBottomBar(true)
         performViewModel()
         initHomeAdapter()
 
@@ -46,17 +49,21 @@ class HomeFragment : Fragment() {
                     else -> callPost()
                 }
             }
-
         }
         observeViewModel()
 
-        (activity as MainActivity).hasTopBar()
-        (activity as MainActivity).hasBottomBar()
-
+        binding.logo.setOnClickListener {
+            with(homeViewModel) {
+                callPost()
+                allTagsSelected()
+                logoClickEvent.observe(viewLifecycleOwner) {
+                    binding.rvHome.smoothScrollToPosition(0)
+                }
+            }
+        }
 
         return binding.root
     }
-
 
     private fun observeViewModel() {
         with(homeViewModel) {
@@ -65,7 +72,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
 
     private fun initHomeAdapter() {
         homeAdapter = HomeAdapter {

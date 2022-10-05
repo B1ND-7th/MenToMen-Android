@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">MenToMen</string>
+    <string name="app_name">멘투멘</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">멘투멘</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -20,4 +20,5 @@
     <string name="redirectUrl">http://localhost:3000/callback</string>
     <string name="password">도담도담 PW</string>
     <string name="id">도담도담 ID</string>
+    <string name="comment">댓글을 입력해주세요.</string>
 </resources>

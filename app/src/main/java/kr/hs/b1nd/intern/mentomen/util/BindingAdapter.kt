@@ -21,7 +21,6 @@ object BindingAdapter {
         if (imageUrl.isNullOrBlank().not()) {
             Glide.with(view.context)
                 .load(imageUrl)
-                .centerCrop()
                 .into(view)
         }
     }

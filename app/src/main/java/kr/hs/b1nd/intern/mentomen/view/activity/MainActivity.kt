@@ -31,11 +31,6 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setupWithNavController(navHostFragment.findNavController())
 
     }
-
-    fun hasTopBar(hasTopBar: Boolean = true) {
-        binding.toolbar.visibility = if (hasTopBar) View.VISIBLE else View.GONE
-    }
-
     fun hasBottomBar(hasBottomBar: Boolean = true) {
         binding.bottomNavigation.visibility = if (hasBottomBar) View.VISIBLE else View.GONE
     }

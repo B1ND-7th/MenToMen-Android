@@ -17,7 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="200dp"
@@ -28,31 +29,29 @@
                 tools:ignore="ContentDescription" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_id"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_id"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_height="50dp"
                     android:fontFamily="@font/regular"
                     android:hint="@string/id"
                     android:inputType="text"
-                    android:text="@={vm.id}"
-                    android:textSize="16sp" />
+                    android:text="@={vm.id}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_pw"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:textSize="16sp"
+                    android:layout_height="50dp"
                     android:text="@={vm.pw}"
                     android:hint="@string/password"
                     android:fontFamily="@font/regular"
@@ -66,7 +65,6 @@
                 android:layout_height="wrap_content"
                 android:text="자동 로그인"
                 android:fontFamily="@font/regular"
-                android:layout_marginStart="20dp"
                 android:textSize="12sp"/>
 
 
@@ -74,7 +72,6 @@
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/login_corner_radious"
                 android:backgroundTint="@color/blue"
                 android:onClick="@{() -> vm.onClickLogin()}"

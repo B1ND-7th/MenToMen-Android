@@ -9,5 +9,5 @@ import retrofit2.http.GET
 
 interface TokenService {
     @GET("auth/refreshToken")
-    fun refreshToken(@Body loginRequest: TokenRequest) : Call<BaseResponse<TokenResponse>>
+    fun refreshToken() : Call<BaseResponse<TokenResponse>>
 }

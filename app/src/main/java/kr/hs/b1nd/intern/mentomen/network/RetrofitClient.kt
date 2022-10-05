@@ -1,9 +1,6 @@
 package kr.hs.b1nd.intern.mentomen.network
 
-import kr.hs.b1nd.intern.mentomen.network.service.CommentService
-import kr.hs.b1nd.intern.mentomen.network.service.FileService
-import kr.hs.b1nd.intern.mentomen.network.service.LoginService
-import kr.hs.b1nd.intern.mentomen.network.service.PostService
+import kr.hs.b1nd.intern.mentomen.network.service.*
 import kr.hs.b1nd.intern.mentomen.util.Constants.BASE_URL
 import kr.hs.b1nd.intern.mentomen.util.Constants.LOGIN_URL
 import okhttp3.OkHttpClient
@@ -35,4 +32,5 @@ object RetrofitClient {
     val postService: PostService = retrofit.create(PostService::class.java)
     val fileService: FileService = retrofit.create(FileService::class.java)
     val commentService: CommentService = retrofit.create(CommentService::class.java)
+    val tokenService: TokenService = retrofit.create(TokenService::class.java)
 }

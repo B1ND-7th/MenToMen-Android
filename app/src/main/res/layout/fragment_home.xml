@@ -15,119 +15,176 @@
         android:layout_height="match_parent"
         tools:context="view.fragment.HomeFragment">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/logo"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="#00FFFFFF"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/logo_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btn_serach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:paddingHorizontal="10dp"
+                    android:src="@drawable/ic_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_notification"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btn_notification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:paddingHorizontal="10dp"
+                    android:src="@drawable/ic_notification"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                    <com.google.android.material.appbar.AppBarLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/background"
-                        android:fitsSystemWindows="true"
-                        app:elevation="0dp">
+                <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00F2F2F2"
+                    android:fitsSystemWindows="true"
+                    app:elevation="0dp">
 
-                        <HorizontalScrollView
-                            android:id="@+id/tags"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:nestedScrollingEnabled="false"
-                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                            app:layout_scrollFlags="scroll|enterAlways">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginVertical="10dp"
-                                android:orientation="horizontal">
-
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/btn_design"
-                                    designButtonState="@{vm.tagState}"
-                                    android:layout_width="70dp"
-                                    android:layout_height="25dp"
-                                    android:layout_marginStart="10dp"
-                                    android:background="@drawable/corner_radious"
-                                    android:backgroundTint="@color/design"
-                                    android:fontFamily="@font/regular"
-                                    android:onClick="@{() -> vm.onClickDesignBtn()}"
-                                    android:text="Design"
-                                    android:textAllCaps="false"
-                                    android:textColor="@color/white"
-                                    android:textSize="11sp" />
-
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/btn_web"
-                                    webButtonState="@{vm.tagState}"
-                                    android:layout_width="70dp"
-                                    android:layout_height="25dp"
-                                    android:layout_marginStart="10dp"
-                                    android:background="@drawable/corner_radious"
-                                    android:backgroundTint="@color/web"
-                                    android:fontFamily="@font/regular"
-                                    android:onClick="@{() -> vm.onClickWebBtn()}"
-                                    android:text="Web"
-                                    android:textAllCaps="false"
-                                    android:textColor="@color/white"
-                                    android:textSize="11sp" />
-
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/btn_android"
-                                    androidButtonState="@{vm.tagState}"
-                                    android:layout_width="70dp"
-                                    android:layout_height="25dp"
-                                    android:layout_marginStart="10dp"
-                                    android:background="@drawable/corner_radious"
-                                    android:backgroundTint="@color/android"
-                                    android:fontFamily="@font/regular"
-                                    android:onClick="@{() -> vm.onClickAndroidBtn()}"
-                                    android:text="Android"
-                                    android:textAllCaps="false"
-                                    android:textColor="@color/white"
-                                    android:textSize="11sp" />
-
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/btn_server"
-                                    serverButtonState="@{vm.tagState}"
-                                    android:layout_width="70dp"
-                                    android:layout_height="25dp"
-                                    android:layout_marginStart="10dp"
-                                    android:background="@drawable/corner_radious"
-                                    android:backgroundTint="@color/server"
-                                    android:fontFamily="@font/regular"
-                                    android:onClick="@{() -> vm.onClickServerBtn()}"
-                                    android:text="Server"
-                                    android:textAllCaps="false"
-                                    android:textColor="@color/white"
-                                    android:textSize="11sp" />
-
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/btn_ios"
-                                    iosButtonState="@{vm.tagState}"
-                                    android:layout_width="70dp"
-                                    android:layout_height="25dp"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_marginEnd="10dp"
-                                    android:background="@drawable/corner_radious"
-                                    android:backgroundTint="@color/iOS"
-                                    android:fontFamily="@font/regular"
-                                    android:onClick="@{() -> vm.onClickIosBtn()}"
-                                    android:text="iOS"
-                                    android:textAllCaps="false"
-                                    android:textColor="@color/white"
-                                    android:textSize="11sp" />
-                            </LinearLayout>
-                        </HorizontalScrollView>
-                    </com.google.android.material.appbar.AppBarLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_home"
+                    <HorizontalScrollView
+                        android:id="@+id/tags"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:scrollbars="none"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_scrollFlags="scroll|enterAlways">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="12dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_design"
+                                designButtonState="@{vm.tagState}"
+                                android:layout_width="70dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:background="@drawable/corner_radious"
+                                android:backgroundTint="@color/design"
+                                android:fontFamily="@font/regular"
+                                android:onClick="@{() -> vm.onClickDesignBtn()}"
+                                android:text="Design"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_web"
+                                webButtonState="@{vm.tagState}"
+                                android:layout_width="70dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:background="@drawable/corner_radious"
+                                android:backgroundTint="@color/web"
+                                android:fontFamily="@font/regular"
+                                android:onClick="@{() -> vm.onClickWebBtn()}"
+                                android:text="Web"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_android"
+                                androidButtonState="@{vm.tagState}"
+                                android:layout_width="70dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:background="@drawable/corner_radious"
+                                android:backgroundTint="@color/android"
+                                android:fontFamily="@font/regular"
+                                android:onClick="@{() -> vm.onClickAndroidBtn()}"
+                                android:text="Android"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_server"
+                                serverButtonState="@{vm.tagState}"
+                                android:layout_width="70dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:background="@drawable/corner_radious"
+                                android:backgroundTint="@color/server"
+                                android:fontFamily="@font/regular"
+                                android:onClick="@{() -> vm.onClickServerBtn()}"
+                                android:text="Server"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_ios"
+                                iosButtonState="@{vm.tagState}"
+                                android:layout_width="70dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:background="@drawable/corner_radious"
+                                android:backgroundTint="@color/iOS"
+                                android:fontFamily="@font/regular"
+                                android:onClick="@{() -> vm.onClickIosBtn()}"
+                                android:text="iOS"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

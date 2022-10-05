@@ -1,6 +1,5 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +12,8 @@ import retrofit2.Call
 import retrofit2.Response
 
 class HomeViewModel: ViewModel() {
+    val logoClickEvent = SingleLiveEvent<Unit>()
+
     val itemList = MutableLiveData<List<Post>>()
     val tagState = MutableLiveData(TagState())
 
@@ -107,7 +108,7 @@ class HomeViewModel: ViewModel() {
     }
 
     fun callPost() {
-        val call = RetrofitClient.postService.readAll()
+        val call = RetrofitClient.postService.readPost()
 
         call.enqueue(object : retrofit2.Callback<BaseResponse<List<Post>>> {
             override fun onResponse(
@@ -116,6 +117,7 @@ class HomeViewModel: ViewModel() {
             ) {
                 if (response.isSuccessful) {
                     itemList.value = response.body()?.data ?: emptyList()
+                    logoClickEvent.call()
                 }
             }
 
@@ -127,7 +129,7 @@ class HomeViewModel: ViewModel() {
     }
 
     fun callTagPost(tag: String) {
-        val call = RetrofitClient.postService.readTag(tag)
+        val call = RetrofitClient.postService.readTagPost(tag)
 
         call.enqueue(object : retrofit2.Callback<BaseResponse<List<Post>>> {
             override fun onResponse(
@@ -145,7 +147,7 @@ class HomeViewModel: ViewModel() {
 
         })
     }
-    private fun allTagsSelected() {
+    fun allTagsSelected() {
         tagState.value = TagState(
             isDesignChecked = true,
             isWebChecked = true,

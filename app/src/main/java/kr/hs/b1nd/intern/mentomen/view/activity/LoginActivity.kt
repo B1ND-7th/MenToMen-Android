@@ -33,6 +33,10 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 finish()
             }
+
+            failLoginEvent.observe(this@LoginActivity) {
+                binding.etPw.setText("")
+            }
         }
     }
 
@@ -40,6 +44,5 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel = LoginViewModel(application)
         binding.vm = loginViewModel
         binding.lifecycleOwner = this
-        binding.executePendingBindings()
     }
 }

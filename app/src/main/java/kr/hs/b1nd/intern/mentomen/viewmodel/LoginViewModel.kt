@@ -23,13 +23,12 @@ import java.security.MessageDigest
 class LoginViewModel(private val application: Application): ViewModel() {
 
     val onClickLoginEvent = SingleLiveEvent<Unit>()
+    val failLoginEvent = SingleLiveEvent<Unit>()
+
+    val profileImage = MutableLiveData<String?>()
 
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
-
-    private fun dAuthLogin() {
-
-    }
 
     fun onClickLogin() {
         val dAuthCall = RetrofitClient.loginService.login(
@@ -42,14 +41,15 @@ class LoginViewModel(private val application: Application): ViewModel() {
         )
 
         dAuthCall.enqueue(object : retrofit2.Callback<BaseResponse<DAuthLoginResponse>> {
-            override fun onResponse(call: Call<BaseResponse<DAuthLoginResponse>>, responseDAuth: Response<BaseResponse<DAuthLoginResponse>>) {
+            override fun onResponse(dAuthCall: Call<BaseResponse<DAuthLoginResponse>>, responseDAuth: Response<BaseResponse<DAuthLoginResponse>>) {
                 if (responseDAuth.isSuccessful) {
-                    val call2 = RetrofitClient.mtmService.mtmLogin(
+                    profileImage.value = responseDAuth.body()?.data!!.profileImage
+                    val call = RetrofitClient.mtmService.mtmLogin(
                         LoginRequest(
                             responseDAuth.body()?.data!!.location.split("=", "&")[1]
                         )
                     )
-                    call2.enqueue(object : retrofit2.Callback<BaseResponse<LoginResponse>> {
+                    call.enqueue(object : retrofit2.Callback<BaseResponse<LoginResponse>> {
                         override fun onResponse(
                             call: Call<BaseResponse<LoginResponse>>,
                             response: Response<BaseResponse<LoginResponse>>
@@ -65,16 +65,22 @@ class LoginViewModel(private val application: Application): ViewModel() {
                             call: Call<BaseResponse<LoginResponse>>,
                             t: Throwable
                         ) {
-
+                            Toast.makeText(application, "서버가 꺼져있습니다.", Toast.LENGTH_SHORT).show()
                         }
                     })
                 } else {
-                    val errorBody = RetrofitClient.retrofit.responseBodyConverter<ErrorResponse>(
-                        ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(responseDAuth.errorBody())
+                    val errorBody = responseDAuth.errorBody()?.let {
+                        RetrofitClient.retrofit.responseBodyConverter<ErrorResponse>(
+                            ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(
+                            it
+                        )
+                    }
                     Toast.makeText(application, errorBody?.message, Toast.LENGTH_SHORT).show()
+                    failLoginEvent.call()
+
                 }
             }
-            override fun onFailure(call: Call<BaseResponse<DAuthLoginResponse>>, t: Throwable) {
+            override fun onFailure(dAuthCall: Call<BaseResponse<DAuthLoginResponse>>, t: Throwable) {
 
             }
 

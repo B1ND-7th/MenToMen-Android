@@ -59,6 +59,7 @@
         <entry key="app/src/main/res/drawable/ic_image.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/ic_ios.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.2885" />
+        <entry key="app/src/main/res/drawable/ic_moreicon.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_notification.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/login_corner_radious.xml" value="0.287" />
@@ -71,15 +72,18 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4765974004217919" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.41343688964843756" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.32328657439741426" />
-        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.4762840028021746" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.40754039497307004" />
+        <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.45625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3925233644859813" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.4546875" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/item_comment.xml" value="0.45625" />
         <entry key="app/src/main/res/layout/item_home.xml" value="0.3967443624004968" />
+        <entry key="app/src/main/res/layout/item_image.xml" value="0.45625" />
         <entry key="app/src/main/res/layout/tag_item.xml" value="0.453125" />
         <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.4546875" />
         <entry key="app/src/main/res/menu/menu_top.xml" value="0.4546875" />
+        <entry key="app/src/main/res/menu/popub.xml" value="0.45625" />
       </map>
     </option>
   </component>

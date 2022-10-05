@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MenToMen.iml" filepath="$PROJECT_DIR$/.idea/modules/MenToMen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MenToMen-Android.MenToMen.app.androidTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MenToMen-Android.MenToMen.app.androidTest~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MenToMen-Android.MenToMen.app.main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MenToMen-Android.MenToMen.app.main~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MenToMen-Android.MenToMen.app.unitTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MenToMen-Android.MenToMen.app.unitTest~1.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MenToMen.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MenToMen.app.iml" />
     </modules>
   </component>

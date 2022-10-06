@@ -9,6 +9,7 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import kr.hs.b1nd.intern.mentomen.R
+import kr.hs.b1nd.intern.mentomen.network.model.StdInfo
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
@@ -64,8 +65,8 @@ object BindingAdapter {
 
     @JvmStatic
     @BindingAdapter("room")
-    fun setRoom(view: TextView, grade: Int) {
-        view.text = "${grade}반 "
+    fun setRoom(view: TextView, room: Int) {
+        view.text = "${room}반 "
     }
 
     @JvmStatic

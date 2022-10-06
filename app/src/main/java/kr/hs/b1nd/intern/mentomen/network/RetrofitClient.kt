@@ -30,6 +30,7 @@ object RetrofitClient {
     val loginService: LoginService = dAuthRetrofit.create(LoginService::class.java)
     val mtmService: LoginService = retrofit.create(LoginService::class.java)
     val postService: PostService = retrofit.create(PostService::class.java)
+    val userService: UserService = retrofit.create(UserService::class.java)
     val fileService: FileService = retrofit.create(FileService::class.java)
     val commentService: CommentService = retrofit.create(CommentService::class.java)
     val tokenService: TokenService = retrofit.create(TokenService::class.java)

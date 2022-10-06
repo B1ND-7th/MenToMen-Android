@@ -81,12 +81,10 @@ class HomeFragment : Fragment() {
         binding.rvHome.adapter = homeAdapter
     }
 
-
     private fun performViewModel() {
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding.vm = homeViewModel
         binding.lifecycleOwner = this
-        binding.executePendingBindings()
     }
 
 }

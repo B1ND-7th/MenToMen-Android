@@ -1,11 +1,14 @@
 package kr.hs.b1nd.intern.mentomen.view.activity
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -34,4 +37,5 @@ class MainActivity : AppCompatActivity() {
     fun hasBottomBar(hasBottomBar: Boolean = true) {
         binding.bottomNavigation.visibility = if (hasBottomBar) View.VISIBLE else View.GONE
     }
+
 }

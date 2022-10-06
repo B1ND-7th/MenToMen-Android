@@ -63,6 +63,7 @@
         <entry key="app/src/main/res/drawable/ic_notification.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/login_corner_radious.xml" value="0.287" />
+        <entry key="app/src/main/res/drawable/stroke_top.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/tags_corner_radious.xml" value="0.287" />
         <entry key="app/src/main/res/drawable/unselected_android.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/unselected_design.xml" value="0.3245" />
@@ -75,7 +76,7 @@
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.40754039497307004" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.45625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3925233644859813" />
-        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.4546875" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.43757159221076747" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/item_comment.xml" value="0.45625" />
         <entry key="app/src/main/res/layout/item_detail_image.xml" value="0.2848731884057971" />

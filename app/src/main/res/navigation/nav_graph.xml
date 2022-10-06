@@ -23,7 +23,12 @@
         android:id="@+id/user_fragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_user_fragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/detailFragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.DetailFragment"

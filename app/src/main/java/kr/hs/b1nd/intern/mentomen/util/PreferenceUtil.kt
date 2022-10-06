@@ -31,7 +31,8 @@ class PreferenceUtil(context: Context) {
         prefs.edit().putBoolean(IS_LOGIN, false).apply()
     }
 
-    fun delete(key: String) {
-        prefs.edit().remove(key).apply()
+    fun deleteToken() {
+        prefs.edit().remove("accessToken").apply()
+        prefs.edit().remove("refreshToken").apply()
     }
 }

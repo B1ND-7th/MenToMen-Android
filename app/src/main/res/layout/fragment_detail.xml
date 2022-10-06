@@ -181,25 +181,35 @@
                                 app:layout_constraintTop_toBottomOf="@id/cv_profile"
                                 tools:text="ㅁㄴ이라ㅓㅁ닝라ㅓㅁ나ㅣㄹㅇ미낭러밍ㄴ러밈나얼미낭러미ㅏㄴㅇ럼니아ㅓㄹ미낭러미ㅏㄴㅇ러미낭러미ㅏㄴ어리만얾ㄴㅇ림ㄴ어ㅏㄹ마ㅣ" />
 
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/imgUrl"
+                            <FrameLayout
+                                android:id="@+id/viewpager_frame"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="15dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="15dp"
-                                app:cardCornerRadius="5dp"
-                                app:cardElevation="0dp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/content">
 
-                                <ImageView
+                                <androidx.viewpager2.widget.ViewPager2
+                                    android:id="@+id/viewpager"
                                     android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+                                <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                                    android:id="@+id/worm_dots_indicator"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:adjustViewBounds="true"
-                                    tools:src="@drawable/josangyung" />
-                            </androidx.cardview.widget.CardView>
+                                    app:dotsColor="@color/white"
+                                    app:dotsStrokeColor="@color/white"
+                                    app:dotsCornerRadius="8dp"
+                                    app:dotsSize="8dp"
+                                    app:dotsSpacing="2dp"
+                                    app:dotsStrokeWidth="1.5dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_gravity="center|bottom"/>
+                            </FrameLayout>
 
                             <TextView
                                 android:id="@+id/datetime"
@@ -214,7 +224,7 @@
                                 android:textSize="12sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/imgUrl"
+                                app:layout_constraintTop_toBottomOf="@+id/viewpager_frame"
                                 tools:text="2022년 10월 26일 오후 2:44" />
 
 
@@ -275,7 +285,7 @@
                     android:backgroundTint="@color/background"
                     android:fontFamily="@font/regular"
                     android:hint="댓글을 입력해주세요."
-                    android:paddingHorizontal="5dp"
+                    android:paddingHorizontal="12dp"
                     android:paddingVertical="8dp"
                     android:text="@={vm.commentContent}"
                     android:textSize="16sp"

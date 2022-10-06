@@ -10,10 +10,10 @@ import com.bumptech.glide.Glide
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.ItemHomeBinding
 import kr.hs.b1nd.intern.mentomen.network.model.Post
-import kr.hs.b1nd.intern.mentomen.util.PostDiffUtilCallback
+import kr.hs.b1nd.intern.mentomen.util.PostDiffUtil
 
 class HomeAdapter(private val itemClick: (Post) -> Unit) :
-    ListAdapter<Post, HomeAdapter.HomeViewHolder>(PostDiffUtilCallback) {
+    ListAdapter<Post, HomeAdapter.HomeViewHolder>(PostDiffUtil) {
 
     inner class HomeViewHolder(private val binding: ItemHomeBinding) :
         RecyclerView.ViewHolder(binding.root) {

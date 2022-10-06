@@ -18,6 +18,7 @@ import retrofit2.Response
 class DetailViewModel : ViewModel() {
     val deletePostEvent = SingleLiveEvent<Unit>()
     val successCommentEvent = SingleLiveEvent<Unit>()
+    val successReadEvent = SingleLiveEvent<Unit>()
 
     val itemList = MutableLiveData<List<Comment>>()
 
@@ -47,6 +48,7 @@ class DetailViewModel : ViewModel() {
                     profileUrl.value = response.body()?.data!!.profileUrl
                     userName.value = response.body()?.data!!.userName
                     tag.value = response.body()?.data!!.tag
+                    successReadEvent.call()
                 }
             }
 

@@ -6,10 +6,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kr.hs.b1nd.intern.mentomen.databinding.ItemCommentBinding
 import kr.hs.b1nd.intern.mentomen.network.model.Comment
-import kr.hs.b1nd.intern.mentomen.util.CommentDiffUtilCallback
-import kr.hs.b1nd.intern.mentomen.util.PostDiffUtilCallback
+import kr.hs.b1nd.intern.mentomen.util.CommentDiffUtil
 
-class CommentAdapter : ListAdapter<Comment, CommentAdapter.CommentViewHolder>(CommentDiffUtilCallback) {
+class CommentAdapter : ListAdapter<Comment, CommentAdapter.CommentViewHolder>(CommentDiffUtil) {
 
     inner class CommentViewHolder(private val binding: ItemCommentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Comment) {

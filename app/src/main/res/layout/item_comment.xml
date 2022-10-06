@@ -45,7 +45,7 @@
             android:fontFamily="@font/regular"
             android:text="@{item.userName}"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/cv_profile"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="조상영" />
@@ -93,7 +93,7 @@
             android:id="@+id/content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/login_corner_radious"
             android:backgroundTint="@color/background"
             android:fontFamily="@font/regular"

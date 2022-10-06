@@ -17,11 +17,14 @@ import kr.hs.b1nd.intern.mentomen.network.model.Comment
 import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.CommentAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.DetailViewModel
+import kr.hs.b1nd.intern.mentomen.view.adapter.DetailImageAdapter
+import kr.hs.b1nd.intern.mentomen.view.adapter.ImageAdapter
 
 class DetailFragment : Fragment(), PopupMenu.OnMenuItemClickListener {
     private lateinit var detailViewModel: DetailViewModel
     private lateinit var binding: FragmentDetailBinding
     private lateinit var commentAdapter: CommentAdapter
+    private lateinit var imageAdapter: DetailImageAdapter
 
     private val navArgs: DetailFragmentArgs by navArgs()
 
@@ -43,6 +46,7 @@ class DetailFragment : Fragment(), PopupMenu.OnMenuItemClickListener {
             readComment()
         }
         initCommentAdapter()
+        initImageAdapter()
         observeViewModel()
 
         binding.backButton.setOnClickListener {
@@ -68,6 +72,25 @@ class DetailFragment : Fragment(), PopupMenu.OnMenuItemClickListener {
         with(detailViewModel) {
             itemList.observe(viewLifecycleOwner) {
                 commentAdapter.submitList(it)
+            }
+        }
+    }
+
+    private fun initImageAdapter() {
+        with(detailViewModel) {
+            successReadEvent.observe(viewLifecycleOwner) {
+                with(binding) {
+                    if (imgUrl.value.isNullOrEmpty()) {
+                        viewpagerFrame.visibility = View.GONE
+                    } else {
+                        viewpagerFrame.visibility = View.VISIBLE
+                        imageAdapter = DetailImageAdapter(imgUrl.value!!)
+                        viewpager.adapter = imageAdapter
+                        wormDotsIndicator.attachTo(viewpager)
+                        if (imgUrl.value!!.size == 1) wormDotsIndicator.visibility = View.GONE
+                        else wormDotsIndicator.visibility = View.VISIBLE
+                    }
+                }
             }
         }
     }

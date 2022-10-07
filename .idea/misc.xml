@@ -62,7 +62,13 @@
         <entry key="app/src/main/res/drawable/ic_moreicon.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_notification.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.3245" />
+        <entry key="app/src/main/res/drawable/ic_web.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/login_corner_radious.xml" value="0.287" />
+        <entry key="app/src/main/res/drawable/selected_android.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/selected_ios.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/selected_server.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/selected_web.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/shadow_tags.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/stroke_top.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/tags_corner_radious.xml" value="0.287" />
         <entry key="app/src/main/res/drawable/unselected_android.xml" value="0.3245" />
@@ -72,10 +78,10 @@
         <entry key="app/src/main/res/drawable/unselected_web.xml" value="0.3245" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4765974004217919" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.41343688964843756" />
-        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.32328657439741426" />
+        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.49581617644819553" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.40754039497307004" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.45625" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3925233644859813" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.43795077528583404" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.43757159221076747" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/item_comment.xml" value="0.45625" />

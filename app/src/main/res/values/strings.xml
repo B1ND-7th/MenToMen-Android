@@ -21,4 +21,17 @@
     <string name="password">도담도담 PW</string>
     <string name="id">도담도담 ID</string>
     <string name="comment">댓글을 입력해주세요.</string>
+    <string name="server">Server</string>
+    <string name="android">Android</string>
+    <string name="web">Web</string>
+    <string name="design">Design</string>
+    <string name="todo">TODO</string>
+    <string name="ios">iOS</string>
+    <string name="point">·</string>
+    <string name="logout">로그아웃</string>
+    <string name="text1">님, 환영합니다!</string>
+    <string name="write_text">글쓰기</string>
+    <string name="help">멘토에게 부탁할 내용을 입력하세요.</string>
+    <string name="post">멘토 요청하기</string>
+    <string name="auto_login">자동 로그인</string>
 </resources>

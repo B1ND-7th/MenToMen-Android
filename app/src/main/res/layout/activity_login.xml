@@ -14,11 +14,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="20dp">
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="200dp"
@@ -63,7 +65,7 @@
                 android:id="@+id/auto_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="자동 로그인"
+                android:text="@string/auto_login"
                 android:fontFamily="@font/regular"
                 android:textSize="12sp"/>
 

@@ -5,7 +5,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
@@ -58,7 +57,7 @@ object BindingAdapter {
             val time = it.split(".")[0]
             val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
             view.text =
-                "${convertTime.year}년 ${convertTime.monthValue}월 ${convertTime.dayOfMonth}일 ${convertTime.hour}시 ${convertTime.minute}분"
+                "${convertTime.year}년 ${convertTime.monthValue}월 ${convertTime.dayOfMonth}일 ${if (convertTime.hour >= 12) "오후" else "오전"} ${if (convertTime.hour >= 12) convertTime.hour - 12 else convertTime.hour}:${convertTime.minute}"
         }
     }
 
@@ -86,13 +85,8 @@ object BindingAdapter {
         val parentActivity: AppCompatActivity = view.getParentActivity() ?: return
 
         tagState.observe(parentActivity) {
-            if (it.isDesignChecked) {
-                view.setBackgroundResource(R.drawable.corner_radious)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.white))
-            } else {
-                view.setBackgroundResource(R.drawable.unselected_design)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.design))
-            }
+            if (it.isDesignChecked)  view.setBackgroundResource(R.drawable.selected_design)
+            else  view.setBackgroundResource(R.drawable.unselected_tags)
         }
     }
 
@@ -102,13 +96,8 @@ object BindingAdapter {
         val parentActivity: AppCompatActivity = view.getParentActivity() ?: return
 
         tagState.observe(parentActivity) {
-            if (it.isWebChecked) {
-                view.setBackgroundResource(R.drawable.corner_radious)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.white))
-            } else {
-                view.setBackgroundResource(R.drawable.unselected_web)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.web))
-            }
+            if (it.isWebChecked)  view.setBackgroundResource(R.drawable.selected_web)
+            else view.setBackgroundResource(R.drawable.unselected_tags)
         }
     }
 
@@ -118,13 +107,8 @@ object BindingAdapter {
         val parentActivity: AppCompatActivity = view.getParentActivity() ?: return
 
         tagState.observe(parentActivity) {
-            if (it.isServerChecked) {
-                view.setBackgroundResource(R.drawable.corner_radious)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.white))
-            } else {
-                view.setBackgroundResource(R.drawable.unselected_server)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.server))
-            }
+            if (it.isServerChecked)  view.setBackgroundResource(R.drawable.selected_server)
+            else view.setBackgroundResource(R.drawable.unselected_tags)
         }
     }
 
@@ -134,13 +118,8 @@ object BindingAdapter {
         val parentActivity: AppCompatActivity = view.getParentActivity() ?: return
 
         tagState.observe(parentActivity) {
-            if (it.isAndroidChecked) {
-                view.setBackgroundResource(R.drawable.corner_radious)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.white))
-            } else {
-                view.setBackgroundResource(R.drawable.unselected_android)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.android))
-            }
+            if (it.isAndroidChecked)  view.setBackgroundResource(R.drawable.selected_android)
+            else  view.setBackgroundResource(R.drawable.unselected_tags)
         }
     }
 
@@ -150,13 +129,8 @@ object BindingAdapter {
         val parentActivity: AppCompatActivity = view.getParentActivity() ?: return
 
         tagState.observe(parentActivity) {
-            if (it.isiOSChecked) {
-                view.setBackgroundResource(R.drawable.corner_radious)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.white))
-            } else {
-                view.setBackgroundResource(R.drawable.unselected_ios)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.iOS))
-            }
+            if (it.isiOSChecked)  view.setBackgroundResource(R.drawable.selected_ios)
+            else view.setBackgroundResource(R.drawable.unselected_tags)
         }
     }
 }

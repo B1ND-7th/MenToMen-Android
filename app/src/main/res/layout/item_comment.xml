@@ -34,7 +34,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/aprofile" />
+                android:src="@drawable/aprofile"
+                android:contentDescription="@string/todo" />
         </androidx.cardview.widget.CardView>
 
         <TextView

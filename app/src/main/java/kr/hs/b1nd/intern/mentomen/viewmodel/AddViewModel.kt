@@ -119,7 +119,8 @@ class AddViewModel : ViewModel() {
             isWebChecked = false,
             isAndroidChecked = false,
             isServerChecked = false,
-            isiOSChecked = false
+            isiOSChecked = false,
+            isChecked = true
         )
     }
 
@@ -130,7 +131,8 @@ class AddViewModel : ViewModel() {
             isWebChecked = true,
             isAndroidChecked = false,
             isServerChecked = false,
-            isiOSChecked = false
+            isiOSChecked = false,
+            isChecked = true
         )
     }
 
@@ -141,7 +143,8 @@ class AddViewModel : ViewModel() {
             isWebChecked = false,
             isAndroidChecked = false,
             isServerChecked = true,
-            isiOSChecked = false
+            isiOSChecked = false,
+            isChecked = true
         )
     }
 
@@ -152,7 +155,8 @@ class AddViewModel : ViewModel() {
             isWebChecked = false,
             isAndroidChecked = true,
             isServerChecked = false,
-            isiOSChecked = false
+            isiOSChecked = false,
+            isChecked = true
         )
     }
 
@@ -163,7 +167,8 @@ class AddViewModel : ViewModel() {
             isWebChecked = false,
             isAndroidChecked = false,
             isServerChecked = false,
-            isiOSChecked = true
+            isiOSChecked = true,
+            isChecked = true
         )
     }
 }

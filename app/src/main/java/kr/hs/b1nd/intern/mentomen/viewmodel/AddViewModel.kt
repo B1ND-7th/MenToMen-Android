@@ -1,6 +1,5 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.App
@@ -53,16 +52,11 @@ class AddViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     imgUrl.value = response.body()?.data ?: emptyList()
                     successImageEvent.call()
-                    Log.d("test123", "이미지 변환 완료")
                 }
             }
-
             override fun onFailure(call: Call<BaseResponse<List<ImgUrls?>>>, t: Throwable) {
-
             }
-
         })
-
     }
 
     fun submitPost() {
@@ -76,16 +70,13 @@ class AddViewModel : ViewModel() {
                     call: Call<BaseResponse<Unit>>,
                     response: Response<BaseResponse<Unit>>
                 ) {
-                    if (response.isSuccessful) {
+                    if (response.isSuccessful)
                         successConfirmEvent.call()
-                        Log.d("test123", "이미지 보내기 성공")
-                    }
                     else {
                         val errorBody = response.errorBody()?.let {
                             RetrofitClient.retrofit.responseBodyConverter<ErrorResponse>(
-                                ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(
-                                it
-                            )
+                                ErrorResponse::class.java, ErrorResponse::class.java.annotations
+                            ).convert(it)
                         }
                         if (errorBody?.status == 500) {
                             refreshToken()
@@ -93,9 +84,7 @@ class AddViewModel : ViewModel() {
                         }
                     }
                 }
-
                 override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
-
                 }
             })
         }
@@ -115,15 +104,11 @@ class AddViewModel : ViewModel() {
                 call: Call<BaseResponse<TokenResponse>>,
                 response: Response<BaseResponse<TokenResponse>>
             ) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful)
                     App.prefs.setString("accessToken", response.body()?.data!!.accessToken)
-                }
             }
-
             override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
-
             }
-
         })
     }
 

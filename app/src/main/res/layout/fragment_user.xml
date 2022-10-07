@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="vm"
             type="kr.hs.b1nd.intern.mentomen.viewmodel.UserViewModel" />
@@ -55,133 +54,145 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/my_profile_view"
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/login_corner_radious"
-                android:backgroundTint="@color/white"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/profile_frame"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    app:cardCornerRadius="100dp"
-                    app:cardElevation="0dp"
-                    app:layout_constraintStart_toStartOf="@id/my_profile_view"
-                    app:layout_constraintTop_toTopOf="@id/my_profile_view">
-
-                    <ImageView
-                        android:id="@+id/profile_image"
-                        image="@{vm.profileImage}"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/aprofile" />
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/grade"
-                    grade="@{vm.stdInfo.grade}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="25dp"
-                    android:fontFamily="@font/regular"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@id/tv_name"
-                    app:layout_constraintStart_toEndOf="@+id/profile_frame"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="1학년" />
-
-                <TextView
-                    android:id="@+id/room"
-                    room="@{vm.stdInfo.room}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:fontFamily="@font/regular"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@id/tv_name"
-                    app:layout_constraintStart_toEndOf="@+id/grade"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="2반" />
-
-                <TextView
-                    android:id="@+id/number"
-                    number="@{vm.stdInfo.number}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:fontFamily="@font/regular"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@id/tv_name"
-                    app:layout_constraintStart_toEndOf="@+id/room"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="10번" />
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/semibold"
-                    android:text="@{vm.name}"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    tools:text="윤석규"
-                    android:layout_marginStart="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/grade"
-                    app:layout_constraintStart_toEndOf="@+id/profile_frame" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/semibold"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@+id/tv_name"
-                    app:layout_constraintTop_toBottomOf="@+id/grade"
-                    android:text="님, 환영합니다!" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_logout"
+                <com.google.android.material.appbar.AppBarLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/stroke_top"
-                    android:fontFamily="@font/regular"
-                    android:text="로그아웃"
-                    android:textColor="#FA4848"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:background="#00F2F2F2"
+                    android:fitsSystemWindows="true"
+                    app:elevation="0dp">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/my_profile_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/login_corner_radious"
+                        android:backgroundTint="@color/white"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_scrollFlags="scroll|enterAlways">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_my_page"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_profile_view">
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/profile_frame"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            app:cardCornerRadius="100dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintStart_toStartOf="@id/my_profile_view"
+                            app:layout_constraintTop_toTopOf="@id/my_profile_view">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                            <ImageView
+                                android:id="@+id/profile_image"
+                                image="@{vm.profileImage}"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/aprofile" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/grade"
+                            grade="@{vm.stdInfo.grade}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="25dp"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toTopOf="@id/tv_name"
+                            app:layout_constraintStart_toEndOf="@+id/profile_frame"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="1학년" />
+
+                        <TextView
+                            android:id="@+id/room"
+                            room="@{vm.stdInfo.room}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toTopOf="@id/tv_name"
+                            app:layout_constraintStart_toEndOf="@+id/grade"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="2반" />
+
+                        <TextView
+                            android:id="@+id/number"
+                            number="@{vm.stdInfo.number}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:fontFamily="@font/regular"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toTopOf="@id/tv_name"
+                            app:layout_constraintStart_toEndOf="@+id/room"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="10번" />
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/semibold"
+                            android:text="@{vm.name}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toEndOf="@+id/profile_frame"
+                            app:layout_constraintTop_toBottomOf="@id/grade"
+                            tools:text="윤석규" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/semibold"
+                            android:text="님, 환영합니다!"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toEndOf="@+id/tv_name"
+                            app:layout_constraintTop_toBottomOf="@+id/grade" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_logout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/stroke_top"
+                            android:fontFamily="@font/regular"
+                            android:text="로그아웃"
+                            android:textColor="#FA4848"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_my_page"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

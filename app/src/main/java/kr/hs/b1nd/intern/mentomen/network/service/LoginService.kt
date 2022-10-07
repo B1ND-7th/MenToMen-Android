@@ -11,8 +11,12 @@ import retrofit2.http.POST
 
 interface LoginService {
     @POST("login")
-    fun login(@Body DAuthLoginRequest: DAuthLoginRequest) : Call<BaseResponse<DAuthLoginResponse>>
+    fun login(
+        @Body DAuthLoginRequest: DAuthLoginRequest
+    ): Call<BaseResponse<DAuthLoginResponse>>
 
     @POST("auth/code")
-    fun mtmLogin(@Body loginRequest: LoginRequest) : Call<BaseResponse<LoginResponse>>
+    fun mtmLogin(
+        @Body loginRequest: LoginRequest
+    ): Call<BaseResponse<LoginResponse>>
 }

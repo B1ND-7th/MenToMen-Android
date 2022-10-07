@@ -8,8 +8,10 @@ import retrofit2.http.GET
 
 interface UserService {
     @GET("user/my")
-    fun getUserInfo(): Call<BaseResponse<User>>
+    fun getUserInfo(
+    ): Call<BaseResponse<User>>
 
     @GET("user/post")
-    fun getMyPost(): Call<BaseResponse<List<Post>>>
+    fun getMyPost(
+    ): Call<BaseResponse<List<Post>>>
 }

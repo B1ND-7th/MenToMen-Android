@@ -7,13 +7,11 @@ import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
 import kr.hs.b1nd.intern.mentomen.network.model.Post
 import kr.hs.b1nd.intern.mentomen.network.model.StdInfo
 import kr.hs.b1nd.intern.mentomen.network.model.User
-import kr.hs.b1nd.intern.mentomen.util.SingleLiveEvent
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class UserViewModel : ViewModel() {
-
     val email = MutableLiveData<String>()
     val name = MutableLiveData<String>()
     val stdInfo = MutableLiveData<StdInfo>()
@@ -36,9 +34,7 @@ class UserViewModel : ViewModel() {
                 }
             }
             override fun onFailure(call: Call<BaseResponse<User>>, t: Throwable) {
-
             }
-
         })
     }
 
@@ -50,17 +46,12 @@ class UserViewModel : ViewModel() {
                 call: Call<BaseResponse<List<Post>>>,
                 response: Response<BaseResponse<List<Post>>>
             ) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful)
                     itemList.value = response.body()?.data ?: emptyList()
-
-                }
             }
 
             override fun onFailure(call: Call<BaseResponse<List<Post>>>, t: Throwable) {
-
             }
-
         })
-
     }
 }

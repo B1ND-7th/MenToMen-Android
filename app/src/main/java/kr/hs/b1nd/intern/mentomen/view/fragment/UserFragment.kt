@@ -7,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentUserBinding
-import kr.hs.b1nd.intern.mentomen.network.model.Post
 import kr.hs.b1nd.intern.mentomen.view.activity.LoginActivity
 import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
@@ -48,7 +46,7 @@ class UserFragment : Fragment() {
             App.prefs.logout()
             App.prefs.deleteToken()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
-            findNavController().popBackStack()
+            activity?.finish()
         }
 
         return binding.root

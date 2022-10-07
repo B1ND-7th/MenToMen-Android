@@ -2,7 +2,6 @@ package kr.hs.b1nd.intern.mentomen.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import kr.hs.b1nd.intern.mentomen.App
@@ -20,15 +19,14 @@ class LoginActivity : AppCompatActivity() {
         performViewModel()
 
         with(loginViewModel) {
-            binding.autoLogin.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked) {
+            binding.autoLogin.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked)
                     App.prefs.autoLogin()
-                }
             }
 
-            if (App.prefs.isLogin()) {
+            if (App.prefs.isLogin())
                 onClickLoginEvent.call()
-            }
+
             onClickLoginEvent.observe(this@LoginActivity) {
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 finish()

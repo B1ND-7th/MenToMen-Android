@@ -12,13 +12,10 @@ import kr.hs.b1nd.intern.mentomen.databinding.ItemHomeBinding
 import kr.hs.b1nd.intern.mentomen.network.model.Post
 import kr.hs.b1nd.intern.mentomen.util.PostDiffUtil
 
-class HomeAdapter(private val itemClick: (Post) -> Unit) :
-    ListAdapter<Post, HomeAdapter.HomeViewHolder>(PostDiffUtil) {
+class HomeAdapter(private val itemClick: (Post) -> Unit) : ListAdapter<Post, HomeAdapter.HomeViewHolder>(PostDiffUtil) {
 
-    inner class HomeViewHolder(private val binding: ItemHomeBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class HomeViewHolder(private val binding: ItemHomeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Post) {
-
             when (item.tag) {
                 "ANDROID" -> binding.ivTag.setImageResource(R.drawable.ic_android)
                 "IOS" -> binding.ivTag.setImageResource(R.drawable.ic_ios)
@@ -26,21 +23,19 @@ class HomeAdapter(private val itemClick: (Post) -> Unit) :
                 "SERVER" -> binding.ivTag.setImageResource(R.drawable.ic_server)
                 "DESIGN" -> binding.ivTag.setImageResource(R.drawable.ic_design)
             }
-            binding.root.setOnClickListener {
-                itemClick(item)
-            }
 
-            if (item.imgUrls.isNullOrEmpty()) {
+            binding.root.setOnClickListener { itemClick(item) }
+
+            if (item.imgUrls.isNullOrEmpty())
                 binding.cardView.visibility = View.GONE
-            } else {
+            else {
                 binding.cardView.visibility = View.VISIBLE
                 Glide.with(binding.ivContent.context)
                     .load(item.imgUrls[0])
                     .into(binding.ivContent)
-
             }
-            binding.item = item
 
+            binding.item = item
         }
     }
 
@@ -54,7 +49,6 @@ class HomeAdapter(private val itemClick: (Post) -> Unit) :
             )
         )
     }
-
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         holder.bind(getItem(position))

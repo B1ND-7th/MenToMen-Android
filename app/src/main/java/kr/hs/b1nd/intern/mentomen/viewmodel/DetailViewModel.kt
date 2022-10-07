@@ -51,10 +51,8 @@ class DetailViewModel : ViewModel() {
                     successReadEvent.call()
                 }
             }
-
             override fun onFailure(call: Call<BaseResponse<Post>>, t: Throwable) {
             }
-
         })
     }
 
@@ -66,15 +64,11 @@ class DetailViewModel : ViewModel() {
                 call: Call<BaseResponse<List<Comment>>>,
                 response: Response<BaseResponse<List<Comment>>>
             ) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful)
                     itemList.value = response.body()?.data ?: emptyList()
-                }
             }
-
             override fun onFailure(call: Call<BaseResponse<List<Comment>>>, t: Throwable) {
-
             }
-
         })
     }
 
@@ -85,20 +79,18 @@ class DetailViewModel : ViewModel() {
                 postId.value!!
             )
         )
+
         call.enqueue(object : retrofit2.Callback<BaseResponse<Unit>> {
             override fun onResponse(
                 call: Call<BaseResponse<Unit>>,
                 response: Response<BaseResponse<Unit>>
             ) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful)
                     successCommentEvent.call()
-                }
                 else {
                     val errorBody = response.errorBody()?.let {
                         RetrofitClient.retrofit.responseBodyConverter<ErrorResponse>(
-                            ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(
-                            it
-                        )
+                            ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(it)
                     }
                     if (errorBody?.status == 500) {
                         refreshToken()
@@ -106,11 +98,8 @@ class DetailViewModel : ViewModel() {
                     }
                 }
             }
-
             override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
-
             }
-
         })
     }
 
@@ -122,15 +111,12 @@ class DetailViewModel : ViewModel() {
                 call: Call<BaseResponse<TokenResponse>>,
                 response: Response<BaseResponse<TokenResponse>>
             ) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful)
                     App.prefs.setString("accessToken", response.body()?.data!!.accessToken)
-                }
             }
 
             override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
-
             }
-
         })
     }
 
@@ -141,15 +127,11 @@ class DetailViewModel : ViewModel() {
                 call: Call<BaseResponse<Unit>>,
                 response: Response<BaseResponse<Unit>>
             ) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful)
                     deletePostEvent.call()
-                }
             }
-
             override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
-
             }
-
         })
     }
 }

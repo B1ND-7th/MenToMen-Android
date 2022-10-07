@@ -30,7 +30,6 @@ class DetailImageAdapter(private val imageList: List<String?>) : RecyclerView.Ad
         )
     }
 
-
     override fun onBindViewHolder(holder: ImageDetailViewHolder, position: Int) {
         holder.bind(imageList[position])
     }

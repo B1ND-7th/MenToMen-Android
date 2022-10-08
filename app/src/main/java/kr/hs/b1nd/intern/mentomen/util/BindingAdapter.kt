@@ -57,7 +57,7 @@ object BindingAdapter {
             val time = it.split(".")[0]
             val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
             view.text =
-                "${convertTime.year}년 ${convertTime.monthValue}월 ${convertTime.dayOfMonth}일 ${if (convertTime.hour >= 12) "오후" else "오전"} ${if (convertTime.hour >= 12) convertTime.hour - 12 else convertTime.hour}:${convertTime.minute}"
+                "${convertTime.year}-${convertTime.monthValue}-${convertTime.dayOfMonth} ${if (convertTime.hour >= 12) "오후" else "오전"} ${if (convertTime.hour >= 12) convertTime.hour - 12 else convertTime.hour}:${convertTime.minute}"
         }
     }
 

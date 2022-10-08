@@ -1,6 +1,7 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View

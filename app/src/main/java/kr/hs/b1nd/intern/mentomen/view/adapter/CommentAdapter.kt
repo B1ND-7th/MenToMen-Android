@@ -10,7 +10,7 @@ import kr.hs.b1nd.intern.mentomen.databinding.ItemCommentBinding
 import kr.hs.b1nd.intern.mentomen.network.model.Comment
 import kr.hs.b1nd.intern.mentomen.util.CommentDiffUtil
 
-class CommentAdapter : ListAdapter<Comment, CommentAdapter.CommentViewHolder>(CommentDiffUtil) {
+class  CommentAdapter : ListAdapter<Comment, CommentAdapter.CommentViewHolder>(CommentDiffUtil) {
 
     inner class CommentViewHolder(private val binding: ItemCommentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Comment) {

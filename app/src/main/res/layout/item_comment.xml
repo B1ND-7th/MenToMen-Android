@@ -11,13 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
-        android:layout_marginHorizontal="20dp"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="10dp"
-        android:background="@drawable/login_corner_radious"
-        android:backgroundTint="@color/white">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_profile"
@@ -25,6 +19,8 @@
             android:layout_height="30dp"
             app:cardCornerRadius="100dp"
             app:cardElevation="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -47,6 +43,7 @@
             android:text="@{item.userName}"
             android:textColor="@color/black"
             android:textSize="12sp"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toEndOf="@+id/cv_profile"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="조상영" />
@@ -92,20 +89,21 @@
 
         <TextView
             android:id="@+id/content"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@drawable/login_corner_radious"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/comment"
             android:backgroundTint="@color/background"
             android:fontFamily="@font/regular"
-            android:paddingHorizontal="8dp"
+            android:paddingHorizontal="12dp"
             android:paddingVertical="5dp"
             android:text="@{item.content}"
             android:textColor="@color/black"
             android:textSize="14sp"
+            android:layout_marginStart="55dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cv_profile"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cv_profile"
             tools:text="너무 못생겼어요 나가주세요!\nfas\n" />
 

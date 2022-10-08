@@ -77,15 +77,15 @@
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="15dp"
                         app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp">
+                        app:cardElevation="0dp"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_scrollFlags="scroll|enterAlways">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/my_profile_view"
                             android:layout_width="match_parent"
                             android:layout_height="130dp"
-                            android:backgroundTint="@color/white"
-                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                            app:layout_scrollFlags="scroll|enterAlways">
+                            android:backgroundTint="@color/white">
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/profile_frame"

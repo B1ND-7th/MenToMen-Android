@@ -39,6 +39,7 @@ class AddFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 imageList.value?.clear()
+                addViewModel.imgFile.value?.clear()
                 if (result.data?.clipData != null) {
                     val count = result.data?.clipData!!.itemCount
                     if (count > 5) {
@@ -56,7 +57,6 @@ class AddFragment : Fragment() {
                         imageList.value?.add(imageUri)
                         addViewModel.imgFile.value?.add(body)
                     }
-
                 }
             }
             imageAdapter.notifyDataSetChanged()

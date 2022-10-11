@@ -1,30 +1,26 @@
 package kr.hs.b1nd.intern.mentomen.util
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.card.MaterialCardView
 import kr.hs.b1nd.intern.mentomen.R
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
 object BindingAdapter {
+
     @JvmStatic
     @BindingAdapter("image")
     fun loadImage(view: ImageView, imageUrl: String?) {
-        imageUrl?.let {
+        if (imageUrl.isNullOrBlank().not()) {
             Glide.with(view.context)
-                .load(it)
+                .load(imageUrl)
                 .into(view)
         }
     }
@@ -41,12 +37,41 @@ object BindingAdapter {
         val compareDayTime = ChronoUnit.DAYS.between(convertTime, now)
         val compareMonthTime = ChronoUnit.MONTHS.between(convertTime, now)
         when {
-            compareSecondTime < 60 -> view.text= "${compareSecondTime}초 전"
-            compareMinuteTime < 60 -> view.text = "${compareMinuteTime}분 전"
-            compareHourTime < 24 -> view.text = "${compareHourTime}시간 전"
-            compareDayTime < 31 -> view.text = "${compareDayTime}일 전"
-            else -> view.text = "${compareMonthTime}달 전"
+            compareSecondTime < 60 -> view.text= "${compareSecondTime}초전"
+            compareMinuteTime < 60 -> view.text = "${compareMinuteTime}분전"
+            compareHourTime < 24 -> view.text = "${compareHourTime}시간전"
+            compareDayTime < when (now.monthValue) {1, 3, 5, 7, 8, 10, 12 -> 31 2 -> 28 else -> 30}  -> view.text = "${compareDayTime}일전"
+            else -> view.text = "${compareMonthTime}달전"
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("currentDate")
+    fun setDate(view: TextView, dateTime: String?) {
+        dateTime?.let {
+            val time = it.split(".")[0]
+            val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+            view.text = "${convertTime.year}년 ${convertTime.monthValue}월 ${convertTime.dayOfMonth}일 ${convertTime.hour}시 ${convertTime.minute}분"
+        }
+
+    }
+
+    @JvmStatic
+    @BindingAdapter("grade")
+    fun setGrade(view: TextView, grade: Int) {
+        view.text = "${grade}학년 "
+    }
+
+    @JvmStatic
+    @BindingAdapter("room")
+    fun setRoom(view: TextView, grade: Int) {
+        view.text = "${grade}반 "
+    }
+
+    @JvmStatic
+    @BindingAdapter("number")
+    fun setNumber(view: TextView, number: Int) {
+        view.text = "${number}번"
     }
 
     @JvmStatic

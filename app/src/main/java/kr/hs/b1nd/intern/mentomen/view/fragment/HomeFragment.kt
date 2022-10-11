@@ -1,14 +1,14 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
 import kr.hs.b1nd.intern.mentomen.network.model.Post
@@ -33,18 +33,33 @@ class HomeFragment : Fragment() {
             container,
             false
         )
+
+        (activity as MainActivity).hasBottomBar(true)
         performViewModel()
-        homeViewModel.callPost()
+        initHomeAdapter()
+
+        with(homeViewModel.tagState.value!!) {
+            with(homeViewModel) {
+                when {
+                    isDesignChecked && isChecked -> callTagPost("DESIGN")
+                    isServerChecked && isChecked -> callTagPost("SERVER")
+                    isWebChecked && isChecked -> callTagPost("WEB")
+                    isAndroidChecked && isChecked -> callTagPost("ANDROID")
+                    isiOSChecked && isChecked -> callTagPost("IOS")
+                    else -> callPost()
+                }
+            }
+        }
         observeViewModel()
 
-        (activity as MainActivity).hasTopBar()
-        (activity as MainActivity).hasBottomBar()
-
-        binding.refreshLayout.setOnRefreshListener {
-            homeViewModel.tagState.value = TagState(isDesignChecked = true, isWebChecked = true, isAndroidChecked = true, isServerChecked = true, isiOSChecked = true)
-            homeViewModel.callPost()
-            observeViewModel()
-            binding.refreshLayout.isRefreshing = false
+        binding.logo.setOnClickListener {
+            with(homeViewModel) {
+                callPost()
+                allTagsSelected()
+                logoClickEvent.observe(viewLifecycleOwner) {
+                    binding.rvHome.smoothScrollToPosition(0)
+                }
+            }
         }
 
         return binding.root
@@ -53,16 +68,17 @@ class HomeFragment : Fragment() {
     private fun observeViewModel() {
         with(homeViewModel) {
             itemList.observe(viewLifecycleOwner) {
-                initHomeAdapter(it)
+                homeAdapter.submitList(it)
             }
         }
     }
 
-
-    private fun initHomeAdapter(items: List<Post>) {
-        homeAdapter = HomeAdapter(items)
+    private fun initHomeAdapter() {
+        homeAdapter = HomeAdapter {
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.postId)
+            findNavController().navigate(action)
+        }
         binding.rvHome.adapter = homeAdapter
-        homeAdapter.notifyDataSetChanged()
     }
 
 
@@ -72,4 +88,5 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.executePendingBindings()
     }
+
 }

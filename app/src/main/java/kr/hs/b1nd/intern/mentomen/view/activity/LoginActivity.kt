@@ -2,15 +2,13 @@ package kr.hs.b1nd.intern.mentomen.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.ActivityLoginBinding
 import kr.hs.b1nd.intern.mentomen.viewmodel.LoginViewModel
-import kr.hs.dgsw.smartschool.dauth.api.network.DAuth.loginForDodam
-import kr.hs.dgsw.smartschool.dauth.api.network.DAuth.settingForDodam
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -21,23 +19,24 @@ class LoginActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         performViewModel()
 
-        loginViewModel.onClickDAuthLogin.observe(this) {
-            loginForDodam(settingForDodam(
-                applicationContext.getString(R.string.clientId),
-                applicationContext.getString(R.string.clientSecret),
-                applicationContext.getString(R.string.redirectUrl)
-            ), { tokenResponse ->
-                App.prefs.setString("accessToken", tokenResponse.token)
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }, { error ->
-                Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
-            })
-        }
+        with(loginViewModel) {
+            binding.autoLogin.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    App.prefs.autoLogin()
+                }
+            }
 
-        loginViewModel.onClickLoginEvent.observe(this) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            if (App.prefs.isLogin()) {
+                onClickLoginEvent.call()
+            }
+            onClickLoginEvent.observe(this@LoginActivity) {
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                finish()
+            }
+
+            failLoginEvent.observe(this@LoginActivity) {
+                binding.etPw.setText("")
+            }
         }
     }
 
@@ -45,6 +44,5 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel = LoginViewModel(application)
         binding.vm = loginViewModel
         binding.lifecycleOwner = this
-        binding.executePendingBindings()
     }
 }

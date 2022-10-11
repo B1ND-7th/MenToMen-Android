@@ -1,11 +1,15 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
-import kr.hs.b1nd.intern.mentomen.network.model.ImageFile
+import kr.hs.b1nd.intern.mentomen.network.model.ImgUrls
 import kr.hs.b1nd.intern.mentomen.network.model.PostSubmitDto
+import kr.hs.b1nd.intern.mentomen.network.response.ErrorResponse
+import kr.hs.b1nd.intern.mentomen.network.response.TokenResponse
 import kr.hs.b1nd.intern.mentomen.util.SingleLiveEvent
 import kr.hs.b1nd.intern.mentomen.util.TagState
 import okhttp3.MultipartBody
@@ -13,63 +17,110 @@ import retrofit2.Call
 import retrofit2.Response
 
 class AddViewModel : ViewModel() {
-    val onClickConfirmEvent = SingleLiveEvent<Any>()
-    val onClickImageEvent = SingleLiveEvent<Any>()
-    val onCLickDesignEvent = SingleLiveEvent<Any>()
-    val onCLickWebEvent = SingleLiveEvent<Any>()
-    val onCLickServerEvent = SingleLiveEvent<Any>()
-    val onCLickAndroidEvent = SingleLiveEvent<Any>()
-    val onCLickIosEvent = SingleLiveEvent<Any>()
+    val onClickConfirmEvent = SingleLiveEvent<Unit>()
+    val onClickImageEvent = SingleLiveEvent<Unit>()
+    val successConfirmEvent = SingleLiveEvent<Unit>()
+    val successImageEvent = SingleLiveEvent<Unit>()
 
-    val tagState = MutableLiveData(TagState(
-        isDesignChecked = false,
-        isWebChecked = false,
-        isAndroidChecked = false,
-        isServerChecked = false,
-        isiOSChecked = false
-    ))
+    val tagState = MutableLiveData(
+        TagState(
+            isDesignChecked = false,
+            isWebChecked = false,
+            isAndroidChecked = false,
+            isServerChecked = false,
+            isiOSChecked = false,
+            isChecked = false
+        )
+    )
 
     val content = MutableLiveData("")
-    var imgFile = MutableLiveData<MultipartBody.Part>()
-    var imgUrl = MutableLiveData<String>()
-
-    private var tag: String = ""
+    val imgFile = MutableLiveData<ArrayList<MultipartBody.Part?>>(arrayListOf())
+    val imgUrl = MutableLiveData<List<ImgUrls?>>(emptyList())
+    val tag = MutableLiveData("")
 
     fun onClickImage() {
         onClickImageEvent.call()
     }
 
-    fun onCLickConfirm() {
-
+    private fun loadImage() {
         val call = RetrofitClient.fileService.loadImage(imgFile.value!!)
 
-        call.enqueue(object : retrofit2.Callback<BaseResponse<ImageFile>> {
+        call.enqueue(object : retrofit2.Callback<BaseResponse<List<ImgUrls?>>> {
             override fun onResponse(
-                call: Call<BaseResponse<ImageFile>>,
-                response: Response<BaseResponse<ImageFile>>
+                call: Call<BaseResponse<List<ImgUrls?>>>,
+                response: Response<BaseResponse<List<ImgUrls?>>>
             ) {
-                imgUrl.value = response.body()?.data!!.imgUrl
-                if (content.value != "" && tag != "") {
-                    val call2 = RetrofitClient.postService.submitPost(
-                        PostSubmitDto(content.value ?: "", imgUrl.value, tag)
-                    )
-
-                    call2.enqueue(object : retrofit2.Callback<BaseResponse<Any>> {
-                        override fun onResponse(call: Call<BaseResponse<Any>>, response: Response<BaseResponse<Any>>) {
-                            if (response.isSuccessful) {
-                                onClickConfirmEvent.call()
-                            }
-                        }
-
-                        override fun onFailure(call: Call<BaseResponse<Any>>, t: Throwable) {
-
-                        }
-
-                    })
+                if (response.isSuccessful) {
+                    imgUrl.value = response.body()?.data ?: emptyList()
+                    successImageEvent.call()
+                    Log.d("test123", "이미지 변환 완료")
                 }
             }
 
-            override fun onFailure(call: Call<BaseResponse<ImageFile>>, t: Throwable) {
+            override fun onFailure(call: Call<BaseResponse<List<ImgUrls?>>>, t: Throwable) {
+
+            }
+
+        })
+
+    }
+
+    fun submitPost() {
+        if (tag.value != "" && content.value != "") {
+            val call = RetrofitClient.postService.submitPost(
+                PostSubmitDto(content.value!!, imgUrl.value ?: emptyList(), tag.value!!)
+            )
+
+            call.enqueue(object : retrofit2.Callback<BaseResponse<Unit>> {
+                override fun onResponse(
+                    call: Call<BaseResponse<Unit>>,
+                    response: Response<BaseResponse<Unit>>
+                ) {
+                    if (response.isSuccessful) {
+                        successConfirmEvent.call()
+                        Log.d("test123", "이미지 보내기 성공")
+                    }
+                    else {
+                        val errorBody = response.errorBody()?.let {
+                            RetrofitClient.retrofit.responseBodyConverter<ErrorResponse>(
+                                ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(
+                                it
+                            )
+                        }
+                        if (errorBody?.status == 500) {
+                            refreshToken()
+                            onCLickConfirm()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
+
+                }
+            })
+        }
+    }
+
+    fun onCLickConfirm() {
+        onClickConfirmEvent.call()
+        if (imgFile.value.isNullOrEmpty()) submitPost()
+        else loadImage()
+    }
+
+    private fun refreshToken() {
+        val call = RetrofitClient.tokenService.refreshToken()
+
+        call.enqueue(object : retrofit2.Callback<BaseResponse<TokenResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<TokenResponse>>,
+                response: Response<BaseResponse<TokenResponse>>
+            ) {
+                if (response.isSuccessful) {
+                    App.prefs.setString("accessToken", response.body()?.data!!.accessToken)
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
 
             }
 
@@ -77,7 +128,7 @@ class AddViewModel : ViewModel() {
     }
 
     fun onClickDesignBtn() {
-        tag = "DESIGN"
+        tag.value = "DESIGN"
         tagState.value = TagState(
             isDesignChecked = true,
             isWebChecked = false,
@@ -85,23 +136,21 @@ class AddViewModel : ViewModel() {
             isServerChecked = false,
             isiOSChecked = false
         )
-        onCLickDesignEvent.call()
     }
 
     fun onClickWebBtn() {
-        tag = "WEB"
-        tagState.value  = TagState(
+        tag.value = "WEB"
+        tagState.value = TagState(
             isDesignChecked = false,
             isWebChecked = true,
             isAndroidChecked = false,
             isServerChecked = false,
             isiOSChecked = false
         )
-        onCLickWebEvent.call()
     }
 
     fun onClickServerBtn() {
-        tag = "SERVER"
+        tag.value = "SERVER"
         tagState.value = TagState(
             isDesignChecked = false,
             isWebChecked = false,
@@ -109,11 +158,10 @@ class AddViewModel : ViewModel() {
             isServerChecked = true,
             isiOSChecked = false
         )
-        onCLickServerEvent.call()
     }
 
     fun onClickAndroidBtn() {
-        tag = "ANDROID"
+        tag.value = "ANDROID"
         tagState.value = TagState(
             isDesignChecked = false,
             isWebChecked = false,
@@ -121,11 +169,10 @@ class AddViewModel : ViewModel() {
             isServerChecked = false,
             isiOSChecked = false
         )
-        onCLickAndroidEvent.call()
     }
 
     fun onClickIosBtn() {
-        tag = "IOS"
+        tag.value = "IOS"
         tagState.value = TagState(
             isDesignChecked = false,
             isWebChecked = false,
@@ -133,6 +180,5 @@ class AddViewModel : ViewModel() {
             isServerChecked = false,
             isiOSChecked = true
         )
-        onCLickIosEvent.call()
     }
 }

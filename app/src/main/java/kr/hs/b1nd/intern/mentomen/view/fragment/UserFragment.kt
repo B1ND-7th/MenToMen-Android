@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentUserBinding
+import kr.hs.b1nd.intern.mentomen.view.activity.DetailActivity
 import kr.hs.b1nd.intern.mentomen.view.activity.LoginActivity
 import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
@@ -19,7 +20,7 @@ import kr.hs.b1nd.intern.mentomen.viewmodel.UserViewModel
 
 class UserFragment : Fragment() {
     private lateinit var binding: FragmentUserBinding
-    private lateinit var userViewModel : UserViewModel
+    private lateinit var userViewModel: UserViewModel
     private lateinit var homeAdapter: HomeAdapter
 
     override fun onCreateView(
@@ -30,17 +31,12 @@ class UserFragment : Fragment() {
             inflater,
             R.layout.fragment_user,
             container,
-            false)
-        (activity as MainActivity).hasBottomBar(true)
+            false
+        )
 
         performViewModel()
         initHomeAdapter()
         observeViewModel()
-
-        with(userViewModel) {
-            callUser()
-            callPost()
-        }
 
         binding.btnLogout.setOnClickListener {
             App.prefs.logout()
@@ -61,17 +57,16 @@ class UserFragment : Fragment() {
 
     private fun initHomeAdapter() {
         homeAdapter = HomeAdapter {
-            val action = UserFragmentDirections.actionUserFragmentToDetailFragment(it.postId)
-            findNavController().navigate(action)
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra("postId", it.postId)
+            startActivity(intent)
         }
         binding.rvMyPage.adapter = homeAdapter
     }
 
-    private fun observeViewModel() {
-        with(userViewModel) {
-            itemList.observe(viewLifecycleOwner) {
-                homeAdapter.submitList(it)
-            }
-        }
+    private fun observeViewModel() = with(userViewModel) {
+        callUser()
+        callPost()
+        itemList.observe(viewLifecycleOwner) { homeAdapter.submitList(it) }
     }
 }

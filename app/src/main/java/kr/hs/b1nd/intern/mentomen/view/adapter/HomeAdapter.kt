@@ -31,10 +31,8 @@ class HomeAdapter(private val itemClick: (Post) -> Unit) : ListAdapter<Post, Hom
             else {
                 binding.cardView.visibility = View.VISIBLE
                 Glide.with(binding.ivContent.context)
-                    .load(item.imgUrls[0])
-                    .into(binding.ivContent)
+                    .load(item.imgUrls[0]).into(binding.ivContent)
             }
-
             binding.item = item
         }
     }

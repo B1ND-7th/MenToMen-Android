@@ -8,58 +8,11 @@
         android:id="@+id/home_fragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_home_fragment_to_detailFragment"
-            app:destination="@id/detailFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_home_fragment_to_add_fragment"
-            app:destination="@id/add_fragment"
-            app:enterAnim="@anim/slide_in_top"
-            app:exitAnim="@anim/slide_out_bottom"
-            app:popEnterAnim="@anim/slide_in_bottom"
-            app:popExitAnim="@anim/slide_out_top"/>
-
-    </fragment>
-    <fragment
-        android:id="@+id/add_fragment"
-        android:name="kr.hs.b1nd.intern.mentomen.view.fragment.AddFragment"
-        android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/user_fragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" >
-        <action
-            android:id="@+id/action_user_fragment_to_detailFragment"
-            app:destination="@id/detailFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_user_fragment_to_add_fragment"
-            app:destination="@id/add_fragment"
-            app:enterAnim="@anim/slide_in_top"
-            app:exitAnim="@anim/slide_out_bottom"
-            app:popEnterAnim="@anim/slide_in_bottom"
-            app:popExitAnim="@anim/slide_out_top"/>
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="kr.hs.b1nd.intern.mentomen.view.fragment.DetailFragment"
-        android:label="DetailFragment" >
-        <argument
-            app:argType="integer"
-            android:defaultValue="0"
-            android:name="postId"/>
-    </fragment>
+        tools:layout="@layout/fragment_user" />
 
 </navigation>

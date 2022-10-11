@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
-import kr.hs.b1nd.intern.mentomen.network.model.ImgUrls
+import kr.hs.b1nd.intern.mentomen.network.model.ImgUrl
 import kr.hs.b1nd.intern.mentomen.network.model.PostSubmitDto
 import kr.hs.b1nd.intern.mentomen.network.response.ErrorResponse
 import kr.hs.b1nd.intern.mentomen.network.response.TokenResponse
@@ -34,7 +34,7 @@ class AddViewModel : ViewModel() {
 
     val content = MutableLiveData("")
     val imgFile = MutableLiveData<ArrayList<MultipartBody.Part?>>(arrayListOf())
-    val imgUrl = MutableLiveData<List<ImgUrls?>>(emptyList())
+    val imgUrl = MutableLiveData<List<ImgUrl?>>(emptyList())
     val tag = MutableLiveData("")
 
     fun onClickImage() {
@@ -44,17 +44,17 @@ class AddViewModel : ViewModel() {
     private fun loadImage() {
         val call = RetrofitClient.fileService.loadImage(imgFile.value!!)
 
-        call.enqueue(object : retrofit2.Callback<BaseResponse<List<ImgUrls?>>> {
+        call.enqueue(object : retrofit2.Callback<BaseResponse<List<ImgUrl?>>> {
             override fun onResponse(
-                call: Call<BaseResponse<List<ImgUrls?>>>,
-                response: Response<BaseResponse<List<ImgUrls?>>>
+                call: Call<BaseResponse<List<ImgUrl?>>>,
+                response: Response<BaseResponse<List<ImgUrl?>>>
             ) {
                 if (response.isSuccessful) {
                     imgUrl.value = response.body()?.data ?: emptyList()
                     successImageEvent.call()
                 }
             }
-            override fun onFailure(call: Call<BaseResponse<List<ImgUrls?>>>, t: Throwable) {
+            override fun onFailure(call: Call<BaseResponse<List<ImgUrl?>>>, t: Throwable) {
             }
         })
     }

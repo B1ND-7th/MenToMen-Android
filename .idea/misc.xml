@@ -85,6 +85,9 @@
         <entry key="app/src/main/res/drawable/unselected_server.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/unselected_tags.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/unselected_web.xml" value="0.3245" />
+        <entry key="app/src/main/res/layout/activity_add.xml" value="0.45625" />
+        <entry key="app/src/main/res/layout/activity_detail.xml" value="0.45625" />
+        <entry key="app/src/main/res/layout/activity_edit.xml" value="0.45625" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4765974004217919" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.41343688964843756" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.3929261617997581" />

@@ -17,24 +17,25 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         performViewModel()
+        observeViewModel()
+    }
 
-        with(loginViewModel) {
-            binding.autoLogin.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked)
-                    App.prefs.autoLogin()
-            }
+    private fun observeViewModel() = with(loginViewModel) {
+        binding.autoLogin.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked)
+                App.prefs.autoLogin()
+        }
 
-            if (App.prefs.isLogin())
-                onClickLoginEvent.call()
+        if (App.prefs.isLogin())
+            onClickLoginEvent.call()
 
-            onClickLoginEvent.observe(this@LoginActivity) {
-                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                finish()
-            }
+        onClickLoginEvent.observe(this@LoginActivity) {
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            finish()
+        }
 
-            failLoginEvent.observe(this@LoginActivity) {
-                binding.etPw.setText("")
-            }
+        failLoginEvent.observe(this@LoginActivity) {
+            binding.etPw.setText("")
         }
     }
 

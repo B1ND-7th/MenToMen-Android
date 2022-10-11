@@ -2,14 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="kr.hs.b1nd.intern.mentomen">
-
-    <!--인터넷 권한-->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--갤러리 권한-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- 인터넷 권한 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 갤러리 권한 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_mentomen"
         android:label="@string/app_name"
@@ -17,24 +16,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MenToMen"
         android:usesCleartextTraffic="true"
-        android:name=".App"
         tools:replace="android:name">
+        <activity
+            android:name=".view.activity.EditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.DetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.AddActivity"
+            android:exported="false" />
         <activity
             android:name=".view.activity.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"
-            android:label="@string/title_activity_login" >
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".view.activity.MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

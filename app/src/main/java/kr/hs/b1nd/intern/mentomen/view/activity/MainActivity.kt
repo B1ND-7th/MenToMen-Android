@@ -1,5 +1,6 @@
 package kr.hs.b1nd.intern.mentomen.view.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,12 +23,16 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        binding.bottomNavigation.setupWithNavController(navHostFragment.findNavController())
 
-        binding.bottomNavigation.background = null
-   }
+        with(binding) {
+            bottomNavigation.setupWithNavController(navHostFragment.findNavController())
 
-    fun hasBottomBar(hasBottomBar: Boolean = true) {
-        binding.bottomNavigation.visibility = if (hasBottomBar) View.VISIBLE else View.GONE
+            bottomNavigation.background = null
+
+            addButton.setOnClickListener {
+                startActivity(Intent(this@MainActivity, AddActivity::class.java))
+            }
+        }
+
     }
 }

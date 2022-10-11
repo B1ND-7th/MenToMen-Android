@@ -77,7 +77,8 @@
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="15dp"
                         app:cardCornerRadius="5dp"
-                        app:cardElevation="0dp"
+                        app:cardElevation="1dp"
+                        android:translationZ="2dp"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         app:layout_scrollFlags="scroll|enterAlways">
 

@@ -1,18 +1,16 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
-import kr.hs.b1nd.intern.mentomen.network.model.Post
-import kr.hs.b1nd.intern.mentomen.util.TagState
 import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
@@ -52,6 +50,10 @@ class HomeFragment : Fragment() {
         }
         observeViewModel()
 
+        binding.btnSerach.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
+        }
+
         binding.logo.setOnClickListener {
             with(homeViewModel) {
                 callPost()
@@ -88,5 +90,6 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.executePendingBindings()
     }
+
 
 }

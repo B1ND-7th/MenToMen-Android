@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_home_fragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
 
     </fragment>
     <fragment
@@ -33,5 +36,9 @@
             android:defaultValue="0"
             android:name="postId"/>
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="kr.hs.b1nd.intern.mentomen.view.fragment.SearchFragment"
+        android:label="SearchFragment" />
 
 </navigation>

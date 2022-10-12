@@ -1,5 +1,6 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,12 +12,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
-import kr.hs.b1nd.intern.mentomen.network.model.Post
-import kr.hs.b1nd.intern.mentomen.util.TagState
+import kr.hs.b1nd.intern.mentomen.view.activity.DetailActivity
 import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
-
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -26,30 +25,15 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_home,
             container,
             false
         )
-
-        (activity as MainActivity).hasBottomBar(true)
         performViewModel()
         initHomeAdapter()
-
-        with(homeViewModel.tagState.value!!) {
-            with(homeViewModel) {
-                when {
-                    isDesignChecked && isChecked -> callTagPost("DESIGN")
-                    isServerChecked && isChecked -> callTagPost("SERVER")
-                    isWebChecked && isChecked -> callTagPost("WEB")
-                    isAndroidChecked && isChecked -> callTagPost("ANDROID")
-                    isiOSChecked && isChecked -> callTagPost("IOS")
-                    else -> callPost()
-                }
-            }
-        }
         observeViewModel()
 
         binding.logo.setOnClickListener {
@@ -65,28 +49,37 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun observeViewModel() {
-        with(homeViewModel) {
-            itemList.observe(viewLifecycleOwner) {
-                homeAdapter.submitList(it)
+    private fun observeViewModel() = with(homeViewModel) {
+        itemList.observe(viewLifecycleOwner) { homeAdapter.submitList(it) }
+        with(tagState.value!!) {
+            when {
+                isDesignChecked && isChecked -> callTagPost("DESIGN")
+                isServerChecked && isChecked -> callTagPost("SERVER")
+                isWebChecked && isChecked -> callTagPost("WEB")
+                isAndroidChecked && isChecked -> callTagPost("ANDROID")
+                isiOSChecked && isChecked -> callTagPost("IOS")
+                else -> callPost()
             }
         }
     }
 
     private fun initHomeAdapter() {
         homeAdapter = HomeAdapter {
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.postId)
-            findNavController().navigate(action)
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra("postId", it.postId)
+            startActivity(intent)
         }
         binding.rvHome.adapter = homeAdapter
     }
-
 
     private fun performViewModel() {
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         binding.vm = homeViewModel
         binding.lifecycleOwner = this
-        binding.executePendingBindings()
     }
 
+    override fun onStart() {
+        super.onStart()
+        homeViewModel.callPost()
+    }
 }

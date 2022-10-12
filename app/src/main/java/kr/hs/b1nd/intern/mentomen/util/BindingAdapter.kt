@@ -1,10 +1,10 @@
 package kr.hs.b1nd.intern.mentomen.util
 
+import android.annotation.SuppressLint
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
@@ -13,6 +13,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
+@SuppressLint("SetTextI18n")
 object BindingAdapter {
 
     @JvmStatic
@@ -37,10 +38,14 @@ object BindingAdapter {
         val compareDayTime = ChronoUnit.DAYS.between(convertTime, now)
         val compareMonthTime = ChronoUnit.MONTHS.between(convertTime, now)
         when {
-            compareSecondTime < 60 -> view.text= "${compareSecondTime}초전"
+            compareSecondTime < 60 -> view.text = "${compareSecondTime}초전"
             compareMinuteTime < 60 -> view.text = "${compareMinuteTime}분전"
             compareHourTime < 24 -> view.text = "${compareHourTime}시간전"
-            compareDayTime < when (now.monthValue) {1, 3, 5, 7, 8, 10, 12 -> 31 2 -> 28 else -> 30}  -> view.text = "${compareDayTime}일전"
+            compareDayTime < when (now.monthValue) {
+                1, 3, 5, 7, 8, 10, 12 -> 31
+                2 -> 28
+                else -> 30
+            } -> view.text = "${compareDayTime}일전"
             else -> view.text = "${compareMonthTime}달전"
         }
     }
@@ -51,9 +56,9 @@ object BindingAdapter {
         dateTime?.let {
             val time = it.split(".")[0]
             val convertTime = LocalDateTime.parse(time, DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-            view.text = "${convertTime.year}년 ${convertTime.monthValue}월 ${convertTime.dayOfMonth}일 ${convertTime.hour}시 ${convertTime.minute}분"
+            view.text =
+                "${convertTime.year}.${convertTime.monthValue}.${convertTime.dayOfMonth} ${if (convertTime.hour >= 12) "오후" else "오전"} ${if (convertTime.hour >= 12) convertTime.hour - 12 else convertTime.hour}:${convertTime.minute}"
         }
-
     }
 
     @JvmStatic
@@ -64,8 +69,8 @@ object BindingAdapter {
 
     @JvmStatic
     @BindingAdapter("room")
-    fun setRoom(view: TextView, grade: Int) {
-        view.text = "${grade}반 "
+    fun setRoom(view: TextView, room: Int) {
+        view.text = "${room}반 "
     }
 
     @JvmStatic
@@ -79,15 +84,9 @@ object BindingAdapter {
     fun setDesignButtonState(view: Button, tagState: MutableLiveData<TagState>) {
         val parentActivity: AppCompatActivity = view.getParentActivity() ?: return
 
-        tagState.observe(parentActivity) { tagState ->
-            if (tagState.isDesignChecked) {
-                view.setBackgroundResource(R.drawable.corner_radious)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.white))
-            }
-            else {
-                view.setBackgroundResource(R.drawable.unselected_design)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.design))
-            }
+        tagState.observe(parentActivity) {
+            if (it.isDesignChecked)  view.setBackgroundResource(R.drawable.selected_design)
+            else  view.setBackgroundResource(R.drawable.unselected_tags)
         }
     }
 
@@ -96,15 +95,9 @@ object BindingAdapter {
     fun setWebButtonState(view: Button, tagState: MutableLiveData<TagState>) {
         val parentActivity: AppCompatActivity = view.getParentActivity() ?: return
 
-        tagState.observe(parentActivity) { tagState ->
-            if (tagState.isWebChecked) {
-                view.setBackgroundResource(R.drawable.corner_radious)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.white))
-            }
-            else {
-                view.setBackgroundResource(R.drawable.unselected_web)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.web))
-            }
+        tagState.observe(parentActivity) {
+            if (it.isWebChecked)  view.setBackgroundResource(R.drawable.selected_web)
+            else view.setBackgroundResource(R.drawable.unselected_tags)
         }
     }
 
@@ -113,15 +106,9 @@ object BindingAdapter {
     fun setServerButtonState(view: Button, tagState: MutableLiveData<TagState>) {
         val parentActivity: AppCompatActivity = view.getParentActivity() ?: return
 
-        tagState.observe(parentActivity) { tagState ->
-            if (tagState.isServerChecked) {
-                view.setBackgroundResource(R.drawable.corner_radious)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.white))
-            }
-            else {
-                view.setBackgroundResource(R.drawable.unselected_server)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.server))
-            }
+        tagState.observe(parentActivity) {
+            if (it.isServerChecked)  view.setBackgroundResource(R.drawable.selected_server)
+            else view.setBackgroundResource(R.drawable.unselected_tags)
         }
     }
 
@@ -130,15 +117,9 @@ object BindingAdapter {
     fun setAndroidButtonState(view: Button, tagState: MutableLiveData<TagState>) {
         val parentActivity: AppCompatActivity = view.getParentActivity() ?: return
 
-        tagState.observe(parentActivity) { tagState ->
-            if (tagState.isAndroidChecked) {
-                view.setBackgroundResource(R.drawable.corner_radious)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.white))
-            }
-            else {
-                view.setBackgroundResource(R.drawable.unselected_android)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.android))
-            }
+        tagState.observe(parentActivity) {
+            if (it.isAndroidChecked)  view.setBackgroundResource(R.drawable.selected_android)
+            else  view.setBackgroundResource(R.drawable.unselected_tags)
         }
     }
 
@@ -147,15 +128,9 @@ object BindingAdapter {
     fun setIosButtonState(view: Button, tagState: MutableLiveData<TagState>) {
         val parentActivity: AppCompatActivity = view.getParentActivity() ?: return
 
-        tagState.observe(parentActivity) { tagState ->
-            if (tagState.isiOSChecked) {
-                view.setBackgroundResource(R.drawable.corner_radious)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.white))
-            }
-            else {
-                view.setBackgroundResource(R.drawable.unselected_ios)
-                view.setTextColor(ContextCompat.getColor(parentActivity, R.color.iOS))
-            }
+        tagState.observe(parentActivity) {
+            if (it.isiOSChecked)  view.setBackgroundResource(R.drawable.selected_ios)
+            else view.setBackgroundResource(R.drawable.unselected_tags)
         }
     }
 }

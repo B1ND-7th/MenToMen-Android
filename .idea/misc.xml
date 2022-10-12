@@ -63,34 +63,54 @@
         <entry key="..\:/Users/user/Desktop/develop/MenToMen/MenToMen-Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/back_corner_radious.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/category_item_black.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/comment.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/corner_radious.xml" value="0.2885" />
+        <entry key="app/src/main/res/drawable/dropshadow.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/et_background.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.258" />
+        <entry key="app/src/main/res/drawable/ic_add_circle.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_android.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.3245" />
+        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_image.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/ic_ios.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.2885" />
+        <entry key="app/src/main/res/drawable/ic_more.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_moreicon.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_notification.xml" value="0.3245" />
+        <entry key="app/src/main/res/drawable/ic_plus.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.3245" />
+        <entry key="app/src/main/res/drawable/ic_send.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/ic_web.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/login_corner_radious.xml" value="0.287" />
+        <entry key="app/src/main/res/drawable/selected_android.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/selected_ios.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/selected_server.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/selected_web.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/shadow.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/shadow_tags.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/stroke_top.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/tags_corner_radious.xml" value="0.287" />
         <entry key="app/src/main/res/drawable/unselected_android.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/unselected_design.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/unselected_ios.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/unselected_server.xml" value="0.3245" />
+        <entry key="app/src/main/res/drawable/unselected_tags.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/unselected_web.xml" value="0.3245" />
+        <entry key="app/src/main/res/layout/activity_add.xml" value="0.45625" />
+        <entry key="app/src/main/res/layout/activity_detail.xml" value="0.45625" />
+        <entry key="app/src/main/res/layout/activity_edit.xml" value="0.45625" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4765974004217919" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.41343688964843756" />
-        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.32328657439741426" />
-        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.40754039497307004" />
+        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.3929261617997581" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.42305127191601805" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.45625" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3925233644859813" />
-        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.4546875" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.43795077528583404" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.43757159221076747" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.21875" />
-        <entry key="app/src/main/res/layout/item_comment.xml" value="0.45625" />
+        <entry key="app/src/main/res/layout/item_comment.xml" value="0.512353006998698" />
+        <entry key="app/src/main/res/layout/item_detail_image.xml" value="0.2848731884057971" />
         <entry key="app/src/main/res/layout/item_home.xml" value="0.3967443624004968" />
         <entry key="app/src/main/res/layout/item_image.xml" value="0.45625" />
         <entry key="app/src/main/res/layout/tag_item.xml" value="0.453125" />

@@ -16,8 +16,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="15dp"
+        app:cardElevation="1dp"
+        android:translationZ="2dp"
         app:cardCornerRadius="5dp"
-        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,6 +32,7 @@
                 android:layout_width="26dp"
                 android:layout_height="33dp"
                 android:layout_marginStart="12dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_android" />
@@ -40,7 +42,7 @@
                 date="@{item.createDateTime}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="12dp"
                 android:fontFamily="@font/regular"
                 android:textSize="12sp"
@@ -52,26 +54,52 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/regular"
                 android:text="@{item.userName}"
+                android:textColor="@color/black"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/date"
+                app:layout_constraintStart_toEndOf="@+id/iv_tag"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="조상영" />
 
             <TextView
-                android:id="@+id/point"
+                android:id="@+id/grade"
+                grade="@{item.stdInfo.grade}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="5dp"
                 android:fontFamily="@font/regular"
-                android:text=" · "
                 android:textColor="@color/gray"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@id/date"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="11sp"
+                app:layout_constraintStart_toEndOf="@id/iv_tag"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                tools:text="1학년" />
+
+            <TextView
+                android:id="@+id/room"
+                room="@{item.stdInfo.room}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:textColor="@color/gray"
+                android:textSize="11sp"
+                app:layout_constraintStart_toEndOf="@id/grade"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                tools:text="2반" />
+
+            <TextView
+                android:id="@+id/number"
+                number="@{item.stdInfo.number}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:textColor="@color/gray"
+                android:textSize="11sp"
+                app:layout_constraintStart_toEndOf="@id/room"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                tools:text="15번" />
 
             <TextView
                 android:layout_width="0dp"
@@ -85,8 +113,10 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/cardView"
+                app:layout_constraintHorizontal_bias="0.48"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_tag"
+                app:layout_constraintVertical_bias="0.0"
                 tools:text="안드로이드" />
 
             <androidx.cardview.widget.CardView
@@ -96,23 +126,21 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
-                app:cardCornerRadius="5dp"
+                app:cardCornerRadius="2dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name">
+                app:layout_constraintTop_toBottomOf="@+id/date">
 
                 <ImageView
                     android:id="@+id/iv_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/todo"
                     android:scaleType="centerCrop"
                     tools:src="@drawable/josangyung" />
 
             </androidx.cardview.widget.CardView>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.cardview.widget.CardView>
-
 </layout>

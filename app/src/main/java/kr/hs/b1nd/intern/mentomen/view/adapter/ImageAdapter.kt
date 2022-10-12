@@ -2,7 +2,6 @@ package kr.hs.b1nd.intern.mentomen.view.adapter
 
 import android.net.Uri
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -10,17 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.ItemImageBinding
-import kr.hs.b1nd.intern.mentomen.util.ImageDiffUtilCallback
+import kr.hs.b1nd.intern.mentomen.util.ImageDiffUtil
 
-class ImageAdapter : ListAdapter<Uri?, ImageAdapter.ImageViewHolder>(ImageDiffUtilCallback) {
+class ImageAdapter : ListAdapter<Uri?, ImageAdapter.ImageViewHolder>(ImageDiffUtil) {
 
-    inner class ImageViewHolder(private val binding: ItemImageBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class ImageViewHolder(private val binding: ItemImageBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Uri?) {
             Glide.with(binding.cardView.context)
                 .load(item)
                 .into(binding.image)
-
         }
     }
 
@@ -34,7 +31,6 @@ class ImageAdapter : ListAdapter<Uri?, ImageAdapter.ImageViewHolder>(ImageDiffUt
             )
         )
     }
-
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         holder.bind(getItem(position))

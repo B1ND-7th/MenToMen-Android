@@ -1,7 +1,6 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
 import android.app.Application
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,18 +14,15 @@ import kr.hs.b1nd.intern.mentomen.network.response.DAuthLoginResponse
 import kr.hs.b1nd.intern.mentomen.network.response.ErrorResponse
 import kr.hs.b1nd.intern.mentomen.network.response.LoginResponse
 import kr.hs.b1nd.intern.mentomen.util.SingleLiveEvent
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
 import java.security.MessageDigest
 
 class LoginViewModel(private val application: Application): ViewModel() {
-
     val onClickLoginEvent = SingleLiveEvent<Unit>()
     val failLoginEvent = SingleLiveEvent<Unit>()
 
     val profileImage = MutableLiveData<String?>()
-
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
@@ -60,7 +56,6 @@ class LoginViewModel(private val application: Application): ViewModel() {
                                 onClickLoginEvent.call()
                             }
                         }
-
                         override fun onFailure(
                             call: Call<BaseResponse<LoginResponse>>,
                             t: Throwable
@@ -71,19 +66,14 @@ class LoginViewModel(private val application: Application): ViewModel() {
                 } else {
                     val errorBody = responseDAuth.errorBody()?.let {
                         RetrofitClient.retrofit.responseBodyConverter<ErrorResponse>(
-                            ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(
-                            it
-                        )
+                            ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(it)
                     }
                     Toast.makeText(application, errorBody?.message, Toast.LENGTH_SHORT).show()
                     failLoginEvent.call()
-
                 }
             }
             override fun onFailure(dAuthCall: Call<BaseResponse<DAuthLoginResponse>>, t: Throwable) {
-
             }
-
         })
     }
 

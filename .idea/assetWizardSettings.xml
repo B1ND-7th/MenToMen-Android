@@ -305,8 +305,13 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
+<<<<<<< HEAD
                             <entry key="outputName" value="ic_cancle" />
                             <entry key="sourceFile" value="C:\Users\user\Desktop\바인드 (6)\vuesax\outline\vuesax\outline\add.svg" />
+=======
+                            <entry key="outputName" value="ic_plus" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/plus.svg" />
+>>>>>>> develop
                           </map>
                         </option>
                       </PersistentState>

@@ -10,7 +10,8 @@ import retrofit2.http.*
 interface PostService {
 
     @GET("post/read-all")
-    fun readPost(): Call<BaseResponse<List<Post>>>
+    fun readPost(
+    ): Call<BaseResponse<List<Post>>>
 
     @GET("post/read-all/{tag}")
     fun readTagPost(
@@ -24,7 +25,7 @@ interface PostService {
 
     @POST("post/submit")
     fun submitPost(
-        @Body postSubmitDto : PostSubmitDto
+        @Body postSubmitDto: PostSubmitDto
     ): Call<BaseResponse<Unit>>
 
     @DELETE("post/delete/{postId}")

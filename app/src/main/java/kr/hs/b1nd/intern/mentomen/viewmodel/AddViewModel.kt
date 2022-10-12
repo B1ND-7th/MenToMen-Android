@@ -1,12 +1,11 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
-import kr.hs.b1nd.intern.mentomen.network.model.ImgUrls
+import kr.hs.b1nd.intern.mentomen.network.model.ImgUrl
 import kr.hs.b1nd.intern.mentomen.network.model.PostSubmitDto
 import kr.hs.b1nd.intern.mentomen.network.response.ErrorResponse
 import kr.hs.b1nd.intern.mentomen.network.response.TokenResponse
@@ -35,7 +34,7 @@ class AddViewModel : ViewModel() {
 
     val content = MutableLiveData("")
     val imgFile = MutableLiveData<ArrayList<MultipartBody.Part?>>(arrayListOf())
-    val imgUrl = MutableLiveData<List<ImgUrls?>>(emptyList())
+    val imgUrl = MutableLiveData<List<ImgUrl?>>(emptyList())
     val tag = MutableLiveData("")
 
     fun onClickImage() {
@@ -45,24 +44,19 @@ class AddViewModel : ViewModel() {
     private fun loadImage() {
         val call = RetrofitClient.fileService.loadImage(imgFile.value!!)
 
-        call.enqueue(object : retrofit2.Callback<BaseResponse<List<ImgUrls?>>> {
+        call.enqueue(object : retrofit2.Callback<BaseResponse<List<ImgUrl?>>> {
             override fun onResponse(
-                call: Call<BaseResponse<List<ImgUrls?>>>,
-                response: Response<BaseResponse<List<ImgUrls?>>>
+                call: Call<BaseResponse<List<ImgUrl?>>>,
+                response: Response<BaseResponse<List<ImgUrl?>>>
             ) {
                 if (response.isSuccessful) {
                     imgUrl.value = response.body()?.data ?: emptyList()
                     successImageEvent.call()
-                    Log.d("test123", "이미지 변환 완료")
                 }
             }
-
-            override fun onFailure(call: Call<BaseResponse<List<ImgUrls?>>>, t: Throwable) {
-
+            override fun onFailure(call: Call<BaseResponse<List<ImgUrl?>>>, t: Throwable) {
             }
-
         })
-
     }
 
     fun submitPost() {
@@ -76,16 +70,13 @@ class AddViewModel : ViewModel() {
                     call: Call<BaseResponse<Unit>>,
                     response: Response<BaseResponse<Unit>>
                 ) {
-                    if (response.isSuccessful) {
+                    if (response.isSuccessful)
                         successConfirmEvent.call()
-                        Log.d("test123", "이미지 보내기 성공")
-                    }
                     else {
                         val errorBody = response.errorBody()?.let {
                             RetrofitClient.retrofit.responseBodyConverter<ErrorResponse>(
-                                ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(
-                                it
-                            )
+                                ErrorResponse::class.java, ErrorResponse::class.java.annotations
+                            ).convert(it)
                         }
                         if (errorBody?.status == 500) {
                             refreshToken()
@@ -93,9 +84,7 @@ class AddViewModel : ViewModel() {
                         }
                     }
                 }
-
                 override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
-
                 }
             })
         }
@@ -115,15 +104,11 @@ class AddViewModel : ViewModel() {
                 call: Call<BaseResponse<TokenResponse>>,
                 response: Response<BaseResponse<TokenResponse>>
             ) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful)
                     App.prefs.setString("accessToken", response.body()?.data!!.accessToken)
-                }
             }
-
             override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
-
             }
-
         })
     }
 
@@ -134,7 +119,8 @@ class AddViewModel : ViewModel() {
             isWebChecked = false,
             isAndroidChecked = false,
             isServerChecked = false,
-            isiOSChecked = false
+            isiOSChecked = false,
+            isChecked = true
         )
     }
 
@@ -145,7 +131,8 @@ class AddViewModel : ViewModel() {
             isWebChecked = true,
             isAndroidChecked = false,
             isServerChecked = false,
-            isiOSChecked = false
+            isiOSChecked = false,
+            isChecked = true
         )
     }
 
@@ -156,7 +143,8 @@ class AddViewModel : ViewModel() {
             isWebChecked = false,
             isAndroidChecked = false,
             isServerChecked = true,
-            isiOSChecked = false
+            isiOSChecked = false,
+            isChecked = true
         )
     }
 
@@ -167,7 +155,8 @@ class AddViewModel : ViewModel() {
             isWebChecked = false,
             isAndroidChecked = true,
             isServerChecked = false,
-            isiOSChecked = false
+            isiOSChecked = false,
+            isChecked = true
         )
     }
 
@@ -178,7 +167,8 @@ class AddViewModel : ViewModel() {
             isWebChecked = false,
             isAndroidChecked = false,
             isServerChecked = false,
-            isiOSChecked = true
+            isiOSChecked = true,
+            isChecked = true
         )
     }
 }

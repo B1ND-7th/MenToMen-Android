@@ -1,6 +1,5 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
@@ -120,11 +119,8 @@ class HomeViewModel: ViewModel() {
                     logoClickEvent.call()
                 }
             }
-
             override fun onFailure(call: Call<BaseResponse<List<Post>>>, t: Throwable) {
-
             }
-
         })
     }
 
@@ -136,17 +132,14 @@ class HomeViewModel: ViewModel() {
                 call: Call<BaseResponse<List<Post>>>,
                 response: Response<BaseResponse<List<Post>>>
             ) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful)
                     itemList.value = response.body()?.data ?: emptyList()
-                }
             }
-
             override fun onFailure(call: Call<BaseResponse<List<Post>>>, t: Throwable) {
-
             }
-
         })
     }
+
     fun allTagsSelected() {
         tagState.value = TagState(
             isDesignChecked = true,

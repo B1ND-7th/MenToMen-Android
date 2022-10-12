@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
@@ -40,15 +41,23 @@ class DetailActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         }
 
         binding.btnMore.setOnClickListener { showPopup(binding.btnMore) }
-
     }
 
     private fun observeViewModel() = with(detailViewModel) {
+        userId.observe(this@DetailActivity) {
+            author.observe(this@DetailActivity) {
+                Log.d("test123", "${userId.value} ${author.value}: ")
+                if (userId.value == author.value) binding.btnMore.visibility = View.VISIBLE
+                else binding.btnMore.visibility = View.GONE
+            }
+        }
+
         itemList.observe(this@DetailActivity) { commentAdapter.submitList(it) }
 
         postId.value = intent.getIntExtra("postId", 0)
         readOne()
         readComment()
+        getUser()
 
         successCommentEvent.observe(this@DetailActivity) {
             binding.etComment.setText("")

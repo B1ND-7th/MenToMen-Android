@@ -1,14 +1,12 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
-import kr.hs.b1nd.intern.mentomen.network.model.Comment
-import kr.hs.b1nd.intern.mentomen.network.model.CommentSubmitDto
-import kr.hs.b1nd.intern.mentomen.network.model.Post
-import kr.hs.b1nd.intern.mentomen.network.model.StdInfo
+import kr.hs.b1nd.intern.mentomen.network.model.*
 import kr.hs.b1nd.intern.mentomen.network.response.ErrorResponse
 import kr.hs.b1nd.intern.mentomen.network.response.TokenResponse
 import kr.hs.b1nd.intern.mentomen.util.SingleLiveEvent
@@ -21,7 +19,8 @@ class DetailViewModel : ViewModel() {
     val successReadEvent = SingleLiveEvent<Unit>()
 
     val itemList = MutableLiveData<List<Comment>>()
-
+    val userId = MutableLiveData<Int>()
+    val author = MutableLiveData<Int>()
     val postId = MutableLiveData<Int>()
     val tag = MutableLiveData<String>()
     val content = MutableLiveData<String>()
@@ -48,6 +47,8 @@ class DetailViewModel : ViewModel() {
                     profileUrl.value = response.body()?.data!!.profileUrl
                     userName.value = response.body()?.data!!.userName
                     tag.value = response.body()?.data!!.tag
+                    author.value = response.body()?.data!!.author
+                    Log.d("test123", "onResponse: author")
                     successReadEvent.call()
                 }
             }
@@ -69,6 +70,26 @@ class DetailViewModel : ViewModel() {
             }
             override fun onFailure(call: Call<BaseResponse<List<Comment>>>, t: Throwable) {
             }
+        })
+    }
+
+    fun getUser() {
+        val call = RetrofitClient.userService.getUserInfo()
+
+        call.enqueue(object : retrofit2.Callback<BaseResponse<User>> {
+            override fun onResponse(
+                call: Call<BaseResponse<User>>,
+                response: Response<BaseResponse<User>>
+            ) {
+                if (response.isSuccessful) {
+                    Log.d("test123", "onResponse: userId")
+                    userId.value = response.body()?.data!!.userId
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<User>>, t: Throwable) {
+            }
+
         })
     }
 

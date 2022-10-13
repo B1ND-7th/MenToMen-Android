@@ -2,14 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/edit"
-        android:title="수정"
+        android:title="@string/edit"
         android:icon="@drawable/ic_edit"
-        android:visible="true"
         />
     <item
         android:id="@+id/delete"
-        android:title="삭제"
-        android:visible="true"
+        android:title="@string/delete"
         android:icon="@drawable/ic_trash"/>
-
 </menu>

@@ -36,6 +36,11 @@ class HomeFragment : Fragment() {
         initHomeAdapter()
         observeViewModel()
 
+        binding.btnNotification.setOnClickListener {
+            homeViewModel.noticeStatus.value = "NONE"
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNoticeFragment())
+        }
+
         binding.logo.setOnClickListener {
             with(homeViewModel) {
                 callPost()
@@ -51,6 +56,12 @@ class HomeFragment : Fragment() {
 
     private fun observeViewModel() = with(homeViewModel) {
         itemList.observe(viewLifecycleOwner) { homeAdapter.submitList(it) }
+        noticeStatus.observe(viewLifecycleOwner) {
+            when (it) {
+                "NONE" -> binding.btnNotification.setImageResource(R.drawable.ic_notification)
+                "EXIST" -> binding.btnNotification.setImageResource(R.drawable.ic_notice_on)
+            }
+        }
         with(tagState.value!!) {
             when {
                 isDesignChecked && isChecked -> callTagPost("DESIGN")
@@ -81,5 +92,6 @@ class HomeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         homeViewModel.callPost()
+        homeViewModel.callNotice()
     }
 }

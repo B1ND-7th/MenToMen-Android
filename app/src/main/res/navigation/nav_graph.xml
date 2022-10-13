@@ -8,11 +8,32 @@
         android:id="@+id/home_fragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_fragment_to_noticeFragment"
+            app:destination="@id/noticeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
     <fragment
         android:id="@+id/user_fragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_user_fragment_to_noticeFragment"
+            app:destination="@id/noticeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/noticeFragment"
+        android:name="kr.hs.b1nd.intern.mentomen.view.fragment.NoticeFragment"
+        android:label="NoticeFragment" />
 
 </navigation>

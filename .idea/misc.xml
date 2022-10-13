@@ -65,6 +65,7 @@
         <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_moreicon.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/ic_notice_on.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_notification.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/ic_plus.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.3245" />
@@ -94,12 +95,14 @@
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.42305127191601805" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.45625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.43795077528583404" />
+        <entry key="app/src/main/res/layout/fragment_notice.xml" value="0.45625" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.43757159221076747" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/item_comment.xml" value="0.512353006998698" />
         <entry key="app/src/main/res/layout/item_detail_image.xml" value="0.2848731884057971" />
         <entry key="app/src/main/res/layout/item_home.xml" value="0.3967443624004968" />
         <entry key="app/src/main/res/layout/item_image.xml" value="0.45625" />
+        <entry key="app/src/main/res/layout/item_notice.xml" value="0.45625" />
         <entry key="app/src/main/res/layout/tag_item.xml" value="0.453125" />
         <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.4546875" />
         <entry key="app/src/main/res/menu/menu_top.xml" value="0.4546875" />

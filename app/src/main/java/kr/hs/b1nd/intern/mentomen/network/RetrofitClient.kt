@@ -34,4 +34,5 @@ object RetrofitClient {
     val fileService: FileService = retrofit.create(FileService::class.java)
     val commentService: CommentService = retrofit.create(CommentService::class.java)
     val tokenService: TokenService = retrofit.create(TokenService::class.java)
+    val noticeService: NoticeService = retrofit.create(NoticeService::class.java)
 }

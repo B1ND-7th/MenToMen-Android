@@ -24,6 +24,8 @@ class HomeAdapter(private val itemClick: (Post) -> Unit) : ListAdapter<Post, Hom
                 "DESIGN" -> binding.ivTag.setImageResource(R.drawable.ic_design)
             }
 
+
+
             binding.root.setOnClickListener { itemClick(item) }
 
             if (item.imgUrls.isNullOrEmpty())

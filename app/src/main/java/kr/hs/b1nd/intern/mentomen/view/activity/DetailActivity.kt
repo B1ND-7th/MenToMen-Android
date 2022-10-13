@@ -46,7 +46,6 @@ class DetailActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     private fun observeViewModel() = with(detailViewModel) {
         userId.observe(this@DetailActivity) {
             author.observe(this@DetailActivity) {
-                Log.d("test123", "${userId.value} ${author.value}: ")
                 if (userId.value == author.value) binding.btnMore.visibility = View.VISIBLE
                 else binding.btnMore.visibility = View.GONE
             }
@@ -96,8 +95,8 @@ class DetailActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         binding.rvComment.adapter = commentAdapter
     }
 
-    private fun showPopup(v: View) {
-        val popup = PopupMenu(this, v)
+    private fun showPopup(view: View) {
+        val popup = PopupMenu(this, view)
         popup.menuInflater.inflate(R.menu.popub, popup.menu)
         popup.setOnMenuItemClickListener(this)
         popup.show()
@@ -106,6 +105,7 @@ class DetailActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.edit -> {
+                Log.d("test123", "onClickEditButton")
                 val intent = Intent(this, EditActivity::class.java)
                 intent.putExtra("postId", detailViewModel.postId.value)
                 intent.putExtra("content", detailViewModel.content.value)

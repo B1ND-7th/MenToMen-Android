@@ -17,7 +17,6 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="56dp"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:navGraph="@navigation/nav_graph" />
@@ -50,7 +49,6 @@
                 app:itemBackground="@android:color/transparent"
                 android:layout_marginEnd="16dp"
                 android:background="@android:color/transparent"
-                android:backgroundTint="@android:color/transparent"
                 android:layout_gravity="bottom"
                 app:menu="@menu/menu_bottom" />
 

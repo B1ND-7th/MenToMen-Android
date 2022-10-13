@@ -15,9 +15,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.ActivityEditBinding
-import kr.hs.b1nd.intern.mentomen.network.model.ImgUrl
 import kr.hs.b1nd.intern.mentomen.view.adapter.ImageAdapter
-import kr.hs.b1nd.intern.mentomen.viewmodel.AddViewModel
+import kr.hs.b1nd.intern.mentomen.view.adapter.NoticeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.EditViewModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -29,7 +28,6 @@ class EditActivity : AppCompatActivity() {
     private lateinit var editViewModel: EditViewModel
     private lateinit var imageAdapter: ImageAdapter
     private val imageList = MutableLiveData<ArrayList<Uri?>>(arrayListOf())
-    private val imageStringList = MutableLiveData<ArrayList<String>>()
 
     @SuppressLint("NotifyDataSetChanged")
     private var launcher =
@@ -73,6 +71,14 @@ class EditActivity : AppCompatActivity() {
             content.value = intent.getStringExtra("content")
             tag.value = intent.getStringExtra("tag")
             postId.value = intent.getIntExtra("postId", 0)
+
+            when (tag.value) {
+                "DESIGN" -> onClickDesignBtn()
+                "WEB" -> onClickWebBtn()
+                "ANDROID" -> onClickAndroidBtn()
+                "SERVER" -> onClickServerBtn()
+                "IOS" -> onClickIosBtn()
+            }
         }
 
         imageList.observe(this) { imageAdapter.submitList(it) }
@@ -83,6 +89,7 @@ class EditActivity : AppCompatActivity() {
         }
 
     }
+
     private fun getImageGallery() {
         val chooserIntent = Intent(Intent.ACTION_CHOOSER)
         val intent = Intent(Intent.ACTION_PICK)
@@ -107,25 +114,33 @@ class EditActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() = with(editViewModel) {
-        tag.observe(this@EditActivity) {
-            when (it) {
-                "DESIGN" -> onClickDesignBtn()
-                "WEB" -> onClickWebBtn()
-                "ANDROID" -> onClickAndroidBtn()
-                "SERVER" -> onClickServerBtn()
-                "IOS" -> onClickIosBtn()
-            }
-        }
 
         content.observe(this@EditActivity) { content ->
-            binding.etContents.setText(content)
-            if (content != "") tag.observe(this@EditActivity) { tag -> if (tag != "") binding.btnConfirm.setBackgroundResource(R.color.blue) }
+            if (content != "") tag.observe(this@EditActivity) { tag ->
+                if (tag != "") binding.btnConfirm.setBackgroundResource(
+                    R.color.blue
+                )
+            }
             else binding.btnConfirm.setBackgroundResource(R.color.gray)
         }
-        onClickConfirmEvent.observe(this@EditActivity) {
-            if (tag.value == "" && content.value == "") Toast.makeText(this@EditActivity, "태그와 내용을 입력해주세요!", Toast.LENGTH_SHORT).show()
-            else if (tag.value == "") Toast.makeText(this@EditActivity, "태그를 선택해주세요!", Toast.LENGTH_SHORT).show()
-            else if (content.value == "") Toast.makeText(this@EditActivity, "내용을 입력해주세요!", Toast.LENGTH_SHORT).show()
+
+        onClickConfirmEvent.observe(this@EditActivity)
+        {
+            if (tag.value == "" && content.value == "") Toast.makeText(
+                this@EditActivity,
+                "태그와 내용을 입력해주세요!",
+                Toast.LENGTH_SHORT
+            ).show()
+            else if (tag.value == "") Toast.makeText(
+                this@EditActivity,
+                "태그를 선택해주세요!",
+                Toast.LENGTH_SHORT
+            ).show()
+            else if (content.value == "") Toast.makeText(
+                this@EditActivity,
+                "내용을 입력해주세요!",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
         onClickImageEvent.observe(this@EditActivity) { getImageGallery() }

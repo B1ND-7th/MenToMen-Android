@@ -8,11 +8,20 @@
         android:id="@+id/home_fragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_fragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/user_fragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="kr.hs.b1nd.intern.mentomen.view.fragment.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 
 </navigation>

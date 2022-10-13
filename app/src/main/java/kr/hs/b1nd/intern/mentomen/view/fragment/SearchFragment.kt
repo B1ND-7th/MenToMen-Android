@@ -2,10 +2,12 @@ package kr.hs.b1nd.intern.mentomen.view.fragment
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils.substring
 import android.util.Log
 import android.view.KeyEvent
-import android.view.KeyEvent.KEYCODE_ENTER
+import android.view.KeyEvent.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +15,14 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentSearchBinding
+import kr.hs.b1nd.intern.mentomen.view.activity.DetailActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.SearchViewModel
+import org.json.JSONObject.NULL
 
 
 class SearchFragment : Fragment() {
@@ -45,35 +50,30 @@ class SearchFragment : Fragment() {
         }
 
         fun View.hideKeyboard() {
-            Log.d(TAG, "hideKeyboard: 로그 하이드 키ㅗ드")
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(windowToken, 0)
         }
 
         binding.searchPage.setOnClickListener{
-            binding.etSearch.isCursorVisible=false
+            binding.etSearch.clearFocus()
             binding.etSearch.hideKeyboard()
         }
 
-
+        binding.searchButton.setOnClickListener {
+            with(searchViewModel) {
+                if(!keyWord.value.isNullOrEmpty())
+                    searchPost()
+            }
+        }
 
         binding.cancelButton.setOnClickListener {
             binding.etSearch.text = null
 
         }
 
-        binding.etSearch.setOnKeyListener { _, keyCode, event ->
+        binding.etSearch.setOnClickListener {
             binding.etSearch.isCursorVisible=true
-            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KEYCODE_ENTER) {
-                with(searchViewModel) {
-                    searchPost()
-                }
-            }
-
-            true
         }
-
-
 
 
         return binding.root
@@ -90,8 +90,9 @@ class SearchFragment : Fragment() {
 
     private fun initHomeAdapter() {
         homeAdapter = HomeAdapter {
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.postId)
-            findNavController().navigate(action)
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra("postId", it.postId)
+            startActivity(intent)
         }
         binding.rvSearch.adapter = homeAdapter
     }

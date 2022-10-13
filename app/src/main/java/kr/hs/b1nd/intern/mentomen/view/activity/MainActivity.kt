@@ -33,6 +33,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, AddActivity::class.java))
             }
         }
-
+    }
+    fun hasBottomBar(hasBottomBar: Boolean = true) {
+        binding.bottomNavigation.visibility = if (hasBottomBar) View.VISIBLE else View.GONE
+        binding.bottomAppBar.visibility = if (hasBottomBar) View.VISIBLE else View.GONE
+        binding.addButton.visibility = if (hasBottomBar) View.VISIBLE else View.GONE
     }
 }

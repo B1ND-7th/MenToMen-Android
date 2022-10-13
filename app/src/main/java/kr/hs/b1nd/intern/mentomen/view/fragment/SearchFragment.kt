@@ -20,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentSearchBinding
 import kr.hs.b1nd.intern.mentomen.view.activity.DetailActivity
+import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.SearchViewModel
 import org.json.JSONObject.NULL
@@ -45,6 +46,7 @@ class SearchFragment : Fragment() {
             container,
             false
         )
+        (activity as MainActivity).hasBottomBar(false)
 
         performViewModel()
         initHomeAdapter()

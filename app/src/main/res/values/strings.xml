@@ -40,4 +40,5 @@
     <string name="delete">삭제</string>
     <string name="commentContent">님이 회원님의 게시글에 댓글을 남겼습니다</string>
     <string name="notice">알림</string>
+    <string name="search">검색</string>
 </resources>

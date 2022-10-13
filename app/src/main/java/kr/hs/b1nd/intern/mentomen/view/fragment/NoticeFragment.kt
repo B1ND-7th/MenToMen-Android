@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentNoticeBinding
 import kr.hs.b1nd.intern.mentomen.view.activity.DetailActivity
+import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.view.adapter.NoticeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
@@ -32,6 +33,8 @@ class NoticeFragment : Fragment() {
             container,
             false
         )
+        (activity as MainActivity).hasBottomBar(false)
+
         performViewModel()
         initNoticeAdapter()
         observeViewModel()

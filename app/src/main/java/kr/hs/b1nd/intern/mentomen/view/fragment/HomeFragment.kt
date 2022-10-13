@@ -32,6 +32,8 @@ class HomeFragment : Fragment() {
             container,
             false
         )
+        (activity as MainActivity).hasBottomBar(true)
+
         performViewModel()
         initHomeAdapter()
         observeViewModel()

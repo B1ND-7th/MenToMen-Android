@@ -1,5 +1,6 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.App
@@ -51,6 +52,8 @@ class EditViewModel: ViewModel() {
                 response: Response<BaseResponse<List<ImgUrl?>>>
             ) {
                 if (response.isSuccessful) {
+                    Log.d("test123", "submitPost: ${imgUrl.value}")
+
                     imgUrl.value = response.body()?.data ?: emptyList()
                     successImageEvent.call()
                 }

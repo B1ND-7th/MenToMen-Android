@@ -1,6 +1,7 @@
 package kr.hs.b1nd.intern.mentomen.util
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -83,7 +84,7 @@ object BindingAdapter {
     @BindingAdapter("designButtonState")
     fun setDesignButtonState(view: Button, tagState: MutableLiveData<TagState>) {
         val parentActivity: AppCompatActivity = view.getParentActivity() ?: return
-
+        Log.d("test123", "setDesignButtonState: changeButtonSatte")
         tagState.observe(parentActivity) {
             if (it.isDesignChecked)  view.setBackgroundResource(R.drawable.selected_design)
             else  view.setBackgroundResource(R.drawable.unselected_tags)

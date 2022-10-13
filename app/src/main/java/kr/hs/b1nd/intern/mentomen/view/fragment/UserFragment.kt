@@ -66,7 +66,11 @@ class UserFragment : Fragment() {
 
     private fun observeViewModel() = with(userViewModel) {
         callUser()
-        callPost()
         itemList.observe(viewLifecycleOwner) { homeAdapter.submitList(it) }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        userViewModel.callPost()
     }
 }

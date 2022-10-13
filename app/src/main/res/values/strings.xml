@@ -36,4 +36,6 @@
     <string name="user">마이</string>
     <string name="add">등록</string>
     <string name="edit_text">글수정</string>
+    <string name="edit">수정</string>
+    <string name="delete">삭제</string>
 </resources>

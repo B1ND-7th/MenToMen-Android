@@ -142,6 +142,7 @@ class DetailViewModel : ViewModel() {
     }
 
     fun deletePost() {
+        Log.d("test123", "onResponse: ${postId.value}")
         val call = RetrofitClient.postService.deletePost(postId.value!!)
         call.enqueue(object : retrofit2.Callback<BaseResponse<Unit>> {
             override fun onResponse(

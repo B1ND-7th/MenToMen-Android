@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/logo"
+        android:icon="@drawable/ic_logo"
+        android:title="로고"
+        app:showAsAction="always"/>
+    <item android:id="@+id/search"
+        android:icon="@drawable/ic_search"
+        android:title="검색"
+        app:showAsAction="always"/>
+    <item android:id="@+id/notification"
+        android:icon="@drawable/ic_notification"
+        android:title="알림"
+        app:showAsAction="always"/>
+</menu>

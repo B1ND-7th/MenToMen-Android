@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context="view.fragment.HomeFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                android:elevation="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/logo"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="#00FFFFFF"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/logo_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/todo" />
+
+                <ImageButton
+                    android:id="@+id/btn_serach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:paddingHorizontal="10dp"
+                    android:src="@drawable/ic_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_notification"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/todo" />
+
+                <ImageButton
+                    android:id="@+id/btn_notification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:paddingHorizontal="10dp"
+                    android:src="@drawable/ic_notification"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/todo" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fitsSystemWindows="true"
+                    app:elevation="0dp">
+
+                    <HorizontalScrollView
+                        android:id="@+id/tags"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none"
+                        android:paddingHorizontal="10dp"
+                        android:clipToPadding="false"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_scrollFlags="scroll|enterAlways">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="30dp"
+                                android:layout_marginTop="10dp"
+                                android:translationZ="2dp"
+                                app:cardElevation="4dp">
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_design"
+                                    designButtonState="@{vm.tagState}"
+                                    android:layout_width="67dp"
+                                    android:layout_height="28dp"
+                                    android:background="@drawable/selected_design"
+                                    android:fontFamily="@font/regular"
+                                    android:onClick="@{() -> vm.onClickDesignBtn()}"
+                                    android:text="@string/design"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                app:cardCornerRadius="30dp"
+                                android:layout_marginTop="10dp"
+                                android:translationZ="2dp"
+                                app:cardElevation="4dp">
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_web"
+                                    webButtonState="@{vm.tagState}"
+                                    android:layout_width="67dp"
+                                    android:layout_height="28dp"
+                                    android:background="@drawable/selected_web"
+                                    android:fontFamily="@font/regular"
+                                    android:onClick="@{() -> vm.onClickWebBtn()}"
+                                    android:text="@string/web"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp" />
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:backgroundTint="@color/background"
+                                android:layout_marginTop="10dp"
+                                app:cardCornerRadius="30dp"
+                                android:translationZ="2dp"
+                                app:cardElevation="4dp">
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_android"
+                                    androidButtonState="@{vm.tagState}"
+                                    android:layout_width="67dp"
+                                    android:layout_height="28dp"
+                                    android:background="@drawable/selected_android"
+                                    android:fontFamily="@font/regular"
+                                    android:onClick="@{() -> vm.onClickAndroidBtn()}"
+                                    android:text="@string/android"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                app:cardCornerRadius="30dp"
+                                android:translationZ="2dp"
+                                app:cardElevation="4dp">
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_server"
+                                    serverButtonState="@{vm.tagState}"
+                                    android:layout_width="67dp"
+                                    android:layout_height="28dp"
+                                    android:background="@drawable/selected_server"
+                                    android:fontFamily="@font/regular"
+                                    android:onClick="@{() -> vm.onClickServerBtn()}"
+                                    android:text="@string/server"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                app:cardCornerRadius="30dp"
+                                android:translationZ="2dp"
+                                app:cardElevation="4dp">
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_ios"
+                                    iosButtonState="@{vm.tagState}"
+                                    android:layout_width="67dp"
+                                    android:layout_height="28dp"
+                                    android:background="@drawable/selected_ios"
+                                    android:fontFamily="@font/regular"
+                                    android:onClick="@{() -> vm.onClickIosBtn()}"
+                                    android:text="@string/ios"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp" />
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingBottom="?attr/actionBarSize"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

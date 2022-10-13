@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="kr.hs.b1nd.intern.mentomen.viewmodel.AddViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.activity.AddActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/post_upload_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="3dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/back_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_back"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/semibold"
+                android:text="@string/write_text"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <EditText
+            android:id="@+id/et_contents"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:gravity="top"
+            android:hint="@string/help"
+            android:padding="20dp"
+            android:text="@={vm.content}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/tags"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_upload_toolbar"
+            android:inputType="text"
+            android:importantForAutofill="no" />
+
+        <HorizontalScrollView
+            android:id="@+id/tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/rv_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_contents">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    app:cardCornerRadius="30dp"
+                    android:translationZ="2dp"
+                    app:cardElevation="1dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_design"
+                        designButtonState="@{vm.tagState}"
+                        android:layout_width="70dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/unselected_tags"
+                        android:fontFamily="@font/regular"
+                        android:onClick="@{() -> vm.onClickDesignBtn()}"
+                        android:text="@string/design"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    app:cardCornerRadius="30dp"
+                    android:translationZ="2dp"
+                    app:cardElevation="1dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_web"
+                        webButtonState="@{vm.tagState}"
+                        android:layout_width="70dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/unselected_tags"
+                        android:fontFamily="@font/regular"
+                        android:onClick="@{() -> vm.onClickWebBtn()}"
+                        android:text="@string/web"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    app:cardCornerRadius="30dp"
+                    android:translationZ="2dp"
+                    app:cardElevation="1dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_android"
+                        androidButtonState="@{vm.tagState}"
+                        android:layout_width="70dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/unselected_tags"
+                        android:fontFamily="@font/regular"
+                        android:onClick="@{() -> vm.onClickAndroidBtn()}"
+                        android:text="@string/android"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    app:cardCornerRadius="30dp"
+                    android:translationZ="2dp"
+                    app:cardElevation="1dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_server"
+                        serverButtonState="@{vm.tagState}"
+                        android:layout_width="70dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/unselected_tags"
+                        android:fontFamily="@font/regular"
+                        android:onClick="@{() -> vm.onClickServerBtn()}"
+                        android:text="@string/server"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:cardCornerRadius="30dp"
+                    android:translationZ="2dp"
+                    app:cardElevation="1dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_ios"
+                        iosButtonState="@{vm.tagState}"
+                        android:layout_width="70dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/unselected_tags"
+                        android:fontFamily="@font/regular"
+                        android:onClick="@{() -> vm.onClickIosBtn()}"
+                        android:text="@string/ios"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/btn_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tags" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@color/gray"
+            android:fontFamily="@font/regular"
+            android:onClick="@{() -> vm.onCLickConfirm()}"
+            android:text="@string/post"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_image" />
+
+        <ImageButton
+            android:id="@+id/btn_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#fff"
+            android:elevation="3dp"
+            android:onClick="@{() -> vm.onClickImage()}"
+            android:src="@drawable/ic_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_confirm"
+            android:contentDescription="@string/todo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -18,6 +18,11 @@
             app:popExitAnim="@anim/slide_out_right"
             />
     </fragment>
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_fragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/user_fragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.UserFragment"
@@ -35,5 +40,11 @@
         android:id="@+id/noticeFragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.NoticeFragment"
         android:label="NoticeFragment" />
+        tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="kr.hs.b1nd.intern.mentomen.view.fragment.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 
 </navigation>

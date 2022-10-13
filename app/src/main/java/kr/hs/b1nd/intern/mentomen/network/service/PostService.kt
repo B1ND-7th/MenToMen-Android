@@ -37,4 +37,10 @@ interface PostService {
     fun updatePost(
         @Body postUpdateDto: PostUpdateDto
     ): Call<BaseResponse<Unit>>
+
+    @GET("post/search/{keyWord}")
+    fun searchPost(
+        @Path("keyWord") keyWord: String
+    ): Call<BaseResponse<List<Post>>>
+
 }

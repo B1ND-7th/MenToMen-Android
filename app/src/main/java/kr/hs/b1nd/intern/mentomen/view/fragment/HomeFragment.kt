@@ -2,12 +2,12 @@ package kr.hs.b1nd.intern.mentomen.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
@@ -39,6 +39,10 @@ class HomeFragment : Fragment() {
         binding.btnNotification.setOnClickListener {
             homeViewModel.noticeStatus.value = "NONE"
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNoticeFragment())
+        }
+
+        binding.btnSerach.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
         }
 
         binding.logo.setOnClickListener {

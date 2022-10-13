@@ -30,6 +30,11 @@ class SearchFragment : Fragment() {
     private lateinit var searchViewModel: SearchViewModel
     private lateinit var homeAdapter: HomeAdapter
 
+    fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,11 +52,6 @@ class SearchFragment : Fragment() {
 
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
-        }
-
-        fun View.hideKeyboard() {
-            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(windowToken, 0)
         }
 
         binding.searchPage.setOnClickListener{

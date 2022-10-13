@@ -18,6 +18,12 @@ import java.time.temporal.ChronoUnit
 object BindingAdapter {
 
     @JvmStatic
+    @BindingAdapter("notice")
+    fun comment(view: TextView, comment: String) {
+        view.text = "\"$comment\""
+    }
+
+    @JvmStatic
     @BindingAdapter("image")
     fun loadImage(view: ImageView, imageUrl: String?) {
         if (imageUrl.isNullOrBlank().not()) {

@@ -94,34 +94,36 @@ class DetailViewModel : ViewModel() {
     }
 
     fun postComment() {
-        val call = RetrofitClient.commentService.submitComment(
-            CommentSubmitDto(
-                commentContent.value!!,
-                postId.value!!
+        if (commentContent.value.isNullOrBlank().not()) {
+            val call = RetrofitClient.commentService.submitComment(
+                CommentSubmitDto(
+                    commentContent.value!!,
+                    postId.value!!
+                )
             )
-        )
 
-        call.enqueue(object : retrofit2.Callback<BaseResponse<Unit>> {
-            override fun onResponse(
-                call: Call<BaseResponse<Unit>>,
-                response: Response<BaseResponse<Unit>>
-            ) {
-                if (response.isSuccessful)
-                    successCommentEvent.call()
-                else {
-                    val errorBody = response.errorBody()?.let {
-                        RetrofitClient.retrofit.responseBodyConverter<ErrorResponse>(
-                            ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(it)
-                    }
-                    if (errorBody?.status == 500) {
-                        refreshToken()
-                        postComment()
+            call.enqueue(object : retrofit2.Callback<BaseResponse<Unit>> {
+                override fun onResponse(
+                    call: Call<BaseResponse<Unit>>,
+                    response: Response<BaseResponse<Unit>>
+                ) {
+                    if (response.isSuccessful)
+                        successCommentEvent.call()
+                    else {
+                        val errorBody = response.errorBody()?.let {
+                            RetrofitClient.retrofit.responseBodyConverter<ErrorResponse>(
+                                ErrorResponse::class.java, ErrorResponse::class.java.annotations).convert(it)
+                        }
+                        if (errorBody?.status == 500) {
+                            refreshToken()
+                            postComment()
+                        }
                     }
                 }
-            }
-            override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
-            }
-        })
+                override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
+                }
+            })
+        }
     }
 
     private fun refreshToken() {

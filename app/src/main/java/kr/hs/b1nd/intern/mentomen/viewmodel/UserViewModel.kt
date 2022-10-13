@@ -1,17 +1,20 @@
 package kr.hs.b1nd.intern.mentomen.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.hs.b1nd.intern.mentomen.network.RetrofitClient
 import kr.hs.b1nd.intern.mentomen.network.base.BaseResponse
+import kr.hs.b1nd.intern.mentomen.network.model.NoticeStatus
 import kr.hs.b1nd.intern.mentomen.network.model.Post
 import kr.hs.b1nd.intern.mentomen.network.model.StdInfo
 import kr.hs.b1nd.intern.mentomen.network.model.User
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 
 class UserViewModel : ViewModel() {
+
+    val noticeStatus = MutableLiveData("NONE")
     val email = MutableLiveData<String>()
     val name = MutableLiveData<String>()
     val stdInfo = MutableLiveData<StdInfo>()
@@ -21,7 +24,7 @@ class UserViewModel : ViewModel() {
     fun callUser() {
         val call = RetrofitClient.userService.getUserInfo()
 
-        call.enqueue(object : Callback<BaseResponse<User>> {
+        call.enqueue(object : retrofit2.Callback<BaseResponse<User>> {
             override fun onResponse(
                 call: Call<BaseResponse<User>>,
                 response: Response<BaseResponse<User>>
@@ -41,7 +44,7 @@ class UserViewModel : ViewModel() {
     fun callPost() {
         val call = RetrofitClient.userService.getMyPost()
 
-        call.enqueue(object : Callback<BaseResponse<List<Post>>> {
+        call.enqueue(object : retrofit2.Callback<BaseResponse<List<Post>>> {
             override fun onResponse(
                 call: Call<BaseResponse<List<Post>>>,
                 response: Response<BaseResponse<List<Post>>>
@@ -52,6 +55,26 @@ class UserViewModel : ViewModel() {
 
             override fun onFailure(call: Call<BaseResponse<List<Post>>>, t: Throwable) {
             }
+        })
+    }
+
+    fun callNotice() {
+        val call = RetrofitClient.noticeService.checkNotice()
+
+        call.enqueue(object : retrofit2.Callback<BaseResponse<NoticeStatus>> {
+            override fun onResponse(
+                call: Call<BaseResponse<NoticeStatus>>,
+                response: Response<BaseResponse<NoticeStatus>>
+            ) {
+                if (response.isSuccessful) {
+                    Log.d("test123", "onResponse: call")
+                    noticeStatus.value = response.body()?.data!!.noticeStatus
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<NoticeStatus>>, t: Throwable) {
+            }
+
         })
     }
 }

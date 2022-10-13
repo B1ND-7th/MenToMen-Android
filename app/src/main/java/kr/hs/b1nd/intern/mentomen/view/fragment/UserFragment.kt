@@ -2,6 +2,7 @@ package kr.hs.b1nd.intern.mentomen.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +39,11 @@ class UserFragment : Fragment() {
         initHomeAdapter()
         observeViewModel()
 
+        binding.btnNotification.setOnClickListener {
+            userViewModel.noticeStatus.value = "NONE"
+            findNavController().navigate(UserFragmentDirections.actionUserFragmentToNoticeFragment())
+        }
+
         binding.btnLogout.setOnClickListener {
             App.prefs.logout()
             App.prefs.deleteToken()
@@ -67,10 +73,18 @@ class UserFragment : Fragment() {
     private fun observeViewModel() = with(userViewModel) {
         callUser()
         itemList.observe(viewLifecycleOwner) { homeAdapter.submitList(it) }
+        noticeStatus.observe(viewLifecycleOwner) {
+            Log.d("test123", "observeViewModel: asdfasf")
+            when (it) {
+                "NONE" -> binding.btnNotification.setImageResource(R.drawable.ic_notification)
+                "EXIST" -> binding.btnNotification.setImageResource(R.drawable.ic_notice_on)
+            }
+        }
     }
 
     override fun onStart() {
         super.onStart()
         userViewModel.callPost()
+        userViewModel.callNotice()
     }
 }

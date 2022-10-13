@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.ActivityAddBinding
 import kr.hs.b1nd.intern.mentomen.view.adapter.ImageAdapter
+import kr.hs.b1nd.intern.mentomen.view.adapter.NoticeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.AddViewModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody

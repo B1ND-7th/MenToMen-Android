@@ -18,15 +18,20 @@
         tools:replace="android:name">
         <activity
             android:name=".view.activity.EditActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="fullSensor"
+            />
         <activity
             android:name=".view.activity.DetailActivity"
+            android:screenOrientation="fullSensor"
             android:exported="false" />
         <activity
             android:name=".view.activity.AddActivity"
+            android:screenOrientation="fullSensor"
             android:exported="false" />
         <activity
             android:name=".view.activity.LoginActivity"
+            android:screenOrientation="fullSensor"
             android:exported="true"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize">

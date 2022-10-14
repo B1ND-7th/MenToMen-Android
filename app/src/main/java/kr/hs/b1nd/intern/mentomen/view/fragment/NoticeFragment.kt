@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentNoticeBinding
 import kr.hs.b1nd.intern.mentomen.view.activity.DetailActivity
@@ -38,6 +39,8 @@ class NoticeFragment : Fragment() {
         performViewModel()
         initNoticeAdapter()
         observeViewModel()
+
+        binding.backButton.setOnClickListener { findNavController().popBackStack() }
 
         return binding.root
     }

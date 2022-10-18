@@ -17,19 +17,17 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:name">
         <activity
-            android:name=".view.activity.EditActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.activity.DetailActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.activity.AddActivity"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".view.activity.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,9 +36,9 @@
         </activity>
         <activity
             android:name=".view.activity.MainActivity"
-            android:exported="true"
-            android:screenOrientation="fullSensor"
-            android:windowSoftInputMode="adjustResize" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

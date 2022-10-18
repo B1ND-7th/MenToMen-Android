@@ -50,6 +50,8 @@
                 android:backgroundTint="@color/background"
                 android:hint="@string/search"
                 android:importantForAutofill="no"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:singleLine="true"

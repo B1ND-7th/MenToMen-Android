@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kr.hs.b1nd.intern.mentomen.R
@@ -68,9 +67,9 @@ class DetailFragment : Fragment(), PopupMenu.OnMenuItemClickListener {
                 if (userId.value == author.value) binding.btnMore.visibility = View.VISIBLE
                 else binding.btnMore.visibility = View.GONE
             }
-        }
 
-        itemList.observe(viewLifecycleOwner) { commentAdapter.submitList(it) }
+            itemList.observe(viewLifecycleOwner) { commentAdapter.submitList(it) }
+        }
 
         postId.value = navArgs.postId
         readOne()
@@ -104,8 +103,10 @@ class DetailFragment : Fragment(), PopupMenu.OnMenuItemClickListener {
     }
 
     private fun initCommentAdapter() {
-        commentAdapter = CommentAdapter()
-        binding.rvComment.adapter = commentAdapter
+        detailViewModel.userId.observe(viewLifecycleOwner) {
+            commentAdapter = CommentAdapter(detailViewModel.userId.value!!)
+            binding.rvComment.adapter = commentAdapter
+        }
     }
 
     private fun performViewModel() {

@@ -30,7 +30,7 @@
                 android:layout_height="50dp"
                 android:backgroundTint="#00FFFFFF"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/ic_more"
+                android:src="@drawable/ic_trash"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

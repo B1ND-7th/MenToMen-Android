@@ -24,6 +24,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_detailFragment_to_imageZoomFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -72,6 +77,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="imageZoomFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="noticeFragment">
                     <value>
                       <LayoutPositions>
@@ -102,6 +119,15 @@
                             <option name="y" value="-461" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_searchFragment_to_detailFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -110,12 +136,17 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-837" />
-                            <option name="y" value="-252" />
+                            <option name="x" value="-850" />
+                            <option name="y" value="-148" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_user_fragment_to_detailFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_user_fragment_to_noticeFragment">
                               <value>
                                 <LayoutPositions />

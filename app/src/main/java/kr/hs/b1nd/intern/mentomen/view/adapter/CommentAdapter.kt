@@ -21,7 +21,7 @@ import kr.hs.b1nd.intern.mentomen.viewmodel.DetailViewModel
 import retrofit2.Call
 import retrofit2.Response
 
-class CommentAdapter(private val userId: Int) : ListAdapter<Comment, CommentAdapter.CommentViewHolder>(CommentDiffUtil) {
+class CommentAdapter(private val userId: Int, private val singleLiveEvent: SingleLiveEvent<Unit>) : ListAdapter<Comment, CommentAdapter.CommentViewHolder>(CommentDiffUtil) {
 
     inner class CommentViewHolder(private val binding: ItemCommentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Comment) {
@@ -36,7 +36,7 @@ class CommentAdapter(private val userId: Int) : ListAdapter<Comment, CommentAdap
                         call: Call<BaseResponse<Unit>>,
                         response: Response<BaseResponse<Unit>>
                     ) {
-
+                        singleLiveEvent.call()
                     }
 
                     override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {

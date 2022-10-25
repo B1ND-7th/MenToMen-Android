@@ -76,7 +76,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@color/background"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -92,9 +91,9 @@
                         android:id="@+id/tags"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:scrollbars="none"
-                        android:paddingHorizontal="10dp"
                         android:clipToPadding="false"
+                        android:paddingHorizontal="10dp"
+                        android:scrollbars="none"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         app:layout_scrollFlags="scroll|enterAlways">
 
@@ -106,15 +105,15 @@
                             <androidx.cardview.widget.CardView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:cardCornerRadius="30dp"
                                 android:layout_marginTop="10dp"
                                 android:translationZ="2dp"
+                                app:cardCornerRadius="30dp"
                                 app:cardElevation="4dp">
 
                                 <androidx.appcompat.widget.AppCompatButton
                                     android:id="@+id/btn_design"
                                     designButtonState="@{vm.tagState}"
-                                    android:layout_width="67dp"
+                                    android:layout_width="65dp"
                                     android:layout_height="28dp"
                                     android:background="@drawable/selected_design"
                                     android:fontFamily="@font/regular"
@@ -129,15 +128,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                app:cardCornerRadius="30dp"
                                 android:layout_marginTop="10dp"
                                 android:translationZ="2dp"
+                                app:cardCornerRadius="30dp"
                                 app:cardElevation="4dp">
 
                                 <androidx.appcompat.widget.AppCompatButton
                                     android:id="@+id/btn_web"
                                     webButtonState="@{vm.tagState}"
-                                    android:layout_width="67dp"
+                                    android:layout_width="65dp"
                                     android:layout_height="28dp"
                                     android:background="@drawable/selected_web"
                                     android:fontFamily="@font/regular"
@@ -153,16 +152,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:backgroundTint="@color/background"
                                 android:layout_marginTop="10dp"
-                                app:cardCornerRadius="30dp"
+                                android:backgroundTint="@color/background"
                                 android:translationZ="2dp"
+                                app:cardCornerRadius="30dp"
                                 app:cardElevation="4dp">
 
                                 <androidx.appcompat.widget.AppCompatButton
                                     android:id="@+id/btn_android"
                                     androidButtonState="@{vm.tagState}"
-                                    android:layout_width="67dp"
+                                    android:layout_width="65dp"
                                     android:layout_height="28dp"
                                     android:background="@drawable/selected_android"
                                     android:fontFamily="@font/regular"
@@ -178,14 +177,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                app:cardCornerRadius="30dp"
                                 android:translationZ="2dp"
+                                app:cardCornerRadius="30dp"
                                 app:cardElevation="4dp">
 
                                 <androidx.appcompat.widget.AppCompatButton
                                     android:id="@+id/btn_server"
                                     serverButtonState="@{vm.tagState}"
-                                    android:layout_width="67dp"
+                                    android:layout_width="65dp"
                                     android:layout_height="28dp"
                                     android:background="@drawable/selected_server"
                                     android:fontFamily="@font/regular"
@@ -201,14 +200,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="10dp"
-                                app:cardCornerRadius="30dp"
                                 android:translationZ="2dp"
+                                app:cardCornerRadius="30dp"
                                 app:cardElevation="4dp">
 
                                 <androidx.appcompat.widget.AppCompatButton
                                     android:id="@+id/btn_ios"
                                     iosButtonState="@{vm.tagState}"
-                                    android:layout_width="67dp"
+                                    android:layout_width="65dp"
                                     android:layout_height="28dp"
                                     android:background="@drawable/selected_ios"
                                     android:fontFamily="@font/regular"
@@ -223,19 +222,21 @@
                 </com.google.android.material.appbar.AppBarLayout>
 
                 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/refresh_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/refresh_layout"
-                    android:paddingBottom="?attr/actionBarSize"
                     android:clipToPadding="false"
+                    android:paddingBottom="?attr/actionBarSize"
                     app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_home"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        android:orientation="vertical" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:clipToPadding="false"
+                        android:paddingBottom="?attr/actionBarSize"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

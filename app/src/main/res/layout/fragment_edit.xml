@@ -95,7 +95,7 @@
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn_design"
                             designButtonState="@{vm.tagState}"
-                            android:layout_width="70dp"
+                            android:layout_width="65dp"
                             android:layout_height="28dp"
                             android:background="@drawable/unselected_tags"
                             android:fontFamily="@font/regular"
@@ -117,7 +117,7 @@
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn_web"
                             webButtonState="@{vm.tagState}"
-                            android:layout_width="70dp"
+                            android:layout_width="65dp"
                             android:layout_height="28dp"
                             android:background="@drawable/unselected_tags"
                             android:fontFamily="@font/regular"
@@ -139,7 +139,7 @@
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn_android"
                             androidButtonState="@{vm.tagState}"
-                            android:layout_width="70dp"
+                            android:layout_width="65dp"
                             android:layout_height="28dp"
                             android:background="@drawable/unselected_tags"
                             android:fontFamily="@font/regular"
@@ -161,7 +161,7 @@
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn_server"
                             serverButtonState="@{vm.tagState}"
-                            android:layout_width="70dp"
+                            android:layout_width="65dp"
                             android:layout_height="28dp"
                             android:background="@drawable/unselected_tags"
                             android:fontFamily="@font/regular"
@@ -184,7 +184,7 @@
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn_ios"
                             iosButtonState="@{vm.tagState}"
-                            android:layout_width="70dp"
+                            android:layout_width="65dp"
                             android:layout_height="28dp"
                             android:background="@drawable/unselected_tags"
                             android:fontFamily="@font/regular"

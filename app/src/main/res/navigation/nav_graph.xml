@@ -96,6 +96,9 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out_bottom" />
+        <action
+            android:id="@+id/action_detailFragment_to_imageZoomFragment"
+            app:destination="@id/imageZoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/editFragment"
@@ -110,6 +113,14 @@
             app:argType="string" />
         <argument
             android:name="content"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageZoomFragment"
+        android:name="kr.hs.b1nd.intern.mentomen.view.fragment.ImageZoomFragment"
+        android:label="ImageZoomFragment" >
+        <argument
+            android:name="imgUrl"
             app:argType="string" />
     </fragment>
 

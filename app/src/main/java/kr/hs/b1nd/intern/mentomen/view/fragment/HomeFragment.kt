@@ -1,5 +1,6 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentHomeBinding
+import kr.hs.b1nd.intern.mentomen.view.activity.LoginActivity
 import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
@@ -65,16 +68,21 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun observeViewModel() {
-        with(homeViewModel) {
-            itemList.observe(viewLifecycleOwner) { homeAdapter.submitList(it) }
-            noticeStatus.observe(viewLifecycleOwner) {
-                when (it) {
-                    "NONE" -> binding.btnNotification.setImageResource(R.drawable.ic_notification)
-                    "EXIST" -> binding.btnNotification.setImageResource(R.drawable.ic_notice_on)
-                }
+    private fun observeViewModel() = with(homeViewModel) {
+
+        itemList.observe(viewLifecycleOwner) { homeAdapter.submitList(it) }
+        noticeStatus.observe(viewLifecycleOwner) {
+            when (it) {
+                "NONE" -> binding.btnNotification.setImageResource(R.drawable.ic_notification)
+                "EXIST" -> binding.btnNotification.setImageResource(R.drawable.ic_notice_on)
             }
-            changeTags()
+        }
+        changeTags()
+
+        tokenExpirationEvent.observe(viewLifecycleOwner) {
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            App.prefs.logout()
+            App.prefs.deleteToken()
         }
     }
 

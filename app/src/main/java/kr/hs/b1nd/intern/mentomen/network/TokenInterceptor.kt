@@ -34,6 +34,20 @@ class TokenInterceptor : Interceptor {
             .addHeader("Authorization", "Bearer ${App.prefs.getString("refreshToken", "")}")
             .build()
 
-        return chain.proceed(request)
+        val response = chain.proceed(request)
+
+        when (response.code) {
+            200 -> return response
+            401 -> {
+                try {
+                    response.close()
+                    return makeTokenRefreshCall(chain)
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+        return response
     }
 }

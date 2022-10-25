@@ -81,6 +81,7 @@ class DetailFragment : Fragment(), PopupMenu.OnMenuItemClickListener {
             readComment()
         }
 
+        deleteCommentEvent.observe(viewLifecycleOwner) { readComment() }
         deletePostEvent.observe(viewLifecycleOwner) { findNavController().popBackStack() }
     }
 
@@ -91,7 +92,9 @@ class DetailFragment : Fragment(), PopupMenu.OnMenuItemClickListener {
                 else {
                     viewpagerFrame.visibility = View.VISIBLE
 
-                    imageAdapter = DetailImageAdapter(imgUrl.value!!)
+                    imageAdapter = DetailImageAdapter(imgUrl.value!!) {
+                        findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToImageZoomFragment(it))
+                    }
                     viewpager.adapter = imageAdapter
                     wormDotsIndicator.attachTo(viewpager)
 
@@ -102,9 +105,9 @@ class DetailFragment : Fragment(), PopupMenu.OnMenuItemClickListener {
         }
     }
 
-    private fun initCommentAdapter() {
-        detailViewModel.userId.observe(viewLifecycleOwner) {
-            commentAdapter = CommentAdapter(detailViewModel.userId.value!!)
+    private fun initCommentAdapter() = with(detailViewModel) {
+        userId.observe(viewLifecycleOwner) {
+            commentAdapter = CommentAdapter(userId.value!!, deleteCommentEvent)
             binding.rvComment.adapter = commentAdapter
         }
     }

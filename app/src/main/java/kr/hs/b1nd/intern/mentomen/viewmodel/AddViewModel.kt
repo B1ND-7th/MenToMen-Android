@@ -20,6 +20,7 @@ class AddViewModel : ViewModel() {
     val onClickImageEvent = SingleLiveEvent<Unit>()
     val successConfirmEvent = SingleLiveEvent<Unit>()
     val successImageEvent = SingleLiveEvent<Unit>()
+    val errorImageEvent = SingleLiveEvent<Unit>()
 
     val tagState = MutableLiveData(
         TagState(
@@ -41,7 +42,7 @@ class AddViewModel : ViewModel() {
         onClickImageEvent.call()
     }
 
-    private fun loadImage() {
+    fun loadImage() {
         val call = RetrofitClient.fileService.loadImage(imgFile.value!!)
 
         call.enqueue(object : retrofit2.Callback<BaseResponse<List<ImgUrl?>>> {
@@ -52,6 +53,9 @@ class AddViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     imgUrl.value = response.body()?.data ?: emptyList()
                     successImageEvent.call()
+                }
+                else if (response.code() == 413){
+                    errorImageEvent.call()
                 }
             }
             override fun onFailure(call: Call<BaseResponse<List<ImgUrl?>>>, t: Throwable) {

@@ -26,6 +26,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_home_fragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -40,15 +47,81 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_user_fragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/noticeFragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.NoticeFragment"
-        android:label="NoticeFragment" />
+        android:label="NoticeFragment" >
+        <action
+            android:id="@+id/action_noticeFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="kr.hs.b1nd.intern.mentomen.view.fragment.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="kr.hs.b1nd.intern.mentomen.view.fragment.DetailFragment"
+        android:label="DetailFragment" >
+
+        <argument
+            android:name="postId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_detailFragment_to_editFragment"
+            app:destination="@id/editFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_bottom" />
+        <action
+            android:id="@+id/action_detailFragment_to_imageZoomFragment"
+            app:destination="@id/imageZoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="kr.hs.b1nd.intern.mentomen.view.fragment.EditFragment"
+        android:label="EditFragment" >
+        <argument
+            android:name="postId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="tag"
+            app:argType="string" />
+        <argument
+            android:name="content"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageZoomFragment"
+        android:name="kr.hs.b1nd.intern.mentomen.view.fragment.ImageZoomFragment"
+        android:label="ImageZoomFragment" >
+        <argument
+            android:name="imgUrl"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

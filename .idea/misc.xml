@@ -67,6 +67,7 @@
         <entry key="app/src/main/res/drawable/back_corner_radious.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/category_item_black.xml" value="0.2585" />
         <entry key="app/src/main/res/drawable/comment.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/comment_background.xml" value="0.337" />
         <entry key="app/src/main/res/drawable/corner_radious.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/dropshadow.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/et_background.xml" value="0.3365" />
@@ -75,6 +76,7 @@
         <entry key="app/src/main/res/drawable/ic_android.xml" value="0.2885" />
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.3245" />
+        <entry key="app/src/main/res/drawable/ic_group_1.xml" value="0.337" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_image.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/ic_ios.xml" value="0.2885" />
@@ -86,7 +88,9 @@
         <entry key="app/src/main/res/drawable/ic_plus.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/ic_send.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/ic_trash.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/ic_web.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/ic_x.xml" value="0.2785" />
         <entry key="app/src/main/res/drawable/login_corner_radious.xml" value="0.287" />
         <entry key="app/src/main/res/drawable/selected_android.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/selected_ios.xml" value="0.3365" />
@@ -94,6 +98,8 @@
         <entry key="app/src/main/res/drawable/selected_web.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/shadow.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/shadow_tags.xml" value="0.3365" />
+        <entry key="app/src/main/res/drawable/stroke.xml" value="0.337" />
+        <entry key="app/src/main/res/drawable/stroke_bottom.xml" value="0.337" />
         <entry key="app/src/main/res/drawable/stroke_top.xml" value="0.3365" />
         <entry key="app/src/main/res/drawable/tags_corner_radious.xml" value="0.287" />
         <entry key="app/src/main/res/drawable/unselected_android.xml" value="0.3245" />
@@ -108,10 +114,17 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.4765974004217919" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.41343688964843756" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.3929261617997581" />
-        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.42305127191601805" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.41373901367187504" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.45625" />
+<<<<<<< HEAD
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.43795077528583404" />
         <entry key="app/src/main/res/layout/fragment_notice.xml" value="0.4178082191780822" />
+=======
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3623862000905215" />
+        <entry key="app/src/main/res/layout/fragment_image_zoom.xml" value="0.5018115942028986" />
+        <entry key="app/src/main/res/layout/fragment_imagezoom.xml" value="0.3703125" />
+        <entry key="app/src/main/res/layout/fragment_notice.xml" value="0.45625" />
+>>>>>>> develop
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.5373312024102694" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.43757159221076747" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.21875" />

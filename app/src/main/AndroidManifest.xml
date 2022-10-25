@@ -17,15 +17,6 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:name">
         <activity
-            android:name=".view.activity.EditActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".view.activity.DetailActivity"
-            android:screenOrientation="fullSensor"
-            android:exported="false" />
-        <activity
             android:name=".view.activity.AddActivity"
             android:screenOrientation="portrait"
             android:exported="false"
@@ -35,6 +26,7 @@
             android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
@@ -45,9 +37,8 @@
         </activity>
         <activity
             android:name=".view.activity.MainActivity"
-            android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"
+            android:exported="false"
             tools:ignore="LockedOrientationActivity" />
     </application>
 

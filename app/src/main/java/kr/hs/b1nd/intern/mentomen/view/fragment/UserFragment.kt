@@ -8,12 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.App
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentUserBinding
-import kr.hs.b1nd.intern.mentomen.view.activity.DetailActivity
 import kr.hs.b1nd.intern.mentomen.view.activity.LoginActivity
 import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
@@ -21,7 +21,7 @@ import kr.hs.b1nd.intern.mentomen.viewmodel.UserViewModel
 
 class UserFragment : Fragment() {
     private lateinit var binding: FragmentUserBinding
-    private lateinit var userViewModel: UserViewModel
+    private val userViewModel: UserViewModel by viewModels()
     private lateinit var homeAdapter: HomeAdapter
 
     override fun onCreateView(
@@ -57,16 +57,14 @@ class UserFragment : Fragment() {
     }
 
     private fun performViewModel() {
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         binding.vm = userViewModel
         binding.lifecycleOwner = this
     }
 
     private fun initHomeAdapter() {
         homeAdapter = HomeAdapter {
-            val intent = Intent(requireContext(), DetailActivity::class.java)
-            intent.putExtra("postId", it.postId)
-            startActivity(intent)
+            val action = UserFragmentDirections.actionUserFragmentToDetailFragment(it.postId)
+            findNavController().navigate(action)
         }
         binding.rvMyPage.adapter = homeAdapter
     }

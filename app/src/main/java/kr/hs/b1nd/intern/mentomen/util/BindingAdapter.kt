@@ -2,6 +2,7 @@ package kr.hs.b1nd.intern.mentomen.util
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView

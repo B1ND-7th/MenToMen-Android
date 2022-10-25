@@ -1,27 +1,23 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentNoticeBinding
-import kr.hs.b1nd.intern.mentomen.view.activity.DetailActivity
 import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
-import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.view.adapter.NoticeAdapter
-import kr.hs.b1nd.intern.mentomen.viewmodel.HomeViewModel
 import kr.hs.b1nd.intern.mentomen.viewmodel.NoticeViewModel
 
 class NoticeFragment : Fragment() {
     private lateinit var binding: FragmentNoticeBinding
-    private lateinit var noticeViewModel: NoticeViewModel
+    private val noticeViewModel: NoticeViewModel by viewModels()
     private lateinit var noticeAdapter: NoticeAdapter
 
     override fun onCreateView(
@@ -51,15 +47,13 @@ class NoticeFragment : Fragment() {
 
     private fun initNoticeAdapter() {
         noticeAdapter = NoticeAdapter {
-            val intent = Intent(requireContext(), DetailActivity::class.java)
-            intent.putExtra("postId", it.postId)
-            startActivity(intent)
+            val action = NoticeFragmentDirections.actionNoticeFragmentToDetailFragment(it.postId)
+            findNavController().navigate(action)
         }
         binding.rvNotice.adapter = noticeAdapter
     }
 
     private fun performViewModel() {
-        noticeViewModel = ViewModelProvider(this)[NoticeViewModel::class.java]
         binding.lifecycleOwner = this
     }
 

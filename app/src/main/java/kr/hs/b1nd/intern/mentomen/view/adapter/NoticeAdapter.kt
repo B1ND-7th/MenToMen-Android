@@ -1,6 +1,7 @@
 package kr.hs.b1nd.intern.mentomen.view.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -16,6 +17,10 @@ class NoticeAdapter(private val itemClick: (Notice) -> Unit) : ListAdapter<Notic
         fun bind(item: Notice) {
             binding.item = item
             binding.root.setOnClickListener { itemClick(item) }
+            when (item.noticeStatus) {
+                "NONE" -> binding.status.visibility = View.GONE
+                "EXIST" -> binding.status.visibility = View.VISIBLE
+            }
         }
     }
 

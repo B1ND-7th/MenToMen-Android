@@ -1,50 +1,59 @@
-package kr.hs.b1nd.intern.mentomen.view.activity
+package kr.hs.b1nd.intern.mentomen.view.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import kr.hs.b1nd.intern.mentomen.R
-import kr.hs.b1nd.intern.mentomen.databinding.ActivityEditBinding
+import kr.hs.b1nd.intern.mentomen.databinding.FragmentEditBinding
+import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.ImageAdapter
-import kr.hs.b1nd.intern.mentomen.view.adapter.NoticeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.EditViewModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
-class EditActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityEditBinding
-    private lateinit var editViewModel: EditViewModel
+class EditFragment : Fragment() {
+    private lateinit var binding: FragmentEditBinding
+    private val editViewModel: EditViewModel by viewModels()
     private lateinit var imageAdapter: ImageAdapter
     private val imageList = MutableLiveData<ArrayList<Uri?>>(arrayListOf())
+
+    private val navArgs: EditFragmentArgs by navArgs()
 
     @SuppressLint("NotifyDataSetChanged")
     private var launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
                 imageList.value?.clear()
                 editViewModel.imgFile.value?.clear()
                 if (result.data?.clipData != null) {
                     val count = result.data?.clipData!!.itemCount
                     if (count > 5) {
-                        Toast.makeText(this, "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG)
+                        Toast.makeText(requireContext(), "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG)
                             .show()
                         return@registerForActivityResult
                     }
                     for (i in 0 until count) {
                         val imageUri = result.data?.clipData!!.getItemAt(i).uri
-                        val file = File(absolutelyPath(imageUri, this))
+                        val file = File(absolutelyPath(imageUri, requireContext()))
                         val extension = file.toString().split(".")[1]
                         val requestFile = file.asRequestBody("image/$extension".toMediaTypeOrNull())
                         val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
@@ -58,19 +67,26 @@ class EditActivity : AppCompatActivity() {
 
         }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_edit)
-        overridePendingTransition(R.anim.slide_in_bottom, R.anim.fade_out)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_edit,
+            container,
+            false
+        )
+        (activity as MainActivity).hasBottomBar(false)
 
         performViewModel()
         initImageAdapter()
         observeViewModel()
 
         with(editViewModel) {
-            content.value = intent.getStringExtra("content")
-            tag.value = intent.getStringExtra("tag")
-            postId.value = intent.getIntExtra("postId", 0)
+            content.value = navArgs.content
+            tag.value = navArgs.tag
+            postId.value = navArgs.postId
 
             when (tag.value) {
                 "DESIGN" -> onClickDesignBtn()
@@ -81,13 +97,13 @@ class EditActivity : AppCompatActivity() {
             }
         }
 
-        imageList.observe(this) { imageAdapter.submitList(it) }
+        imageList.observe(viewLifecycleOwner) { imageAdapter.submitList(it) }
 
         binding.backButton.setOnClickListener {
-            finish()
-            overridePendingTransition(R.anim.fade_in, R.anim.slide_out_bottom)
+            findNavController().popBackStack()
         }
 
+        return binding.root
     }
 
     private fun getImageGallery() {
@@ -115,8 +131,8 @@ class EditActivity : AppCompatActivity() {
 
     private fun observeViewModel() = with(editViewModel) {
 
-        content.observe(this@EditActivity) { content ->
-            if (content != "") tag.observe(this@EditActivity) { tag ->
+        content.observe(viewLifecycleOwner) { content ->
+            if (content != "") tag.observe(viewLifecycleOwner) { tag ->
                 if (tag != "") binding.btnConfirm.setBackgroundResource(
                     R.color.blue
                 )
@@ -124,31 +140,30 @@ class EditActivity : AppCompatActivity() {
             else binding.btnConfirm.setBackgroundResource(R.color.gray)
         }
 
-        onClickConfirmEvent.observe(this@EditActivity)
+        onClickConfirmEvent.observe(viewLifecycleOwner)
         {
             if (tag.value == "" && content.value == "") Toast.makeText(
-                this@EditActivity,
+                requireContext(),
                 "태그와 내용을 입력해주세요!",
                 Toast.LENGTH_SHORT
             ).show()
             else if (tag.value == "") Toast.makeText(
-                this@EditActivity,
+                requireContext(),
                 "태그를 선택해주세요!",
                 Toast.LENGTH_SHORT
             ).show()
             else if (content.value == "") Toast.makeText(
-                this@EditActivity,
+                requireContext(),
                 "내용을 입력해주세요!",
                 Toast.LENGTH_SHORT
             ).show()
         }
 
-        onClickImageEvent.observe(this@EditActivity) { getImageGallery() }
-        successConfirmEvent.observe(this@EditActivity) {
-            finish()
-            overridePendingTransition(R.anim.fade_in, R.anim.slide_out_bottom)
+        onClickImageEvent.observe(viewLifecycleOwner) { getImageGallery() }
+        successConfirmEvent.observe(viewLifecycleOwner) {
+            findNavController().popBackStack()
         }
-        successImageEvent.observe(this@EditActivity) { submitPost() }
+        successImageEvent.observe(viewLifecycleOwner) { submitPost() }
     }
 
     private fun initImageAdapter() {
@@ -157,15 +172,8 @@ class EditActivity : AppCompatActivity() {
     }
 
     private fun performViewModel() {
-        editViewModel = ViewModelProvider(this)[EditViewModel::class.java]
         binding.vm = editViewModel
         binding.lifecycleOwner = this
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if (isFinishing) {
-            overridePendingTransition(R.anim.fade_in, R.anim.slide_out_bottom)
-        }
-    }
 }

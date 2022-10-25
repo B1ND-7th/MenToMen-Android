@@ -37,8 +37,8 @@ class AddActivity : AppCompatActivity() {
                 addViewModel.imgFile.value?.clear()
                 if (result.data?.clipData != null) {
                     val count = result.data?.clipData!!.itemCount
-                    if (count > 10) {
-                        Toast.makeText(this, "사진은 10장까지 선택 가능합니다.", Toast.LENGTH_LONG)
+                    if (count > 5) {
+                        Toast.makeText(this, "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG)
                             .show()
                         return@registerForActivityResult
                     }
@@ -122,6 +122,11 @@ class AddActivity : AppCompatActivity() {
                 "내용을 입력해주세요!",
                 Toast.LENGTH_SHORT
             ).show()
+            else Toast.makeText(this@AddActivity, "업로드 중... 잠시만 기다려주세요.", Toast.LENGTH_SHORT).show()
+
+            errorImageEvent.observe(this@AddActivity) {
+                Toast.makeText(this@AddActivity, "파일 용량이 너무 커요!", Toast.LENGTH_SHORT).show()
+            }
         }
 
 
@@ -130,7 +135,7 @@ class AddActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.fade_in, R.anim.slide_out_bottom)
         }
-        successImageEvent.observe(this@AddActivity) { submitPost() }
+        imgFile.observe(this@AddActivity) { loadImage() }
     }
 
     private fun initImageAdapter() {

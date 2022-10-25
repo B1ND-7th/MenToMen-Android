@@ -17,6 +17,7 @@ class DetailViewModel : ViewModel() {
     val deletePostEvent = SingleLiveEvent<Unit>()
     val successCommentEvent = SingleLiveEvent<Unit>()
     val successReadEvent = SingleLiveEvent<Unit>()
+    val deleteCommentEvent = SingleLiveEvent<Unit>()
 
     val itemList = MutableLiveData<List<Comment>>()
     val userId = MutableLiveData<Int>()

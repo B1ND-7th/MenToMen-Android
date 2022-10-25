@@ -1,12 +1,8 @@
 package kr.hs.b1nd.intern.mentomen.view.fragment
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils.substring
-import android.util.Log
-import android.view.KeyEvent
 import android.view.KeyEvent.*
 import android.view.LayoutInflater
 import android.view.View
@@ -14,24 +10,22 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import kr.hs.b1nd.intern.mentomen.R
 import kr.hs.b1nd.intern.mentomen.databinding.FragmentSearchBinding
-import kr.hs.b1nd.intern.mentomen.view.activity.DetailActivity
 import kr.hs.b1nd.intern.mentomen.view.activity.MainActivity
 import kr.hs.b1nd.intern.mentomen.view.adapter.HomeAdapter
 import kr.hs.b1nd.intern.mentomen.viewmodel.SearchViewModel
-import org.json.JSONObject.NULL
 
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
-    private lateinit var searchViewModel: SearchViewModel
+    private val searchViewModel: SearchViewModel by viewModels()
     private lateinit var homeAdapter: HomeAdapter
 
-    fun View.hideKeyboard() {
+    private fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
@@ -56,6 +50,18 @@ class SearchFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+
+        binding.etSearch.setOnKeyListener { _, keyCode, event ->
+            with(searchViewModel) {
+                if (keyWord.value.isNullOrBlank().not()) {
+                    if ((event.action == ACTION_DOWN) && (keyCode == KEYCODE_ENTER)) {
+                        searchPost()
+                    }
+                }
+            }
+            true
+        }
+
         binding.searchPage.setOnClickListener{
             binding.etSearch.clearFocus()
             binding.etSearch.hideKeyboard()
@@ -63,7 +69,7 @@ class SearchFragment : Fragment() {
 
         binding.searchButton.setOnClickListener {
             with(searchViewModel) {
-                if(!keyWord.value.isNullOrEmpty())
+                if(keyWord.value.isNullOrEmpty().not())
                     searchPost()
             }
         }
@@ -92,18 +98,15 @@ class SearchFragment : Fragment() {
 
     private fun initHomeAdapter() {
         homeAdapter = HomeAdapter {
-            val intent = Intent(requireContext(), DetailActivity::class.java)
-            intent.putExtra("postId", it.postId)
-            startActivity(intent)
+            val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(it.postId)
+            findNavController().navigate(action)
         }
         binding.rvSearch.adapter = homeAdapter
     }
 
     private fun performViewModel() {
-        searchViewModel = ViewModelProvider(this)[SearchViewModel::class.java]
         binding.vm = searchViewModel
         binding.lifecycleOwner = this
-        binding.executePendingBindings()
     }
 
 
